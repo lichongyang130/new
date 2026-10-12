@@ -126,7 +126,7 @@ export class DockerRuntime {
       await this.execDocker(args, 240000);
       return containerName;
     } catch (error) {
-      await this.execDocker(["network", "rm", networkName], 15000).catch(() => undefined);
+      await this.stop(containerName).catch(() => undefined);
       const message = error instanceof Error ? error.message : "Unable to start preview container.";
       throw new DockerRuntimeError(message.slice(0, 800), "CONTAINER_START_FAILED");
     }
@@ -142,7 +142,7 @@ export class DockerRuntime {
         throw new DockerRuntimeError("Unable to stop preview container.", "CONTAINER_STOP_FAILED");
       }
     }
-    await this.removeSessionNetwork(sessionId).catch(() => undefined);
+    await this.execDocker(["network", "rm", networkName], 15000).catch(() => undefined);
   }
 
   async isRunning(containerName: string): Promise<boolean> {
