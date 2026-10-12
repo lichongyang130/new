@@ -22,6 +22,10 @@ export class RuntimeManager {
     this.runtime = runtime ?? new DockerRuntime(config);
   }
 
+  async cleanupOrphans(): Promise<number> {
+    return this.runtime.cleanupOrphans();
+  }
+
   async start(input: StartWorkerSession): Promise<{ url: string }> {
     this.validateSessionId(input.sessionId);
     if (this.sessions.has(input.sessionId)) {
@@ -248,6 +252,7 @@ export class RuntimeManager {
     if (!referer) return undefined;
     try {
       const url = new URL(referer);
+      if (url.origin !== this.config.publicPreviewOrigin) return undefined;
       const match = url.pathname.match(/^\/p\/([A-Za-z0-9_-]{1,128})(?:\/|$)/);
       if (!match || !this.sessions.has(match[1])) return undefined;
       return { sessionId: match[1] };
