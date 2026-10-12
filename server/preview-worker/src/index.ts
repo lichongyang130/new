@@ -6,7 +6,7 @@ async function main(): Promise<void> {
   const app = createPreviewWorkerServer(config);
   const removed = await app.manager.cleanupOrphans();
   if (removed > 0) {
-    process.stdout.write("Cleaned " + removed + " orphaned preview container(s).\\n");
+    process.stdout.write("Cleaned " + removed + " orphaned preview container(s).\n");
   }
 
   await app.listen();
