@@ -46,7 +46,6 @@ export interface WorkerConfig {
   hostPortEnd: number;
   previewBindHost: string;
   previewUpstreamHost: string;
-  dockerNetwork: string;
   memoryLimit: string;
   cpuLimit: string;
   pidsLimit: number;
