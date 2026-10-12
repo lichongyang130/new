@@ -45,7 +45,7 @@ export function generateDeploymentArtifacts(schema: AppSchema): AppArtifact[] {
     ".git",
     ".env",
     ".env.*",
-    "! .env.example",
+    "!.env.example",
     "coverage",
     ""
   ].join("\n");
