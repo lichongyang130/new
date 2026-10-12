@@ -87,8 +87,8 @@ export class DockerRuntime {
     const containerPort = framework === "nextjs" ? 3000 : 4173;
     const basePath = "/p/" + sessionId;
     const command = framework === "nextjs"
-      ? "npm install --ignore-scripts --no-audit --no-fund --package-lock=false && npm run build && npm run start -- --hostname 0.0.0.0 --port " + containerPort
-      : "npm install --ignore-scripts --no-audit --no-fund --package-lock=false && npm run build -- --base " + basePath + "/ && npm run start -- --host 0.0.0.0 --port " + containerPort + " --base " + basePath + "/";
+      ? "npm install --no-audit --no-fund --package-lock=false && npm run build && npm run start -- --hostname 0.0.0.0 --port " + containerPort
+      : "npm install --no-audit --no-fund --package-lock=false && npm run build -- --base " + basePath + "/ && npm run start -- --host 0.0.0.0 --port " + containerPort + " --base " + basePath + "/";
 
     const args = [
       "run", "--detach", "--init",
