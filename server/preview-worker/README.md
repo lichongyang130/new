@@ -10,7 +10,7 @@ per preview session.
 - Per-session Docker container and dedicated bridge network.
 - CPU, memory, swap, PID, open-file and log-size limits.
 - Dropped Linux capabilities, no-new-privileges, read-only container root
-  filesystem, non-root application UID, and a bounded writable workspace.
+  filesystem, non-root application UID, a session-scoped writable workspace, and an individual file-size limit.
 - Per-session port allocation, an HTTP reverse proxy, health checks, runtime
   statistics, scheduled session expiration, and cleanup of stale containers,
   networks and workspaces owned by this worker ID.
