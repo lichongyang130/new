@@ -96,7 +96,7 @@ export class DockerRuntime {
       "--label", "designbuddy.preview.managed=true",
       "--label", "designbuddy.preview.worker=" + this.config.workerId,
       "--label", "designbuddy.preview.session=" + sessionId,
-      "--network", this.config.dockerNetwork,
+      "--network", this.networkName(sessionId),
       "--memory", this.config.memoryLimit,
       "--memory-swap", this.config.memoryLimit,
       "--cpus", this.config.cpuLimit,
@@ -122,15 +122,18 @@ export class DockerRuntime {
     ];
 
     try {
-      await this.execDocker(args, 120000);
+      await this.createSessionNetwork(sessionId);
+      await this.execDocker(args, 240000);
       return containerName;
     } catch (error) {
+      await this.execDocker(["network", "rm", networkName], 15000).catch(() => undefined);
       const message = error instanceof Error ? error.message : "Unable to start preview container.";
       throw new DockerRuntimeError(message.slice(0, 800), "CONTAINER_START_FAILED");
     }
   }
 
   async stop(containerName: string): Promise<void> {
+    const networkName = containerName.replace(/^db-preview-/, "db-preview-net-");
     try {
       await this.execDocker(["rm", "--force", containerName], 30000);
     } catch (error) {
@@ -139,6 +142,7 @@ export class DockerRuntime {
         throw new DockerRuntimeError("Unable to stop preview container.", "CONTAINER_STOP_FAILED");
       }
     }
+    await this.removeSessionNetwork(sessionId).catch(() => undefined);
   }
 
   async isRunning(containerName: string): Promise<boolean> {
@@ -203,8 +207,17 @@ export class DockerRuntime {
       "ps", "-aq", "--filter", "label=designbuddy.preview.worker=" + this.config.workerId
     ], 15000);
     const ids = result.stdout.split(/\s+/).map((value) => value.trim()).filter(Boolean);
-    if (ids.length === 0) return 0;
-    await this.execDocker(["rm", "--force", ...ids], 60000);
+    if (ids.length > 0) {
+      await this.execDocker(["rm", "--force", ...ids], 60000);
+    }
+
+    const networks = await this.execDocker([
+      "network", "ls", "-q", "--filter", "label=designbuddy.preview.worker=" + this.config.workerId
+    ], 15000);
+    const networkIds = networks.stdout.split(/\s+/).map((value) => value.trim()).filter(Boolean);
+    if (networkIds.length > 0) {
+      await this.execDocker(["network", "rm", ...networkIds], 60000).catch(() => undefined);
+    }
     return ids.length;
   }
 
@@ -223,6 +236,24 @@ export class DockerRuntime {
       hash = Math.imul(hash, 16777619);
     }
     return "db-preview-" + safe + "-" + (hash >>> 0).toString(16);
+  }
+
+  private networkName(sessionId: string): string {
+    return this.containerName(sessionId).replace(/^db-preview-/, "db-preview-net-");
+  }
+
+  private async createSessionNetwork(sessionId: string): Promise<void> {
+    await this.execDocker([
+      "network", "create", "--driver", "bridge",
+      "--label", "designbuddy.preview.managed=true",
+      "--label", "designbuddy.preview.worker=" + this.config.workerId,
+      "--label", "designbuddy.preview.session=" + sessionId,
+      this.networkName(sessionId)
+    ], 30000);
+  }
+
+  private async removeSessionNetwork(sessionId: string): Promise<void> {
+    await this.execDocker(["network", "rm", this.networkName(sessionId)], 15000);
   }
 
   private async execDocker(args: string[], timeout: number) {
