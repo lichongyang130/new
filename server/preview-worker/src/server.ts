@@ -114,7 +114,9 @@ export function createPreviewWorkerServer(config: WorkerConfig, manager = new Ru
     if (!isReservedApiPath(pathname) && /^\/(?:_next|assets|static|images|fonts)(?:\/|$)|^\/(?:favicon\.ico|robots\.txt)$/.test(pathname)) {
       const resolved = manager.resolveByReferer(request.headers.referer);
       if (resolved) {
-        manager.proxyRequest(resolved.sessionId, request.url ?? "/", request, response);
+        const originalUrl = request.url ?? "/";
+        const prefixedUrl = "/p/" + resolved.sessionId + (originalUrl.startsWith("/") ? originalUrl : "/" + originalUrl);
+        manager.proxyRequest(resolved.sessionId, prefixedUrl, request, response);
         return;
       }
     }
