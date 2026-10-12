@@ -7,7 +7,7 @@
     "dev": "tsx watch src/index.ts",
     "build": "tsc -p tsconfig.json",
     "start": "node dist/index.js",
-    "test": "npm run build && node --test dist/security.test.js"
+    "test": "npm run build && node --test dist/*.test.js"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",
