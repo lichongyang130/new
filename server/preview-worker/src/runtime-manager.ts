@@ -229,6 +229,7 @@ export class RuntimeManager {
     // Preserve /p/<sessionId>/ so the framework's configured basePath works.
     // For root-absolute resources, forward the original resource path selected
     // by the referer fallback in server.ts.
+    session.lastHeartbeatAt = Date.now();
     const target = httpRequest({
       hostname: this.config.previewUpstreamHost,
       port: session.port,
