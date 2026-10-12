@@ -73,6 +73,7 @@ async function createHarness(maxSessions = 2) {
     maxFiles: 10,
     maxTotalBytes: 1024 * 1024,
     startupTimeoutMs: 1000,
+    sessionTtlMs: 7200000,
     port: 8080,
     host: "127.0.0.1"
   };
