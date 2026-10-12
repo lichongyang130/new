@@ -124,7 +124,7 @@ test("API creates a Docker preview that executes in Chromium", {
     requestTimeoutMs: 15000,
     operationTimeoutMs: 480000
   });
-  apiService.mount(apiRouter, auth);
+  apiService.mount(apiRouter as any, auth);
   apiApp.use("/api/preview", apiRouter);
   apiListener = apiApp.listen(0, "127.0.0.1");
   await once(apiListener, "listening");
