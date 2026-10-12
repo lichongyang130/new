@@ -9,6 +9,7 @@ export interface HttpPreviewAdapterOptions {
   baseUrl: string;
   token: string;
   requestTimeoutMs?: number;
+  operationTimeoutMs?: number;
   fetchImpl?: typeof fetch;
 }
 
@@ -42,6 +43,7 @@ export class HttpPreviewAdapter implements PreviewAdapter {
   private readonly baseUrl: string;
   private readonly token: string;
   private readonly timeoutMs: number;
+  private readonly operationTimeoutMs: number;
   private readonly fetchImpl: typeof fetch;
 
   constructor(options: HttpPreviewAdapterOptions) {
@@ -66,11 +68,13 @@ export class HttpPreviewAdapter implements PreviewAdapter {
     this.baseUrl = url.toString().replace(/\/+$/, "");
     this.token = options.token;
     this.timeoutMs = Math.max(1000, options.requestTimeoutMs ?? 15000);
+    // npm install and a production build can take several minutes on a cold worker.
+    this.operationTimeoutMs = Math.max(this.timeoutMs, options.operationTimeoutMs ?? 480000);
     this.fetchImpl = options.fetchImpl ?? fetch;
   }
 
   async start(input: PreviewStartInput): Promise<{ url: string }> {
-    const body = await this.request("POST", "/sessions", input);
+    const body = await this.request("POST", "/sessions", input, this.operationTimeoutMs);
     const nested = isRecord(body) && isRecord(body.session) ? body.session : body;
     if (!isRecord(nested) || typeof nested.url !== "string" || !nested.url.trim()) {
       throw new PreviewRuntimeAdapterError("Preview worker response did not contain a preview URL.");
@@ -88,7 +92,8 @@ export class HttpPreviewAdapter implements PreviewAdapter {
         version: input.version,
         files: input.files,
         changedPaths: input.changedPaths
-      }
+      },
+      this.operationTimeoutMs
     );
   }
 
@@ -112,9 +117,9 @@ export class HttpPreviewAdapter implements PreviewAdapter {
     };
   }
 
-  private async request(method: string, path: string, body?: unknown): Promise<unknown> {
+  private async request(method: string, path: string, body?: unknown, timeoutMs = this.timeoutMs): Promise<unknown> {
     const controller = new AbortController();
-    const timer = setTimeout(() => controller.abort(), this.timeoutMs);
+    const timer = setTimeout(() => controller.abort(), timeoutMs);
     try {
       const response = await this.fetchImpl(this.baseUrl + path, {
         method,
