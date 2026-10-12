@@ -35,13 +35,11 @@ export class RuntimeManager {
     const port = await this.allocatePort();
     const workspace = this.runtime.workspacePath(input.sessionId);
     const containerName = this.runtime.containerName(input.sessionId);
-    let started = false;
 
     try {
       await mkdir(this.config.workspaceRoot, { recursive: true });
       await this.runtime.writeWorkspace(input.sessionId, input.framework, files);
       await this.runtime.start(input.sessionId, input.framework, workspace, port);
-      started = true;
 
       const deadline = Date.now() + this.config.startupTimeoutMs;
       while (Date.now() < deadline) {
@@ -74,7 +72,9 @@ export class RuntimeManager {
 
       throw new WorkerError("Preview startup timed out.", 504, "PREVIEW_STARTUP_TIMEOUT");
     } catch (error) {
-      if (started) await this.runtime.stop(containerName).catch(() => undefined);
+      // Always attempt cleanup: docker run can create a container before a CLI
+      // timeout or transport failure is reported to this process.
+      await this.runtime.stop(containerName).catch(() => undefined);
       await rm(workspace, { recursive: true, force: true }).catch(() => undefined);
       this.allocatedPorts.delete(port);
       if (error instanceof WorkerError) throw error;
@@ -95,6 +95,12 @@ export class RuntimeManager {
       throw new WorkerError("Project ID does not match this session.", 409, "PROJECT_MISMATCH");
     }
     this.validateFramework(input.framework);
+    if (input.framework !== current.framework) {
+      throw new WorkerError("Framework cannot be changed for an existing preview session.", 409, "FRAMEWORK_MISMATCH");
+    }
+    if (input.version <= current.version) {
+      throw new WorkerError("Update version must be greater than the current version.", 409, "STALE_VERSION");
+    }
     const files = this.validateFiles(input.files);
     if (!Array.isArray(input.changedPaths) || input.changedPaths.length === 0) {
       throw new WorkerError("changedPaths must be a non-empty array.", 400, "INVALID_CHANGED_PATHS");
@@ -148,16 +154,16 @@ export class RuntimeManager {
     }
   }
 
+  async stopAll(): Promise<void> {
+    await Promise.all([...this.sessions.keys()].map((sessionId) => this.stop(sessionId).catch(() => undefined)));
+  }
+
   async health(sessionId: string): Promise<WorkerHealth> {
     const current = this.requireSession(sessionId);
     const checkedAt = Date.now();
     const running = await this.runtime.isRunning(current.containerName);
     if (!running) {
-      return {
-        healthy: false,
-        checkedAt,
-        message: "Preview container is not running."
-      };
+      return { healthy: false, checkedAt, message: "Preview container is not running." };
     }
 
     const healthy = await this.runtime.portIsHealthy(current.port, current.framework, sessionId);
@@ -207,6 +213,9 @@ export class RuntimeManager {
       return;
     }
 
+    // Preserve /p/<sessionId>/ so the framework's configured basePath works.
+    // For root-absolute resources, forward the original resource path selected
+    // by the referer fallback in server.ts.
     const target = httpRequest({
       hostname: this.config.previewUpstreamHost,
       port: session.port,
@@ -216,7 +225,7 @@ export class RuntimeManager {
         ...request.headers,
         host: this.config.previewUpstreamHost + ":" + session.port,
         "x-forwarded-host": request.headers.host ?? "",
-        "x-forwarded-proto": "https"
+        "x-forwarded-proto": this.config.publicPreviewOrigin.startsWith("https:") ? "https" : "http"
       },
       timeout: 15000
     }, (upstream) => {
@@ -227,9 +236,7 @@ export class RuntimeManager {
       upstream.pipe(response);
     });
 
-    target.on("timeout", () => {
-      target.destroy(new Error("Preview request timed out."));
-    });
+    target.on("timeout", () => target.destroy(new Error("Preview request timed out.")));
     target.on("error", () => {
       if (!response.headersSent) response.writeHead(502, { "Content-Type": "text/plain; charset=utf-8" });
       response.end("Preview runtime is unavailable.");
@@ -237,13 +244,13 @@ export class RuntimeManager {
     request.pipe(target);
   }
 
-  resolveByReferer(referer: string | undefined): { sessionId: string; incomingPath: string } | undefined {
+  resolveByReferer(referer: string | undefined): { sessionId: string } | undefined {
     if (!referer) return undefined;
     try {
       const url = new URL(referer);
       const match = url.pathname.match(/^\/p\/([A-Za-z0-9_-]{1,128})(?:\/|$)/);
       if (!match || !this.sessions.has(match[1])) return undefined;
-      return { sessionId: match[1], incomingPath: url.pathname + url.search };
+      return { sessionId: match[1] };
     } catch {
       return undefined;
     }
@@ -257,6 +264,13 @@ export class RuntimeManager {
     if (!/^[A-Za-z0-9_-]{1,128}$/.test(sessionId)) {
       throw new WorkerError("Invalid preview session ID.", 400, "INVALID_SESSION_ID");
     }
+  }
+
+  private requireSession(sessionId: string): WorkerSession {
+    this.validateSessionId(sessionId);
+    const session = this.sessions.get(sessionId);
+    if (!session) throw new WorkerError("Preview session was not found.", 404, "SESSION_NOT_FOUND");
+    return session;
   }
 
   private validateFramework(framework: WorkerFramework): void {
