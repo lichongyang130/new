@@ -90,5 +90,6 @@ request duration, or change `operationTimeoutMs` when creating the preview servi
   API replicas or durable sessions, replace them with shared storage and a
   cross-process event transport such as Redis Pub/Sub.
 - Configure rate limits and request-size limits at the API gateway.
-- The adapter is committed, but a compatible isolated worker must be deployed
-  and configured before end-to-end preview starts can succeed.
+- The isolated worker source and Linux deployment example live in
+  `server/preview-worker`. Deploy and configure that service before preview
+  starts can succeed; committing the source does not deploy a runtime.
