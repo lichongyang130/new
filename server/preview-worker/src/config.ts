@@ -60,14 +60,21 @@ export function loadWorkerConfig(): WorkerConfig {
     throw new Error("PREVIEW_DOCKER_NETWORK contains invalid characters.");
   }
 
+  const workerId = process.env.PREVIEW_WORKER_ID?.trim() || "designbuddy-preview-worker";
+  if (!/^[A-Za-z0-9_.-]{1,64}$/.test(workerId)) {
+    throw new Error("PREVIEW_WORKER_ID must use letters, digits, dot, underscore or hyphen.");
+  }
+
   const previewBindHost = process.env.PREVIEW_BIND_HOST?.trim() || "127.0.0.1";
   const previewUpstreamHost = process.env.PREVIEW_UPSTREAM_HOST?.trim() || "127.0.0.1";
-  if (!/^[A-Za-z0-9.:[\]-]+$/.test(previewBindHost) || !/^[A-Za-z0-9.:[\]-]+$/.test(previewUpstreamHost)) {
+  const hostPattern = /^[A-Za-z0-9.:[\]-]+$/;
+  if (!hostPattern.test(previewBindHost) || !hostPattern.test(previewUpstreamHost)) {
     throw new Error("Preview bind/upstream host contains invalid characters.");
   }
 
   return {
     token,
+    workerId,
     publicPreviewOrigin: origin.origin,
     workspaceRoot: resolve(process.env.PREVIEW_WORKSPACE_ROOT || "/var/lib/designbuddy-preview"),
     hostPortStart,
