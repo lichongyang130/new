@@ -111,7 +111,7 @@ export function createPreviewWorkerServer(config: WorkerConfig, manager = new Ru
     // Static files with root-absolute URLs can use the document's preview
     // referer. Restrict this fallback to asset-like paths and never proxy worker
     // management endpoints based on a caller-controlled referer.
-    if (!isReservedApiPath(pathname) && /^\/(?:_next|assets|static|images|fonts)(?:\/|$)|^\/(?:favicon\.ico|robots\.txt)$/.test(pathname)) {
+    if (!isReservedApiPath(pathname) && (/^\/(?:_next|assets|static|images|fonts)(?:\/|$)/.test(pathname) || /^\/(?:favicon\.ico|robots\.txt|[^/]+\.(?:svg|png|jpe?g|gif|webp|ico|woff2?|ttf|css|js|map))$/i.test(pathname))) {
       const resolved = manager.resolveByReferer(request.headers.referer);
       if (resolved) {
         const originalUrl = request.url ?? "/";
