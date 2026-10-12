@@ -1,0 +1,11 @@
+{
+  "name": "designbuddy-desktop",
+  "version": "0.1.0",
+  "main": "src/main.ts",
+  "scripts": {
+    "dev": "electron ."
+  },
+  "dependencies": {
+    "electron": "latest"
+  }
+}
