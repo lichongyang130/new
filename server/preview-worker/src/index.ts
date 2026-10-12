@@ -4,6 +4,10 @@ import { createPreviewWorkerServer } from "./server";
 async function main(): Promise<void> {
   const config = loadWorkerConfig();
   const app = createPreviewWorkerServer(config);
+  const removed = await app.manager.cleanupOrphans();
+  if (removed > 0) {
+    process.stdout.write("Cleaned " + removed + " orphaned preview container(s).\\n");
+  }
 
   await app.listen();
   process.stdout.write(
