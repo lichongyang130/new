@@ -193,4 +193,13 @@ test("API creates a Docker preview that executes in Chromium", {
   assert.equal(health.status, 200, "API health route should reach the worker");
   const healthBody = await health.json() as { health?: { healthy?: boolean } };
   assert.equal(healthBody.health?.healthy, true);
+
+  await browser.close();
+  browser = undefined;
+  const stopped = await fetch(apiOrigin + "/api/preview/sessions/" + encodeURIComponent(sessionId!), {
+    method: "DELETE",
+    headers: { "x-preview-e2e-user": "preview-e2e-user" }
+  });
+  assert.equal(stopped.status, 200, "API stop route should stop and clean up the preview");
+  sessionId = undefined;
 });
