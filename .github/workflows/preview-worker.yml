@@ -44,6 +44,8 @@ jobs:
         run: npm install --no-audit --no-fund
       - name: Build and test worker
         run: npm test
+      - name: Verify Docker daemon is available
+        run: docker info
       - name: Install Chromium for browser E2E
         run: npx playwright install --with-deps chromium
       - name: Run Docker-to-browser end-to-end test
