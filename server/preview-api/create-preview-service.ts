@@ -8,6 +8,7 @@ export interface CreatePreviewServiceOptions {
   runtimeToken: string;
   allowedPreviewOrigins?: string[];
   requestTimeoutMs?: number;
+  operationTimeoutMs?: number;
   maxFiles?: number;
   maxTotalBytes?: number;
   fetchImpl?: typeof fetch;
@@ -18,6 +19,7 @@ export function createPreviewService(options: CreatePreviewServiceOptions) {
     baseUrl: options.runtimeBaseUrl,
     token: options.runtimeToken,
     ...(options.requestTimeoutMs ? { requestTimeoutMs: options.requestTimeoutMs } : {}),
+    ...(options.operationTimeoutMs ? { operationTimeoutMs: options.operationTimeoutMs } : {}),
     ...(options.fetchImpl ? { fetchImpl: options.fetchImpl } : {})
   });
 
