@@ -218,6 +218,7 @@ export class DockerRuntime {
     if (networkIds.length > 0) {
       await this.execDocker(["network", "rm", ...networkIds], 60000).catch(() => undefined);
     }
+    await rm(resolve(this.config.workspaceRoot, this.config.workerId), { recursive: true, force: true }).catch(() => undefined);
     return ids.length;
   }
 
@@ -225,7 +226,7 @@ export class DockerRuntime {
     if (!/^[A-Za-z0-9_-]{1,128}$/.test(sessionId)) {
       throw new DockerRuntimeError("Invalid preview session ID.", "INVALID_SESSION_ID");
     }
-    return resolve(this.config.workspaceRoot, sessionId);
+    return resolve(this.config.workspaceRoot, this.config.workerId, sessionId);
   }
 
   containerName(sessionId: string): string {
@@ -250,10 +251,6 @@ export class DockerRuntime {
       "--label", "designbuddy.preview.session=" + sessionId,
       this.networkName(sessionId)
     ], 30000);
-  }
-
-  private async removeSessionNetwork(sessionId: string): Promise<void> {
-    await this.execDocker(["network", "rm", this.networkName(sessionId)], 15000);
   }
 
   private async execDocker(args: string[], timeout: number) {
