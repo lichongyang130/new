@@ -107,6 +107,7 @@ export class DockerRuntime {
       "--user", "10001:10001",
       "--tmpfs", "/tmp:rw,nosuid,nodev,noexec,size=96m,uid=10001,gid=10001",
       "--ulimit", "nofile=1024:1024",
+      "--ulimit", "fsize=104857600:104857600",
       "--log-driver", "json-file",
       "--log-opt", "max-size=2m",
       "--log-opt", "max-file=2",
