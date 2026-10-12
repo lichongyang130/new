@@ -79,6 +79,10 @@ The API service validates the returned preview origin against
 `PREVIEW_ALLOWED_ORIGINS` (local loopback origins are permitted only when no
 hosted origins are configured). Use HTTPS for remote workers and preview URLs.
 Keep `PREVIEW_RUNTIME_TOKEN` server-side; it must never be sent to the browser.
+The adapter uses a long operation timeout (eight minutes by default) for
+create/update because package installation and builds are not instantaneous.
+Ensure any API gateway and reverse proxy in front of the API allows the same
+request duration, or change `operationTimeoutMs` when creating the preview service.
 
 ## Notes
 
