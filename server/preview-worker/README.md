@@ -12,7 +12,8 @@ per preview session.
 - Dropped Linux capabilities, no-new-privileges, read-only container root
   filesystem, non-root application UID, and a bounded writable workspace.
 - Per-session port allocation, an HTTP reverse proxy, health checks, runtime
-  statistics, and cleanup of stale containers owned by this worker ID.
+  statistics, scheduled session expiration, and cleanup of stale containers,
+  networks and workspaces owned by this worker ID.
 - Vite base-path support and Next.js basePath generation when no custom
   Next.js config is supplied.
 
@@ -74,8 +75,10 @@ absolute filesystem path. Use a unique stable `PREVIEW_WORKER_ID` for each
 worker that shares a Docker daemon. On startup the worker removes leftover
 containers and networks carrying that worker ID's management labels.
 
-Current session metadata is held in memory. A worker restart removes that
-worker's preview containers, so clients should recreate sessions. This is a
+Current session metadata is held in memory. Sessions expire after
+`PREVIEW_SESSION_TTL_MS` of inactivity (default two hours). A worker restart
+removes that worker's preview containers, networks and workspace files, so
+clients should recreate sessions. This is a
 single-worker implementation, not a distributed queue. Scale out only after
 adding persistent session ownership and coordinated port/network allocation.
 
