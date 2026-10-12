@@ -92,7 +92,7 @@ TLS, log monitoring and operational alerting.
 ```sh
 npm install
 npm test
-npm run test:e2e # set PREVIEW_E2E=1 to exercise real Docker and package installation
+PREVIEW_E2E=1 npm run test:e2e # requires Docker and installed Chromium
 npm start
 ```
 
