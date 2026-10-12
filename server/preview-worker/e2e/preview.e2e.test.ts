@@ -202,4 +202,6 @@ test("API creates a Docker preview that executes in Chromium", {
   });
   assert.equal(stopped.status, 200, "API stop route should stop and clean up the preview");
   sessionId = undefined;
+  const afterStop = await fetch(previewUrl!);
+  assert.equal(afterStop.status, 404, "Stopped preview URL should no longer resolve to a live session");
 });
