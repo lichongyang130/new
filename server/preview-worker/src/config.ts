@@ -83,6 +83,7 @@ export function loadWorkerConfig(): WorkerConfig {
     maxFiles: integerEnv("PREVIEW_MAX_FILES", 500),
     maxTotalBytes: integerEnv("PREVIEW_MAX_TOTAL_BYTES", 5 * 1024 * 1024),
     startupTimeoutMs: integerEnv("PREVIEW_STARTUP_TIMEOUT_MS", 180000),
+    sessionTtlMs: integerEnv("PREVIEW_SESSION_TTL_MS", 7200000),
     port: integerEnv("PORT", 8080),
     host: process.env.HOST?.trim() || "0.0.0.0"
   };
