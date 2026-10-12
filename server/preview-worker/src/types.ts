@@ -39,6 +39,7 @@ export interface WorkerSession {
 
 export interface WorkerConfig {
   token: string;
+  workerId: string;
   publicPreviewOrigin: string;
   workspaceRoot: string;
   hostPortStart: number;
