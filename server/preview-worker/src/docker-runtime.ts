@@ -1,4 +1,5 @@
 import { execFile } from "node:child_process";
+import { get as httpGet } from "node:http";
 import { promisify } from "node:util";
 import { mkdir, writeFile, rm, chmod } from "node:fs/promises";
 import { resolve, relative, dirname } from "node:path";
@@ -93,16 +94,18 @@ export class DockerRuntime {
       "run", "--detach", "--init",
       "--name", containerName,
       "--label", "designbuddy.preview.managed=true",
+      "--label", "designbuddy.preview.worker=" + this.config.workerId,
       "--label", "designbuddy.preview.session=" + sessionId,
       "--network", this.config.dockerNetwork,
       "--memory", this.config.memoryLimit,
+      "--memory-swap", this.config.memoryLimit,
       "--cpus", this.config.cpuLimit,
       "--pids-limit", String(this.config.pidsLimit),
       "--cap-drop", "ALL",
       "--security-opt", "no-new-privileges:true",
       "--read-only",
       "--user", "10001:10001",
-      "--tmpfs", "/tmp:rw,nosuid,nodev,size=96m,uid=10001,gid=10001",
+      "--tmpfs", "/tmp:rw,nosuid,nodev,noexec,size=96m,uid=10001,gid=10001",
       "--ulimit", "nofile=1024:1024",
       "--log-driver", "json-file",
       "--log-opt", "max-size=2m",
@@ -176,19 +179,33 @@ export class DockerRuntime {
 
   async portIsHealthy(port: number, framework: WorkerFramework, sessionId: string): Promise<boolean> {
     const path = "/p/" + sessionId + "/";
-    const url = new URL("http://" + this.config.previewUpstreamHost + ":" + port + path);
-    if (framework === "nextjs") url.pathname = path;
+    const rawHost = this.config.previewUpstreamHost;
+    const host = rawHost.includes(":") && !rawHost.startsWith("[") ? "[" + rawHost + "]" : rawHost;
+    const url = new URL(path, "http://" + host + ":" + port);
     return new Promise((resolvePromise) => {
-      const request = import("node:http").then(({ get }) => {
-        const req = get(url, { timeout: 1500 }, (response) => {
-          response.resume();
-          resolvePromise((response.statusCode ?? 500) < 500);
-        });
-        req.on("timeout", () => { req.destroy(); resolvePromise(false); });
-        req.on("error", () => resolvePromise(false));
-      }).catch(() => resolvePromise(false));
-      void request;
+      let settled = false;
+      const finish = (result: boolean) => {
+        if (settled) return;
+        settled = true;
+        resolvePromise(result);
+      };
+      const req = httpGet(url, { timeout: 1500 }, (response) => {
+        response.resume();
+        finish((response.statusCode ?? 500) < 500);
+      });
+      req.on("timeout", () => { req.destroy(); finish(false); });
+      req.on("error", () => finish(false));
     });
+  }
+
+  async cleanupOrphans(): Promise<number> {
+    const result = await this.execDocker([
+      "ps", "-aq", "--filter", "label=designbuddy.preview.worker=" + this.config.workerId
+    ], 15000);
+    const ids = result.stdout.split(/\s+/).map((value) => value.trim()).filter(Boolean);
+    if (ids.length === 0) return 0;
+    await this.execDocker(["rm", "--force", ...ids], 60000);
+    return ids.length;
   }
 
   workspacePath(sessionId: string): string {
