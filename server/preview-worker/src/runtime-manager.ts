@@ -162,6 +162,15 @@ export class RuntimeManager {
     await Promise.all([...this.sessions.keys()].map((sessionId) => this.stop(sessionId).catch(() => undefined)));
   }
 
+  async cleanupExpired(): Promise<number> {
+    const now = Date.now();
+    const expired = [...this.sessions.values()]
+      .filter((session) => now - session.lastHeartbeatAt >= this.config.sessionTtlMs)
+      .map((session) => session.sessionId);
+    await Promise.all(expired.map((sessionId) => this.stop(sessionId).catch(() => undefined)));
+    return expired.length;
+  }
+
   async health(sessionId: string): Promise<WorkerHealth> {
     const current = this.requireSession(sessionId);
     const checkedAt = Date.now();
