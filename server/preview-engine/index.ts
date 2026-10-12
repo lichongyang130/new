@@ -2,6 +2,8 @@ export { ErrorReporter } from "./error-reporter";
 export type { ErrorReporterOptions } from "./error-reporter";
 export { HotReloadHub } from "./hot-reload";
 export type { PreviewEventListener } from "./hot-reload";
+export { HttpPreviewAdapter, PreviewRuntimeAdapterError } from "./http-preview-adapter";
+export type { HttpPreviewAdapterOptions } from "./http-preview-adapter";
 export { PreviewServer, PreviewServerError } from "./preview-server";
 export type {
   PreviewServerOptions,
