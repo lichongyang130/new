@@ -1,39 +1,235 @@
-body{
- margin:0;
- font-family:Arial,sans-serif;
- background:#111;
- color:#fff;
+:root {
+  color-scheme: dark;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #101014;
+  color: #f5f5f7;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
 }
 
-.app{
- display:flex;
- height:100vh;
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  font-family: inherit;
+  background: #101014;
+  color: #f5f5f7;
 }
 
-.sidebar{
- width:220px;
- padding:20px;
- background:#181818;
+button, input, textarea { font: inherit; }
+button { cursor: pointer; }
+
+.app { display: flex; min-height: 100vh; }
+
+.sidebar {
+  flex: 0 0 220px;
+  width: 220px;
+  padding: 24px 18px;
+  background: #17171c;
+  border-right: 1px solid #292930;
 }
 
-.sidebar div{
- padding:12px 0;
- color:#bbb;
+.sidebar div { padding: 12px 0; color: #b9b9c2; }
+
+.workspace {
+  flex: 1;
+  min-width: 0;
+  padding: 28px 32px 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 22px;
+  text-align: left;
+  overflow: auto;
 }
 
-.workspace{
- flex:1;
- padding:40px;
- text-align:center;
+.workspace-heading h1 { margin: 5px 0 8px; font-size: 26px; letter-spacing: -.035em; }
+.workspace-eyebrow { margin: 0; color: #a79bff; font-size: 10px; font-weight: 700; letter-spacing: .16em; }
+.workspace-subtitle { margin: 0; color: #9999a5; font-size: 13px; }
+.workspace-prompt { max-width: 900px; width: 100%; }
+
+.prompt-box textarea {
+  width: min(100%, 700px);
+  min-height: 100px;
+  padding: 16px;
+  border-radius: 12px;
+  color: #f7f7fa;
+  background: #1b1b22;
+  border: 1px solid #34343d;
+  resize: vertical;
 }
 
-.prompt-box textarea{
- width:600px;
- height:120px;
- padding:20px;
+button { margin-top: 0; }
+.prompt-box button { padding: 11px 18px; border-radius: 9px; background: #7867ff; color: white; border: 0; }
+
+/* Preview panel */
+.preview-panel {
+  width: 100%;
+  min-width: 0;
+  border: 1px solid #303039;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #17171d;
+  box-shadow: 0 18px 50px #00000020;
 }
 
-button{
- margin-top:20px;
- padding:12px 40px;
+.preview-panel-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px 22px 16px;
+}
+
+.preview-eyebrow { margin: 0 0 6px; color: #a79bff; font-size: 9px; font-weight: 700; letter-spacing: .14em; }
+.preview-panel-header h2 { margin: 0; font-size: 18px; letter-spacing: -.02em; }
+.preview-panel-subtitle { margin: 6px 0 0; color: #9696a2; font-size: 12px; line-height: 1.5; }
+
+.preview-session-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 5px; color: #b5b5c0; font-size: 10px; }
+.preview-session-id { max-width: 180px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #72727f; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+
+.preview-toolbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 12px 18px;
+  border-top: 1px solid #2c2c34;
+  border-bottom: 1px solid #2c2c34;
+  background: #1d1d24;
+}
+
+.preview-toolbar-status { display: flex; align-items: center; gap: 8px; color: #c9c9d2; font-size: 11px; white-space: nowrap; }
+.preview-status-dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: #777783; }
+.preview-status-dot--ready { background: #4ade80; box-shadow: 0 0 0 3px #4ade801a; }
+.preview-status-dot--starting { background: #fbbf24; animation: preview-pulse 1.2s infinite; }
+.preview-status-dot--degraded, .preview-status-dot--failed { background: #fb7185; }
+.preview-status-dot--stopped { background: #777783; }
+.preview-toolbar-progress { color: #a5a5b2; font-size: 10px; }
+
+.preview-device-switch { display: flex; align-items: center; gap: 3px; padding: 3px; background: #141419; border: 1px solid #32323b; border-radius: 9px; }
+.preview-icon-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 9px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: #a1a1ac;
+  font-size: 11px;
+}
+.preview-icon-button.is-active { background: #34313f; color: #fff; box-shadow: inset 0 0 0 1px #58516f; }
+.preview-device-label { font-size: 10px; }
+
+.preview-toolbar-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 7px; margin-left: auto; }
+.preview-button { padding: 7px 10px; border-radius: 7px; border: 1px solid #3a3a45; background: #24242c; color: #e4e4eb; font-size: 10px; }
+.preview-button:hover:not(:disabled) { border-color: #666176; background: #30303a; }
+.preview-button:disabled { cursor: not-allowed; opacity: .45; }
+.preview-button--primary { color: white; background: #7161e8; border-color: #8174ee; }
+.preview-button--primary:hover:not(:disabled) { background: #8273f5; }
+.preview-button--danger { color: #fda4af; border-color: #5d343c; background: #2a1c22; }
+
+.preview-message { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin: 12px 16px 0; padding: 10px 12px; border: 1px solid #6a3b43; border-radius: 8px; background: #301f26; color: #fecdd3; font-size: 11px; line-height: 1.5; }
+.preview-message button { padding: 0 4px; border: 0; background: transparent; color: inherit; font-size: 18px; line-height: 1; }
+
+.preview-live-indicator { display: flex; align-items: center; gap: 7px; margin: 12px 16px 0; color: #86efac; font-size: 10px; }
+.preview-live-indicator span { width: 6px; height: 6px; border-radius: 50%; background: #4ade80; }
+
+.preview-canvas {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  min-height: 420px;
+  max-height: 780px;
+  padding: 22px;
+  overflow: auto;
+  background-color: #111116;
+  background-image: radial-gradient(#2a2a33 1px, transparent 1px);
+  background-size: 18px 18px;
+}
+
+.preview-empty {
+  display: flex;
+  min-height: 365px;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border: 1px dashed #383842;
+  border-radius: 12px;
+  background: #17171dce;
+}
+.preview-empty-icon { display: grid; place-items: center; width: 46px; height: 46px; border: 1px solid #4a455f; border-radius: 13px; color: #b5aaff; font-size: 27px; background: #282438; }
+.preview-empty h3 { margin: 14px 0 5px; font-size: 14px; }
+.preview-empty p { margin: 0; color: #9999a6; font-size: 11px; }
+
+.preview-device {
+  flex: 0 0 auto;
+  max-width: 100%;
+  min-height: 420px;
+  overflow: hidden;
+  border: 1px solid #45454f;
+  border-radius: 12px;
+  background: white;
+  box-shadow: 0 12px 32px #00000038;
+  transition: width .18s ease;
+}
+.preview-device--mobile { border-radius: 20px; }
+.preview-device-chrome { display: flex; align-items: center; gap: 5px; height: 28px; padding: 0 10px; background: #26262d; border-bottom: 1px solid #41414a; }
+.preview-device-chrome > span { width: 6px; height: 6px; border-radius: 50%; background: #64646f; }
+.preview-device-chrome small { margin-left: 8px; color: #b9b9c4; font-size: 9px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.preview-iframe { display: block; width: 100%; height: 520px; border: 0; background: white; }
+.preview-device--mobile .preview-iframe { height: 650px; }
+.preview-device--tablet .preview-iframe { height: 580px; }
+
+.preview-error-overlay { margin: 14px 16px 0; border: 1px solid #663941; border-radius: 10px; overflow: hidden; background: #25191f; }
+.preview-error-heading { display: flex; align-items: center; justify-content: space-between; padding: 11px 13px; background: #301e25; border-bottom: 1px solid #523039; }
+.preview-error-heading > div { display: flex; align-items: center; gap: 9px; font-size: 11px; }
+.preview-error-heading > div > span { padding: 2px 6px; border-radius: 99px; background: #5b3039; color: #fecdd3; font-size: 9px; }
+.preview-text-button { padding: 3px 6px; border: 0; background: transparent; color: #fda4af; font-size: 10px; }
+.preview-error-list { list-style: none; margin: 0; padding: 0; }
+.preview-error-item { padding: 12px 13px; border-bottom: 1px solid #45272f; }
+.preview-error-item:last-child { border-bottom: 0; }
+.preview-error-title { display: flex; align-items: center; gap: 8px; font-size: 11px; color: #fecdd3; }
+.preview-error-title span { color: #c99ca5; font-size: 9px; }
+.preview-error-item p { margin: 5px 0; color: #efc3cb; font-size: 11px; line-height: 1.5; overflow-wrap: anywhere; }
+.preview-error-item code { display: block; color: #c5b1ff; font-size: 10px; overflow-wrap: anywhere; }
+.preview-error-item time { display: block; margin-top: 7px; color: #ad828b; font-size: 9px; }
+
+.preview-panel-footer { display: flex; justify-content: space-between; gap: 14px; padding: 12px 18px; border-top: 1px solid #2d2d36; color: #82828e; font-size: 10px; }
+.preview-panel-footer a { color: #b2a8ff; text-decoration: none; }
+.preview-panel-footer a:hover { text-decoration: underline; }
+
+@keyframes preview-pulse { 50% { opacity: .4; } }
+
+@media (max-width: 980px) {
+  .sidebar { flex-basis: 180px; width: 180px; padding: 20px 14px; }
+  .workspace { padding: 22px 18px 36px; }
+  .preview-toolbar { gap: 8px; }
+  .preview-toolbar-actions { margin-left: 0; width: 100%; }
+  .preview-canvas { padding: 12px; }
+}
+
+@media (max-width: 620px) {
+  .app { flex-direction: column; }
+  .sidebar { width: 100%; flex-basis: auto; padding: 8px 16px; }
+  .sidebar div { display: inline-block; padding: 8px 12px 8px 0; }
+  .workspace { padding: 20px 12px 30px; gap: 16px; }
+  .preview-panel-header { padding: 16px; }
+  .preview-session-meta { display: none; }
+  .preview-toolbar { padding: 10px; }
+  .preview-device-label { display: none; }
+  .preview-icon-button { min-width: 32px; justify-content: center; }
+  .preview-toolbar-actions { gap: 5px; }
+  .preview-button { padding: 7px 8px; }
+  .preview-canvas { min-height: 330px; padding: 8px; }
+  .preview-empty { min-height: 310px; }
+  .preview-device { min-height: 320px; }
+  .preview-iframe { height: 420px; }
+  .preview-device--mobile .preview-iframe { height: 550px; }
+  .preview-panel-footer { padding: 10px; flex-wrap: wrap; }
 }
