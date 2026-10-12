@@ -202,6 +202,11 @@ export function createPreviewWorkerServer(config: WorkerConfig, manager = new Ru
     }
   });
 
+  const cleanupTimer = setInterval(() => {
+    void manager.cleanupExpired().catch(() => undefined);
+  }, 60000);
+  cleanupTimer.unref();
+
   server.requestTimeout = 30000;
   server.headersTimeout = 15000;
   server.keepAliveTimeout = 5000;
@@ -219,6 +224,7 @@ export function createPreviewWorkerServer(config: WorkerConfig, manager = new Ru
       });
     },
     close(): Promise<void> {
+      clearInterval(cleanupTimer);
       return new Promise((resolvePromise, reject) => {
         server.close((error) => error ? reject(error) : resolvePromise());
       });
