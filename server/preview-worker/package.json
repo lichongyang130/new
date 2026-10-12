@@ -1,0 +1,16 @@
+{
+  "name": "@designbuddy/preview-worker",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Isolated Docker-based preview runtime worker",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/index.js"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0"
+  }
+}
