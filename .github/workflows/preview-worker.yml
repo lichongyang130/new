@@ -1,0 +1,38 @@
+name: Preview Worker CI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "server/preview-worker/**"
+      - ".github/workflows/preview-worker.yml"
+  pull_request:
+    paths:
+      - "server/preview-worker/**"
+      - ".github/workflows/preview-worker.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: server/preview-worker
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: server/preview-worker/package.json
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+      - name: Build TypeScript
+        run: npm run build
+      - name: Run worker unit tests
+        run: node --test dist/security.test.js
