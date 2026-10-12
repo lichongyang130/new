@@ -55,11 +55,6 @@ export function loadWorkerConfig(): WorkerConfig {
     throw new Error("PREVIEW_CPU_LIMIT must be a positive CPU count no greater than 8.");
   }
 
-  const dockerNetwork = process.env.PREVIEW_DOCKER_NETWORK?.trim() || "bridge";
-  if (!/^[A-Za-z0-9_.-]+$/.test(dockerNetwork)) {
-    throw new Error("PREVIEW_DOCKER_NETWORK contains invalid characters.");
-  }
-
   const workerId = process.env.PREVIEW_WORKER_ID?.trim() || "designbuddy-preview-worker";
   if (!/^[A-Za-z0-9_.-]{1,64}$/.test(workerId)) {
     throw new Error("PREVIEW_WORKER_ID must use letters, digits, dot, underscore or hyphen.");
@@ -81,7 +76,6 @@ export function loadWorkerConfig(): WorkerConfig {
     hostPortEnd,
     previewBindHost,
     previewUpstreamHost,
-    dockerNetwork,
     memoryLimit,
     cpuLimit,
     pidsLimit: integerEnv("PREVIEW_PIDS_LIMIT", 128),
