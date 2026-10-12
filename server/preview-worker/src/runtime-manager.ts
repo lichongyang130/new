@@ -243,6 +243,7 @@ export class RuntimeManager {
       timeout: 15000
     }, (upstream) => {
       const headers = { ...upstream.headers };
+      headers["referrer-policy"] = "strict-origin-when-cross-origin";
       delete headers["connection"];
       delete headers["transfer-encoding"];
       response.writeHead(upstream.statusCode ?? 502, headers);
