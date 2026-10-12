@@ -14,6 +14,11 @@ on:
   pull_request:
     paths:
       - "server/preview-worker/**"
+      - "server/preview-engine/**"
+      - "server/preview-api/**"
+      - "apps/web/**"
+      - "package.json"
+      - "pnpm-workspace.yaml"
       - ".github/workflows/preview-worker.yml"
   workflow_dispatch:
 
@@ -39,6 +44,8 @@ jobs:
         run: npm install --no-audit --no-fund
       - name: Build and test worker
         run: npm test
+      - name: Type-check API and preview engine sources
+        run: npm run verify:types
       - name: Install Chromium for browser E2E
         run: npx playwright install --with-deps chromium
       - name: Run Docker-to-browser end-to-end test
