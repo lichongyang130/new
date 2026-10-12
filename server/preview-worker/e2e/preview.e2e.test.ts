@@ -90,8 +90,6 @@ test("API creates a Docker preview that executes in Chromium", {
     next();
   };
   apiApp.use(express.json({ limit: "6mb" }));
-  apiApp.use("/api/preview", apiRouter);
-
   let apiListener: ReturnType<typeof apiApp.listen> | undefined;
   let sessionId: string | undefined;
   let browser: Browser | undefined;
