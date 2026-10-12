@@ -29,6 +29,7 @@ function packageManifest(schema: AppSchema): Record<string, unknown> {
     "react-dom": "^19.0.0"
   };
   const devDependencies: Record<string, string> = {
+    "@types/node": "^22.0.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     typescript: "^5.7.0"
@@ -209,6 +210,7 @@ function readme(schema: AppSchema): string {
     "",
     "- UI pages are generated from the validated app schema.",
     "- server/generated/api-routes.ts contains API route metadata; connect routes to real handlers, authentication, validation, and persistence before exposing them.",
+    "- server/generated/entity-types.ts and server/generated/schema.sql provide starter entity models and PostgreSQL DDL.",
     "- Dockerfile and docker-compose.yml provide a starting point for container deployment.",
     "",
     "Generated output is a scaffold. Review generated code, install any framework-specific plugins required by the selected framework, add tests and secrets via environment variables, and run the build before production use.",
