@@ -5,6 +5,11 @@ on:
     branches: [main]
     paths:
       - "server/preview-worker/**"
+      - "server/preview-engine/**"
+      - "server/preview-api/**"
+      - "apps/web/**"
+      - "package.json"
+      - "pnpm-workspace.yaml"
       - ".github/workflows/preview-worker.yml"
   pull_request:
     paths:
@@ -40,3 +45,20 @@ jobs:
         run: npm run test:e2e
         env:
           PREVIEW_E2E: "1"
+
+  web-build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/web
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install web dependencies
+        run: npm install --no-audit --no-fund
+      - name: Type-check and build web workspace
+        run: npm run build
