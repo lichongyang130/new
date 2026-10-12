@@ -1,3 +1,4 @@
+import { randomUUID } from "node:crypto";
 import { ErrorReporter } from "./error-reporter";
 import { HotReloadHub } from "./hot-reload";
 import { RuntimeMonitor } from "./runtime-monitor";
@@ -99,7 +100,8 @@ function validateFiles(files: PreviewFile[], maxFiles: number, maxTotalBytes: nu
 }
 
 function makeDefaultId(): string {
-  return "preview_" + Date.now().toString(36) + "_" + Math.random().toString(36).slice(2, 10);
+  // Preview URLs are public capability links, so session IDs must be unpredictable.
+  return "preview_" + randomUUID();
 }
 
 export class PreviewServer {
