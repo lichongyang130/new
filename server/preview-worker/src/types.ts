@@ -53,6 +53,7 @@ export interface WorkerConfig {
   maxFiles: number;
   maxTotalBytes: number;
   startupTimeoutMs: number;
+  sessionTtlMs: number;
   port: number;
   host: string;
 }
