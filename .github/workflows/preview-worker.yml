@@ -46,6 +46,8 @@ jobs:
         run: npm test
       - name: Verify Docker daemon is available
         run: docker info
+      - name: Build standalone worker image
+        run: docker build --tag designbuddy-preview-worker:ci .
       - name: Install Chromium for browser E2E
         run: npx playwright install --with-deps chromium
       - name: Run Docker-to-browser end-to-end test
