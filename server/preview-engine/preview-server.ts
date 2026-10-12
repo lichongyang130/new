@@ -6,6 +6,7 @@ import type {
   PreviewActor,
   PreviewAdapter,
   PreviewErrorInput,
+  PreviewEvent,
   PreviewFile,
   PreviewFramework,
   PreviewHealth,
@@ -43,6 +44,9 @@ export class PreviewServerError extends Error {
 }
 
 function safeProjectId(value: string): string {
+  if (typeof value !== "string") {
+    throw new PreviewServerError("projectId is invalid.", "INVALID_INPUT");
+  }
   const result = value.trim();
   if (!result || result.length > 160 || /[\u0000-\u001f]/.test(result)) {
     throw new PreviewServerError("projectId is invalid.", "INVALID_INPUT");
@@ -83,7 +87,6 @@ function validateFiles(files: PreviewFile[], maxFiles: number, maxTotalBytes: nu
     }
     seen.add(path);
 
-    // Count UTF-8 bytes without requiring a Node Buffer dependency.
     const bytes = new TextEncoder().encode(file.content).length;
     totalBytes += bytes;
     if (totalBytes > maxTotalBytes) {
@@ -134,6 +137,9 @@ export class PreviewServer {
   }
 
   async start(actor: PreviewActor, request: StartPreviewRequest): Promise<PreviewSession> {
+    if (!actor || typeof actor.userId !== "string" || !actor.userId.trim()) {
+      throw new PreviewServerError("An authenticated actor is required.", "INVALID_INPUT");
+    }
     const projectId = safeProjectId(request.projectId);
     if (request.framework !== "react-vite" && request.framework !== "nextjs") {
       throw new PreviewServerError("Unsupported preview framework.", "INVALID_INPUT");
@@ -142,7 +148,7 @@ export class PreviewServer {
     const now = Date.now();
     const sessionId = this.idFactory();
 
-    const session = this.sessions.create({
+    this.sessions.create({
       id: sessionId,
       projectId,
       ownerId: actor.userId,
@@ -161,8 +167,10 @@ export class PreviewServer {
       files
     };
 
+    let adapterStarted = false;
     try {
       const result = await this.adapter.start(input);
+      adapterStarted = true;
       const previewUrl = this.validatePreviewUrl(result.url);
       const ready = this.sessions.update(sessionId, {
         status: "ready",
@@ -179,6 +187,13 @@ export class PreviewServer {
       });
       return ready;
     } catch (error) {
+      if (adapterStarted) {
+        try {
+          await this.adapter.stop(sessionId);
+        } catch {
+          // Preserve the original startup failure. Adapter cleanup is best-effort.
+        }
+      }
       this.sessions.setStatus(sessionId, "failed");
       if (error instanceof PreviewServerError) throw error;
       throw new PreviewServerError(
@@ -196,10 +211,13 @@ export class PreviewServer {
 
     const files = validateFiles(request.files, this.maxFiles, this.maxTotalBytes);
     const filePaths = new Set(files.map((file) => file.path));
+    if (!Array.isArray(request.changedPaths)) {
+      throw new PreviewServerError("changedPaths must be an array.", "INVALID_INPUT");
+    }
     const changedPaths = [...new Set(request.changedPaths)];
     if (
       changedPaths.length === 0 ||
-      changedPaths.some((path) => !filePaths.has(path) || path.startsWith("/") || path.split("/").includes(".."))
+      changedPaths.some((path) => typeof path !== "string" || !filePaths.has(path) || path.startsWith("/") || path.split("/").includes(".."))
     ) {
       throw new PreviewServerError("changedPaths must reference files in the submitted file set.", "INVALID_INPUT");
     }
@@ -257,6 +275,7 @@ export class PreviewServer {
     });
     this.hotReload.removeSession(sessionId);
     this.monitor.forget(sessionId);
+    this.errors.clearSession(sessionId);
     return stopped;
   }
 
@@ -268,7 +287,7 @@ export class PreviewServer {
     return this.sessions.listOwned(actor);
   }
 
-  subscribe(actor: PreviewActor, sessionId: string, listener: (event: import("./preview-types").PreviewEvent) => void): () => void {
+  subscribe(actor: PreviewActor, sessionId: string, listener: (event: PreviewEvent) => void): () => void {
     this.sessions.getOwned(sessionId, actor);
     return this.hotReload.subscribe(sessionId, listener);
   }
