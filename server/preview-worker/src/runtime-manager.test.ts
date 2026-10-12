@@ -12,12 +12,12 @@ import type {
 } from "./types";
 
 class FakeDockerRuntime extends DockerRuntime {
-  constructor(config: WorkerConfig) {
+  constructor(config: WorkerConfig, private readonly testWorkspaceRoot: string) {
     super(config);
   }
 
   override workspacePath(sessionId: string): string {
-    return join(this["config"].workspaceRoot, this["config"].workerId, sessionId);
+    return join(this.testWorkspaceRoot, "worker-test", sessionId);
   }
 
   override containerName(sessionId: string): string {
@@ -76,7 +76,7 @@ async function createHarness(maxSessions = 2) {
     port: 8080,
     host: "127.0.0.1"
   };
-  const runtime = new FakeDockerRuntime(config);
+  const runtime = new FakeDockerRuntime(config, root);
   const manager = new RuntimeManager(config, runtime);
   return {
     root,
