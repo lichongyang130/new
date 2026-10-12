@@ -61,9 +61,9 @@ add product-level access controls if previews must be private.
 
 ## Security boundary and limitations
 
-Generated dependencies are installed with lifecycle scripts disabled. The
-application build and start commands still execute generated project code in
-the constrained container. Per-session networks isolate preview containers
+Dependency installation lifecycle scripts, the application build and the
+start command execute generated project code inside the constrained container.
+They never run inside the trusted API or worker Node.js process. Per-session networks isolate preview containers
 from one another, but Docker bridge networks normally allow outbound traffic.
 For production, use host firewall/egress policy or a dedicated restricted
 network to deny access to cloud metadata, private subnets and other sensitive
@@ -91,7 +91,8 @@ TLS, log monitoring and operational alerting.
 
 ```sh
 npm install
-npm run build
+npm test
+npm run test:e2e # set PREVIEW_E2E=1 to exercise real Docker and package installation
 npm start
 ```
 
