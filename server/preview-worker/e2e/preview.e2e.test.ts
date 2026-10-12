@@ -77,13 +77,7 @@ test("API creates a Docker preview that executes in Chromium", {
   };
 
   const worker = createPreviewWorkerServer(config);
-  const api = createPreviewService({
-    runtimeBaseUrl: "http://127.0.0.1",
-    runtimeToken: token,
-    allowedPreviewOrigins: ["http://127.0.0.1"],
-    requestTimeoutMs: 15000,
-    operationTimeoutMs: 480000
-  });
+  let apiService: ReturnType<typeof createPreviewService> | undefined;
   const apiApp = express();
   const apiRouter = express.Router();
   const auth = (request: any, response: any, next: any) => {
@@ -95,7 +89,6 @@ test("API creates a Docker preview that executes in Chromium", {
     request.user = { id: userId };
     next();
   };
-  api.mount(apiRouter, auth);
   apiApp.use(express.json({ limit: "6mb" }));
   apiApp.use("/api/preview", apiRouter);
 
@@ -126,6 +119,15 @@ test("API creates a Docker preview that executes in Chromium", {
   assert.ok(workerAddress && typeof workerAddress.port === "number");
   const workerOrigin = "http://127.0.0.1:" + workerAddress.port;
   config.publicPreviewOrigin = workerOrigin;
+  apiService = createPreviewService({
+    runtimeBaseUrl: workerOrigin,
+    runtimeToken: token,
+    allowedPreviewOrigins: [workerOrigin],
+    requestTimeoutMs: 15000,
+    operationTimeoutMs: 480000
+  });
+  apiService.mount(apiRouter, auth);
+  apiApp.use("/api/preview", apiRouter);
   apiListener = apiApp.listen(0, "127.0.0.1");
   await once(apiListener, "listening");
   const apiAddress = apiListener.address() as AddressInfo | null;
