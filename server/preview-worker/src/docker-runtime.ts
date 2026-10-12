@@ -196,7 +196,7 @@ export class DockerRuntime {
       };
       const req = httpGet(url, { timeout: 1500 }, (response) => {
         response.resume();
-        finish((response.statusCode ?? 500) < 500);
+        finish(response.statusCode !== undefined && response.statusCode >= 200 && response.statusCode < 400);
       });
       req.on("timeout", () => { req.destroy(); finish(false); });
       req.on("error", () => finish(false));
