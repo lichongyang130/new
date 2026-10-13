@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import WorkspaceHub from "./pages/WorkspaceHub";
 import DesignLibrary from "./pages/DesignLibrary";
 import StudioPage from "./pages/StudioPage";
@@ -6,6 +6,7 @@ import ProjectsPage from "./pages/ProjectsPage";
 import ProjectEditorPage from "./pages/ProjectEditorPage";
 import type { DesignProject } from "./models/project";
 import { createProject, listProjects } from "./store/projectStore";
+import { useWorkspaceStore } from "./store/workspaceStore";
 import { navigateTo, normalizeAppPath } from "./router/workspaceRoutes";
 import "./styles.css";
 
@@ -25,6 +26,21 @@ const modes: { id: WorkMode; label: string; icon: string }[] = [
   { id: "code", label: "代码开发", icon: "‹›" },
   { id: "design", label: "设计创意", icon: "◈" },
 ];
+
+const expertCatalog = [
+  { id: "dev", name: "高级开发工程师", description: "全栈开发、系统架构与工程效率", terms: ["开发", "代码", "编程", "前端", "后端", "react", "网页", "网站", "调试", "bug", "架构", "接口", "程序"] },
+  { id: "product", name: "产品策略顾问", description: "产品规划、用户研究与需求梳理", terms: ["产品", "需求", "prd", "用户", "调研", "规划", "路线图", "功能", "原型", "体验"] },
+  { id: "designer", name: "UI 设计专家", description: "界面设计、交互流程与视觉规范", terms: ["设计", "ui", "界面", "视觉", "交互", "页面", "配色", "组件", "设计系统", "原型", "品牌"] },
+  { id: "content", name: "内容增长专家", description: "内容策划、社交媒体运营与增长", terms: ["内容", "小红书", "公众号", "短视频", "文案", "营销", "运营", "增长", "社媒", "标题"] },
+  { id: "finance", name: "金融研究分析师", description: "行业研究、财务信息整理与投资分析框架", terms: ["金融", "投资", "股票", "财务", "行业", "市场分析", "基金", "商业分析", "竞品"] },
+  { id: "career", name: "求职与职业导师", description: "简历优化、面试准备与职业规划", terms: ["简历", "求职", "面试", "职业", "工作", "招聘", "校招", "转行", "自我介绍"] },
+  { id: "writing", name: "写作与研究助理", description: "资料归纳、论文结构与专业写作", terms: ["论文", "写作", "报告", "总结", "资料", "研究", "整理", "纪要", "翻译"] },
+];
+
+function scoreExpert(text: string, terms: string[]) {
+  const normalized = text.toLocaleLowerCase();
+  return terms.reduce((score, term) => normalized.includes(term.toLocaleLowerCase()) ? score + (term.length > 2 ? 2 : 1) : score, 0);
+}
 
 function RobotMascot() {
   return (
@@ -56,7 +72,28 @@ export default function App() {
   const [workspace, setWorkspace] = useState("默认工作空间");
   const [permission, setPermission] = useState("默认权限");
   const [attachments, setAttachments] = useState<string[]>([]);
+  const [selectedExpert, setSelectedExpert] = useState("");
+  const customExperts = useWorkspaceStore((state) => state.experts);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const recommendedExperts = useMemo(() => {
+    const request = prompt.trim();
+    if (request.length < 2) return [];
+    const builtIn = expertCatalog.map((expert) => ({
+      id: expert.id,
+      name: expert.name,
+      description: expert.description,
+      score: scoreExpert(request, [...expert.terms, expert.name]),
+      custom: false,
+    }));
+    const personal = customExperts.map((expert) => ({
+      id: expert.id,
+      name: expert.name,
+      description: expert.description || [...expert.skills, ...expert.capabilities].join("、") || "你的自定义专家",
+      score: scoreExpert(request, [expert.name, expert.description, ...expert.skills, ...expert.capabilities].filter(Boolean)),
+      custom: true,
+    }));
+    return [...personal, ...builtIn].filter((expert) => expert.score > 0).sort((a, b) => b.score - a.score).slice(0, 3);
+  }, [prompt, customExperts]);
 
   useEffect(() => {
     const syncPath = () => {
@@ -82,13 +119,14 @@ export default function App() {
     try {
       setBusy(true);
       const prefix = mode === "office" ? "日常办公需求：" : mode === "code" ? "代码开发需求：" : "设计创意需求：";
-      const request = initialPrompt.startsWith("日常办公需求：") || initialPrompt.startsWith("代码开发需求：") || initialPrompt.startsWith("设计创意需求：")
-        ? initialPrompt
-        : `${prefix}${initialPrompt}`;
+      const expertPrefix = selectedExpert ? `推荐专家：${selectedExpert}。` : "";
+      const hasModePrefix = initialPrompt.startsWith("日常办公需求：") || initialPrompt.startsWith("代码开发需求：") || initialPrompt.startsWith("设计创意需求：");
+      const request = hasModePrefix ? `${expertPrefix}${initialPrompt}` : `${prefix}${expertPrefix}${initialPrompt}`;
       const project = createProject(request, projectName);
       setProjects(listProjects());
       setNotice("");
       setPrompt("");
+      setSelectedExpert("");
       setAttachments([]);
       go(`/editor/${encodeURIComponent(project.id)}`);
     } catch (cause) {
@@ -206,7 +244,7 @@ export default function App() {
                 <button
                   key={action.title}
                   className="quick-action-chip"
-                  onClick={() => { setMode(action.mode); setPrompt(action.prompt); setNotice(""); }}
+                  onClick={() => { setMode(action.mode); setPrompt(action.prompt); setSelectedExpert(""); setNotice(""); }}
                 >
                   <span>{action.icon}</span>{action.title}
                 </button>
@@ -230,7 +268,7 @@ export default function App() {
               )}
               <textarea
                 value={prompt}
-                onChange={(event) => { setPrompt(event.target.value); setNotice(""); }}
+                onChange={(event) => { setPrompt(event.target.value); setSelectedExpert(""); setNotice(""); }}
                 onKeyDown={(event) => {
                   if (event.key === "Enter" && !event.shiftKey) {
                     event.preventDefault();
@@ -241,6 +279,14 @@ export default function App() {
                 rows={3}
                 aria-label="任务描述"
               />
+              {recommendedExperts.length > 0 && <div className="home-expert-recommendations" aria-live="polite">
+                <div className="home-expert-recommendations-heading"><span>✦ 根据你的需求推荐专家</span><small>匹配领域与专家能力</small></div>
+                <div className="home-expert-recommendations-list">{recommendedExperts.map((expert) => <article className={selectedExpert === expert.name ? "is-selected" : ""} key={expert.id}>
+                  <span className="home-expert-recommendation-avatar">{expert.name.slice(0, 1)}</span>
+                  <span className="home-expert-recommendation-copy"><b>{expert.name}{expert.custom && <i>我的专家</i>}</b><small>{expert.description}</small></span>
+                  <button type="button" aria-pressed={selectedExpert === expert.name} onClick={() => setSelectedExpert((current) => current === expert.name ? "" : expert.name)}>{selectedExpert === expert.name ? "已选择 ✓" : "选择专家"}</button>
+                </article>)}</div>
+              </div>}
               <div className="composer-controls">
                 <button className="attach-button" title="添加附件" aria-label="添加附件" onClick={() => fileInputRef.current?.click()}>＋</button>
                 <input
