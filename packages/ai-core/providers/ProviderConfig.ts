@@ -12,7 +12,7 @@ function readProviderConfig(env: Environment, prefix: string, defaults: Provider
     apiKey: env[`${prefix}_API_KEY`],
     baseUrl: env[`${prefix}_BASE_URL`] || defaults.baseUrl,
     defaultModel: env[`${prefix}_MODEL`] || defaults.defaultModel,
-    timeoutMs: env[`${prefix}_TIMEOUT_MS`] ? Number(env[`${prefix}_TIMEOUT_MS`) : defaults.timeoutMs,
+    timeoutMs: env[`${prefix}_TIMEOUT_MS`] ? Number(env[`${prefix}_TIMEOUT_MS`]) : defaults.timeoutMs,
   };
 }
 
