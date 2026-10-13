@@ -1,3 +1,5 @@
+import { apiFetch } from "./client";
+
 export interface GenerationFile {
   path: string;
   content: string;
@@ -7,6 +9,7 @@ export interface GenerationFile {
 export interface GenerateProjectRequest {
   prompt: string;
   projectName: string;
+  model?: string;
   currentFiles?: GenerationFile[];
 }
 
@@ -16,15 +19,12 @@ export interface GenerateProjectResponse {
   model?: string;
 }
 
-const API_BASE = "/api";
-
 export async function generateProjectWithAI(input: GenerateProjectRequest): Promise<GenerateProjectResponse> {
   const prompt = input.prompt.trim();
   if (!prompt) throw new Error("请先描述要生成或修改的内容。");
 
-  const response = await fetch(`${API_BASE}/generation`, {
+  const response = await apiFetch("/generation", {
     method: "POST",
-    credentials: "same-origin",
     headers: { Accept: "application/json", "Content-Type": "application/json" },
     body: JSON.stringify({ ...input, prompt }),
   });

@@ -7,6 +7,7 @@ on:
       - "apps/web/**"
       - "package.json"
       - "pnpm-workspace.yaml"
+      - "pnpm-lock.yaml"
       - ".github/workflows/deploy-web-preview.yml"
   workflow_dispatch:
 
@@ -26,21 +27,26 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.0.0
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 22
+          cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 
-      - name: Install frontend dependencies
-        working-directory: apps/web
-        run: npm install --no-audit --no-fund
+      - name: Install workspace dependencies
+        run: pnpm install --frozen-lockfile
 
       - name: Type-check and build frontend
-        working-directory: apps/web
-        run: npm run build
+        run: pnpm --filter designbuddy-web build
 
       - name: Configure static-host fallback for client-side routes
         working-directory: apps/web

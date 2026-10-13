@@ -11,6 +11,14 @@ Open-source AI design workspace and agent tooling. This repository contains a we
 - `server/rag` — embeddings and vector retrieval.
 - `server/preview-api`, `server/preview-engine`, `server/preview-worker` — preview-session API and runtime components.
 
+## Current user workflows
+
+- Homepage requests create a local project immediately and then start an AI first pass. If the API is unavailable, the local starter project remains editable and the editor reports the generation error.
+- The editor can apply the full `design-systems/catalog.json` token set, export HTML/PDF/ZIP, and create a read-only share link that can be imported as a separate local copy.
+- Text attachments (`txt`, `md`, `json`, `html`, `css`, `js`, `csv`, `xml`, `yaml`) are read in the browser and included in the generation prompt, with per-file size limits. Other formats are not parsed yet.
+- Experts and skills selected from the workspace are carried into the next generation request. Custom experts, skills, connectors, and saved catalog assets persist in browser storage.
+- The “仅本地” task policy skips AI network generation. Review notes and shared project copies remain browser/local workflows; real multi-user presence and shared comment threads require a deployed collaboration backend.
+
 ## Important integration requirements
 
 - Authentication requires a configured password-hash verifier and access-token issuer; do not use plaintext passwords.
@@ -24,12 +32,12 @@ Open-source AI design workspace and agent tooling. This repository contains a we
 
 The editor calls same-origin `POST /api/generation` for AI-assisted HTML/CSS/JavaScript generation and `POST /api/projects` to save a project. The request handler and file-backed repository live in `server/api/http-handler.ts` and `server/api/file-project-repository.ts`.
 
-These modules are server-side building blocks, not a hosted API by themselves. The deployment must mount `createApiHandler(...)` at `/api`, provide a real session authenticator, and configure a persistent writable volume for `DESIGNBUDDY_PROJECT_STORE_PATH`. Configure `AI_API_KEY`, `AI_BASE_URL`, and `AI_MODEL` on the server; never put provider secrets in frontend/Vite variables. GitHub Pages serves static files only, so its preview deployment alone does not activate AI generation or cloud sync; point the frontend API client at a separately hosted backend or deploy both behind the same origin.
+These modules are server-side building blocks, not a hosted API by themselves. The deployment must mount `createApiHandler(...)` at `/api`, provide a real session authenticator, and configure a persistent writable volume for `DESIGNBUDDY_PROJECT_STORE_PATH`. Configure `AI_API_KEY`, `AI_BASE_URL`, and `AI_MODEL` on the server; never put provider secrets in frontend/Vite variables. The homepage model selector can override the model identifier, but the selected model must be served by the configured provider or compatible gateway. The web client defaults to same-origin `/api`; set `VITE_API_BASE_URL` at web build time to use a separately hosted backend (the client appends `/api`). For a cross-origin backend, configure exact credentialed CORS and secure session cookies. GitHub Pages serves static files only, so its preview deployment alone does not activate AI generation or cloud sync.
 
 The project editor also supports client-side ZIP export without a third-party ZIP dependency.
 
 ## Development
 
-Use the package manager and scripts defined in the workspace manifests. Configure credentials through environment variables and local environment files; never commit secrets or production tokens.
+Use the package manager and scripts defined in the workspace manifests. Install with `pnpm install --frozen-lockfile`; start the web preview with `pnpm --filter designbuddy-web dev`. Configure credentials through environment variables and local environment files; never commit secrets or production tokens.
 
 Before deployment, install dependencies, run each workspace's build and tests, configure external providers, and review authorization, persistence, and runtime isolation.

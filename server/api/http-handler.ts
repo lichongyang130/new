@@ -9,6 +9,9 @@ export interface ApiProject {
   name: string;
   prompt: string;
   files: GenerationFile[];
+  designSystemId?: string;
+  workspaceName?: string;
+  executionPolicy?: string;
   createdAt: string;
   updatedAt: string;
   status: "draft";
@@ -75,6 +78,9 @@ function asProject(value: Record<string, unknown>): ApiProject {
     name: value.name.trim().slice(0, 120),
     prompt: value.prompt.slice(0, 12_000),
     files,
+    ...(typeof value.designSystemId === "string" ? { designSystemId: value.designSystemId.slice(0, 120) } : {}),
+    ...(typeof value.workspaceName === "string" ? { workspaceName: value.workspaceName.slice(0, 120) } : {}),
+    ...(typeof value.executionPolicy === "string" ? { executionPolicy: value.executionPolicy.slice(0, 120) } : {}),
     createdAt: typeof value.createdAt === "string" ? value.createdAt : now,
     updatedAt: now,
     status: "draft",
@@ -125,6 +131,7 @@ export function createApiHandler(options: ApiHandlerOptions): (request: Request)
           userId: principal.id,
           prompt: body.prompt,
           projectName: body.projectName,
+          model: typeof body.model === "string" ? body.model : undefined,
           currentFiles,
         });
         return json(result, 200, options.corsOrigin);

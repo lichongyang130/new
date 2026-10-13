@@ -5,6 +5,7 @@ import { navigateTo } from "../router/workspaceRoutes";
 import { generateProjectWithAI } from "../api/generation";
 import { saveProjectToCloud } from "../api/projects";
 import { downloadProjectZip } from "../utils/zip";
+import { applyDesignSystemTokens, designSystems } from "../utils/designSystem";
 
 function buildPreviewDocument(files: ProjectFile[]): string {
   const htmlFile = files.find((file) => file.path === "index.html");
@@ -19,13 +20,6 @@ function buildPreviewDocument(files: ProjectFile[]): string {
   html = html.replace(/<\/body>/i, `${editorBridge}</body>`);
   return html;
 }
-
-const designSystems = [
-  { name: "原始", colors: ["#26372e", "#758b6f", "#f6f5f1"] },
-  { name: "海盐蓝", colors: ["#174a75", "#3a82a8", "#f1f7fb"] },
-  { name: "莓果紫", colors: ["#573c83", "#9a73c7", "#faf6ff"] },
-  { name: "暖阳橙", colors: ["#8b461d", "#dc8750", "#fff8f0"] },
-];
 
 export default function ProjectEditorPage({ projectId }: { projectId: string }) {
   const [project, setProject] = useState<DesignProject | null>(() => getProject(projectId) ?? null);
@@ -49,6 +43,25 @@ export default function ProjectEditorPage({ projectId }: { projectId: string }) 
     setActivePath("index.html");
     setNotice("");
     try { setReviewNotes(JSON.parse(localStorage.getItem(`designbuddy.review.${projectId}`) || "[]") as string[]); } catch { setReviewNotes([]); }
+  }, [projectId]);
+
+  useEffect(() => {
+    const key = `designbuddy.generate-on-open.${projectId}`;
+    const pending = window.sessionStorage.getItem(key);
+    if (!pending) return;
+    window.sessionStorage.removeItem(key);
+    try {
+      const task = JSON.parse(pending) as { prompt?: unknown; model?: unknown; localOnly?: unknown };
+      if (task.localOnly === true || project?.executionPolicy === "仅本地") {
+        setNotice("已按“仅本地”策略创建草稿，没有发送 AI 网络请求。可继续手动编辑源码。");
+        return;
+      }
+      if (typeof task.prompt === "string" && task.prompt.trim()) {
+        void runGeneration(task.prompt, typeof task.model === "string" ? task.model : undefined);
+      }
+    } catch {
+      setNotice("自动生成任务读取失败；你可以在右侧 AI 设计助手中重新提交需求。");
+    }
   }, [projectId]);
 
   const activeFile = project?.files.find((file) => file.path === activePath) ?? project?.files[0];
@@ -118,17 +131,30 @@ export default function ProjectEditorPage({ projectId }: { projectId: string }) 
     }
   }
 
-  async function submitAssistant(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    const prompt = assistantDraft.trim();
-    const current = project;
+  async function shareProject() {
+    if (!project) return;
+    try {
+      const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(project))));
+      const url = `${window.location.origin}${import.meta.env.BASE_URL}share#project=${encodeURIComponent(encoded)}`;
+      if (url.length > 90_000) throw new Error("项目内容过大，无法生成分享链接；请先精简源码或使用 ZIP 导出。");
+      await navigator.clipboard.writeText(url);
+      setNotice("只读分享链接已复制。收件人可预览并导入为自己的本机副本。");
+    } catch (cause) {
+      setNotice(cause instanceof Error ? cause.message : "复制分享链接失败，请检查浏览器剪贴板权限。");
+    }
+  }
+
+  async function runGeneration(prompt: string, model?: string) {
+    const current = getProject(projectId) ?? project;
     if (!prompt || generating || !current) return;
+    if (current.executionPolicy === "仅本地") { setNotice("此项目设置为“仅本地”，AI 网络生成已禁用。请更改任务策略后重新创建项目。"); return; }
     setGenerating(true);
-    setNotice("");
+    setNotice("正在根据你的需求生成页面，首稿会在完成后替换本机模板。");
     try {
       const result = await generateProjectWithAI({
         prompt,
         projectName: current.name,
+        model,
         currentFiles: current.files.map(({ path, content, language }) => ({ path, content, language: language === "html" || language === "css" || language === "javascript" ? language : undefined })),
       });
       const generatedFiles: ProjectFile[] = result.files.map((file) => ({
@@ -151,10 +177,15 @@ export default function ProjectEditorPage({ projectId }: { projectId: string }) 
       setNotice("AI 已返回源码并更新本机项目。请检查预览，确认后再同步云端。");
       setView("preview");
     } catch (cause) {
-      setNotice(cause instanceof Error ? cause.message : "AI 生成失败；现有项目未更改。");
+      setNotice((cause instanceof Error ? cause.message : "AI 生成失败；") + " 本机草稿已保留，可稍后重试。");
     } finally {
       setGenerating(false);
     }
+  }
+
+  async function submitAssistant(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    await runGeneration(assistantDraft.trim());
   }
 
   async function syncToCloud() {
@@ -188,11 +219,9 @@ export default function ProjectEditorPage({ projectId }: { projectId: string }) 
   function applyDesignSystem(system: typeof designSystems[number]) {
     const current = project;
     if (!current) return;
-    const cssFile = current.files.find((file) => file.path === "src/styles.css");
-    if (!cssFile) { setNotice("这个项目没有 src/styles.css，无法应用主题。"); return; }
-    const nextCss = cssFile.content.replace(/\/\* DesignBuddy theme start \*\/[\s\S]*?\/\* DesignBuddy theme end \*\//g, "").trimEnd() +
-      `\n\n/* DesignBuddy theme start */\n:root { --db-primary: ${system.colors[0]}; --db-accent: ${system.colors[1]}; --db-canvas: ${system.colors[2]}; }\nbody { background-color: var(--db-canvas); }\nh1 span, .eyebrow { color: var(--db-accent) !important; }\n.primary-link, .nav-cta, .shop-cta, .hero-actions .primary, .saas-bottom a { background-color: var(--db-primary) !important; }\n/* DesignBuddy theme end */\n`;
-    const saved = updateProject({ ...current, files: current.files.map((file) => file.path === cssFile.path ? { ...file, content: nextCss } : file), updatedAt: new Date().toISOString() });
+    let saved: DesignProject;
+    try { saved = updateProject(applyDesignSystemTokens(current, system)); }
+    catch (cause) { setNotice(cause instanceof Error ? cause.message : "无法应用这个设计系统。"); return; }
     setProject(saved); setNotice(`已应用“${system.name}”设计系统。`);
   }
 
@@ -250,6 +279,7 @@ export default function ProjectEditorPage({ projectId }: { projectId: string }) 
           <button className={view === "code" ? "db-button db-button-secondary is-selected" : "db-button db-button-secondary"} onClick={() => setView("code")}>{"</>"} 代码</button>
           <button className={view === "preview" ? "db-button db-button-secondary is-selected" : "db-button db-button-secondary"} onClick={() => setView("preview")}>◫ 预览</button>
           <button className="db-button db-button-secondary" onClick={downloadZip}>下载 ZIP</button>
+          <button className="db-button db-button-secondary" onClick={() => void shareProject()}>分享只读副本</button>
           <button className="db-button db-button-secondary" onClick={() => void syncToCloud()} disabled={cloudBusy}>{cloudBusy ? "同步中…" : "同步云端"}</button>
           <button className="db-button db-button-primary" onClick={() => void copySource()}>复制源码 <span>↗</span></button>
         </div>
@@ -285,7 +315,7 @@ export default function ProjectEditorPage({ projectId }: { projectId: string }) 
                 <button title="手机" aria-label="手机预览" className={device === "mobile" ? "is-active" : ""} onClick={() => setDevice("mobile")}>▏</button>
               </div>
             )}
-            <div className="db-design-tools"><select aria-label="设计系统" defaultValue="" onChange={(event) => { const system = designSystems[Number(event.target.value)]; if (system) applyDesignSystem(system); event.currentTarget.value = ""; }}><option value="" disabled>设计系统</option>{designSystems.map((system, index) => <option value={index} key={system.name}>{system.name}</option>)}</select><button onClick={exportStandaloneHtml}>导出 HTML</button><button onClick={exportPdf}>导出 PDF</button></div>
+            <div className="db-design-tools"><select aria-label="设计系统" value={project.designSystemId ?? ""} onChange={(event) => { const system = designSystems.find((item) => item.id === event.target.value); if (system) applyDesignSystem(system); }}><option value="">选择设计系统 · {designSystems.length} 套</option>{designSystems.map((system) => <option value={system.id} key={system.id}>{system.name} · {system.category}</option>)}</select><button onClick={exportStandaloneHtml}>导出 HTML</button><button onClick={exportPdf}>导出 PDF</button></div>
           </div>
           {view === "preview" ? (
             <div className="db-live-preview-stage">
@@ -323,7 +353,7 @@ export default function ProjectEditorPage({ projectId }: { projectId: string }) 
           <div className="db-assistant-status"><i /> 当前项目为本机草稿模式</div>
           <form className="db-assistant-composer" onSubmit={submitAssistant}>
             <textarea value={assistantDraft} onChange={(event) => setAssistantDraft(event.target.value)} placeholder="例如：把页面改成深色风格，并加入价格方案…" rows={5} />
-            <button type="submit" disabled={!assistantDraft.trim() || generating}>{generating ? "正在生成…" : "生成并应用源码"} <span>↗</span></button>
+            <button type="submit" disabled={!assistantDraft.trim() || generating || project.executionPolicy === "仅本地"}>{generating ? "正在生成…" : project.executionPolicy === "仅本地" ? "仅本地模式" : "生成并应用源码"} <span>↗</span></button>
           </form>
           <div className="db-assistant-footnote">AI 生成需要配置服务端 API 密钥；云端同步需要已登录的 API 服务。失败时会显示具体原因，不会覆盖当前项目。</div>
           <section className="db-review-panel"><h3>评审备注（本机）</h3><form onSubmit={addReviewNote}><textarea value={reviewNote} onChange={(event) => setReviewNote(event.target.value)} rows={2} placeholder="记录修改意见或待办…"/><button disabled={!reviewNote.trim()}>添加备注</button></form><ul>{reviewNotes.map((note, index) => <li key={`${index}-${note}`}>{note}</li>)}</ul></section>

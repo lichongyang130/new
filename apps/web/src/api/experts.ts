@@ -1,3 +1,5 @@
+import { apiFetch } from "./client";
+
 export interface Expert {
   id: string;
   name: string;
@@ -5,10 +7,8 @@ export interface Expert {
   skills?: string[];
 }
 
-const API_BASE = '/api';
-
 export async function listExperts(): Promise<Expert[]> {
-  const response = await fetch(`${API_BASE}/experts`);
+  const response = await apiFetch("/experts");
   if (!response.ok) {
     throw new Error('Failed to load experts');
   }
@@ -16,7 +16,7 @@ export async function listExperts(): Promise<Expert[]> {
 }
 
 export async function createExpert(data: Partial<Expert>): Promise<Expert> {
-  const response = await fetch(`${API_BASE}/experts`, {
+  const response = await apiFetch("/experts", {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data)
@@ -30,7 +30,7 @@ export async function createExpert(data: Partial<Expert>): Promise<Expert> {
 }
 
 export async function updateExpert(id: string, data: Partial<Expert>): Promise<Expert> {
-  const response = await fetch(`${API_BASE}/experts/${id}`, {
+  const response = await apiFetch(`/experts/${encodeURIComponent(id)}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data)

@@ -2,15 +2,18 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import WorkspaceHub from "./pages/WorkspaceHub";
 import DesignLibrary from "./pages/DesignLibrary";
 import StudioPage from "./pages/StudioPage";
+import ShareProjectPage from "./pages/ShareProjectPage";
 import ProjectsPage from "./pages/ProjectsPage";
 import ProjectEditorPage from "./pages/ProjectEditorPage";
 import type { DesignProject } from "./models/project";
-import { createProject, listProjects } from "./store/projectStore";
+import { createProject, listProjects, updateProject } from "./store/projectStore";
 import { useWorkspaceStore } from "./store/workspaceStore";
 import { navigateTo, normalizeAppPath } from "./router/workspaceRoutes";
 import "./styles.css";
 
 type WorkMode = "office" | "code" | "design";
+type TaskAttachment = { name: string; text?: string };
+const textAttachmentExtensions = /\.(txt|md|markdown|json|html|htm|css|js|csv|xml|yaml|yml)$/i;
 
 const quickActions = [
   { title: "网页设计", icon: "▤", mode: "design" as WorkMode, prompt: "帮我设计一个现代、简洁、具有高品质视觉风格的网站首页。" },
@@ -68,11 +71,12 @@ export default function App() {
   const [notice, setNotice] = useState("");
   const [projects, setProjects] = useState<DesignProject[]>(() => listProjects());
   const [busy, setBusy] = useState(false);
-  const [model, setModel] = useState("DesignBuddy Auto");
+  const [model, setModel] = useState("");
   const [workspace, setWorkspace] = useState("默认工作空间");
   const [permission, setPermission] = useState("默认权限");
-  const [attachments, setAttachments] = useState<string[]>([]);
+  const [attachments, setAttachments] = useState<TaskAttachment[]>([]);
   const [selectedExpert, setSelectedExpert] = useState("");
+  const [selectedSkill, setSelectedSkill] = useState("");
   const customExperts = useWorkspaceStore((state) => state.experts);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const recommendedExperts = useMemo(() => {
@@ -104,6 +108,20 @@ export default function App() {
     return () => window.removeEventListener("popstate", syncPath);
   }, []);
 
+  useEffect(() => {
+    if (currentPath !== "/") return;
+    const key = "designbuddy.launch-context.v1";
+    const raw = window.sessionStorage.getItem(key);
+    if (!raw) return;
+    window.sessionStorage.removeItem(key);
+    try {
+      const context = JSON.parse(raw) as { expert?: unknown; skill?: unknown };
+      if (typeof context.expert === "string") setSelectedExpert(context.expert);
+      if (typeof context.skill === "string") setSelectedSkill(context.skill);
+      setNotice("已载入所选专家/技能，请描述任务后开始。");
+    } catch { setNotice("无法读取所选专家或技能，请重新选择。"); }
+  }, [currentPath]);
+
   function go(path: string) {
     navigateTo(path);
     setCurrentPath(normalizeAppPath(window.location.pathname));
@@ -120,13 +138,24 @@ export default function App() {
       setBusy(true);
       const prefix = mode === "office" ? "日常办公需求：" : mode === "code" ? "代码开发需求：" : "设计创意需求：";
       const expertPrefix = selectedExpert ? `推荐专家：${selectedExpert}。` : "";
+      const skillPrefix = selectedSkill ? `使用技能：${selectedSkill}。` : "";
       const hasModePrefix = initialPrompt.startsWith("日常办公需求：") || initialPrompt.startsWith("代码开发需求：") || initialPrompt.startsWith("设计创意需求：");
-      const request = hasModePrefix ? `${expertPrefix}${initialPrompt}` : `${prefix}${expertPrefix}${initialPrompt}`;
-      const project = createProject(request, projectName);
+      const task = hasModePrefix ? `${expertPrefix}${skillPrefix}${initialPrompt}` : `${prefix}${expertPrefix}${skillPrefix}${initialPrompt}`;
+      const request = `工作空间：${workspace}；执行策略：${permission}。\n${task}`;
+      const attachmentContext = attachments.filter((item) => item.text).map((item) => `\n\n--- 附件：${item.name} ---\n${item.text}`).join("");
+      const fullRequest = request + attachmentContext;
+      const draft = createProject(fullRequest, projectName || initialPrompt.trim().slice(0, 36));
+      const project = updateProject({ ...draft, workspaceName: workspace, executionPolicy: permission });
+      try {
+        window.sessionStorage.setItem(`designbuddy.generate-on-open.${project.id}`, JSON.stringify({ prompt: fullRequest, model, localOnly: permission === "仅本地" }));
+      } catch {
+        setNotice("本机草稿已创建，但浏览器不允许自动启动 AI 生成。可在项目编辑器右侧手动提交需求。");
+      }
       setProjects(listProjects());
       setNotice("");
       setPrompt("");
       setSelectedExpert("");
+      setSelectedSkill("");
       setAttachments([]);
       go(`/editor/${encodeURIComponent(project.id)}`);
     } catch (cause) {
@@ -138,6 +167,7 @@ export default function App() {
 
   if (currentPath.startsWith("/library")) return <DesignLibrary />;
   if (currentPath === "/studio" || currentPath.startsWith("/studio/")) return <StudioPage />;
+  if (currentPath === "/share") return <ShareProjectPage />;
   if (isWorkspaceHubPath(currentPath)) return <WorkspaceHub />;
   const editorMatch = currentPath.match(/^\/editor\/([^/]+)$/);
   if (editorMatch) {
@@ -244,7 +274,7 @@ export default function App() {
                 <button
                   key={action.title}
                   className="quick-action-chip"
-                  onClick={() => { setMode(action.mode); setPrompt(action.prompt); setSelectedExpert(""); setNotice(""); }}
+                  onClick={() => { setMode(action.mode); setPrompt(action.prompt); setSelectedExpert(""); setSelectedSkill(""); setNotice(""); }}
                 >
                   <span>{action.icon}</span>{action.title}
                 </button>
@@ -259,16 +289,16 @@ export default function App() {
               {attachments.length > 0 && (
                 <div className="attachment-list">
                   {attachments.map((file, index) => (
-                    <span className="attachment-chip" key={`${file}-${index}`}>
-                      ▧ {file}
-                      <button aria-label={`移除附件 ${file}`} onClick={() => setAttachments((items) => items.filter((_, itemIndex) => itemIndex !== index))}>×</button>
+                    <span className="attachment-chip" key={`${file.name}-${index}`} title={file.text ? "文本内容已读取" : "暂不支持读取此文件类型"}>
+                      ▧ {file.name}{file.text ? " ✓" : ""}
+                      <button aria-label={`移除附件 ${file.name}`} onClick={() => setAttachments((items) => items.filter((_, itemIndex) => itemIndex !== index))}>×</button>
                     </span>
                   ))}
                 </div>
               )}
               <textarea
                 value={prompt}
-                onChange={(event) => { setPrompt(event.target.value); setSelectedExpert(""); setNotice(""); }}
+                onChange={(event) => { setPrompt(event.target.value); setNotice(""); }}
                 onKeyDown={(event) => {
                   if (event.key === "Enter" && !event.shiftKey) {
                     event.preventDefault();
@@ -279,6 +309,7 @@ export default function App() {
                 rows={3}
                 aria-label="任务描述"
               />
+              {(selectedExpert || selectedSkill) && <div className="home-selected-capabilities"><span>本次任务将使用：{[selectedExpert, selectedSkill].filter(Boolean).join(" · ")}</span><button type="button" onClick={() => { setSelectedExpert(""); setSelectedSkill(""); }}>清除</button></div>}
               {recommendedExperts.length > 0 && <div className="home-expert-recommendations" aria-live="polite">
                 <div className="home-expert-recommendations-heading"><span>✦ 根据你的需求推荐专家</span><small>匹配领域与专家能力</small></div>
                 <div className="home-expert-recommendations-list">{recommendedExperts.map((expert) => <article className={selectedExpert === expert.name ? "is-selected" : ""} key={expert.id}>
@@ -295,22 +326,29 @@ export default function App() {
                   type="file"
                   multiple
                   onChange={(event) => {
-                    const files = Array.from(event.currentTarget.files ?? []).map((file) => file.name);
-                    if (files.length) {
-                      setAttachments((current) => [...current, ...files].slice(-4));
-                      setNotice("已选择附件名称。当前版本尚未接通文件解析，请在任务描述中补充附件内容。");
-                    }
+                    const selected = Array.from(event.currentTarget.files ?? []);
                     event.currentTarget.value = "";
+                    if (!selected.length) return;
+                    void Promise.all(selected.map(async (file): Promise<TaskAttachment> => {
+                      if (!textAttachmentExtensions.test(file.name) && !file.type.startsWith("text/")) return { name: file.name };
+                      if (file.size > 160_000) return { name: file.name };
+                      try { return { name: file.name, text: (await file.text()).slice(0, 80_000) }; }
+                      catch { return { name: file.name }; }
+                    })).then((parsed) => {
+                      setAttachments((current) => [...current, ...parsed].slice(-4));
+                      const readable = parsed.filter((file) => file.text).length;
+                      setNotice(readable ? `已读取 ${readable} 个文本附件；每个文件最多提取 80 KB 文本。PDF 和图片仅附上文件名。` : "已添加附件。当前只会解析文本文件，PDF 与图片内容暂未提取。");
+                    });
                   }}
                 />
                 <div className="composer-actions-right">
                   <label className="model-picker">
                     <span className="model-spark">◈</span>
                     <select value={model} aria-label="模型选择" onChange={(event) => setModel(event.target.value)}>
-                      <option>DesignBuddy Auto</option>
-                      <option>GPT 系列</option>
-                      <option>Claude 系列</option>
-                      <option>本地模型</option>
+                      <option value="">服务端默认模型</option>
+                      <option value="gpt-4o-mini">GPT · gpt-4o-mini</option>
+                      <option value="claude-3-5-sonnet-latest">Claude · Sonnet</option>
+                      <option value="llama3.1">兼容网关 · llama3.1</option>
                     </select>
                     <span>⌄</span>
                   </label>

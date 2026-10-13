@@ -10,6 +10,7 @@ export interface GenerationRequest {
   userId: string;
   prompt: string;
   projectName: string;
+  model?: string;
   currentFiles?: GenerationFile[];
 }
 
@@ -70,6 +71,7 @@ export async function generateDesignProject(input: GenerationRequest): Promise<G
   if (!input.userId.trim()) throw new Error("An authenticated user is required to generate a project.");
   if (!prompt) throw new Error("A design prompt is required.");
   if (prompt.length > 12_000) throw new Error("The design prompt is too long.");
+  if (input.model && !/^[a-zA-Z0-9._:-]{1,120}$/.test(input.model)) throw new Error("The requested model identifier is invalid.");
 
   const existingFiles = (input.currentFiles ?? []).filter((file) => allowedPaths.has(file.path));
   const existingSource = existingFiles.length
@@ -77,6 +79,7 @@ export async function generateDesignProject(input: GenerationRequest): Promise<G
     : "No existing project files. Create a polished responsive starting design.";
   const systemPrompt = [
     "You are DesignBuddy, an expert frontend designer and developer.",
+    "If the user request names a selected expert or skill, adopt that role and apply its methods while completing the task.",
     "Return ONLY a JSON object with keys name and files.",
     "files must contain source files using only these exact paths: index.html, src/styles.css, src/main.js.",
     "index.html must be complete HTML and link to ./src/styles.css and ./src/main.js.",
@@ -86,7 +89,7 @@ export async function generateDesignProject(input: GenerationRequest): Promise<G
   ].join(" ");
   const response = await requestAI({
     userId: input.userId,
-    model: process.env.AI_MODEL || process.env.OPENAI_MODEL || "gpt-4o-mini",
+    model: input.model || process.env.AI_MODEL || process.env.OPENAI_MODEL || "gpt-4o-mini",
     systemPrompt,
     prompt: [
       "Project name: " + (input.projectName.trim() || "DesignBuddy project"),

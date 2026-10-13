@@ -1,8 +1,7 @@
 import type { Connector } from "../models/workspace";
-
-const API_BASE = "/api";
+import { API_BASE, apiFetch } from "./client";
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
-  const response = await fetch(`${API_BASE}${path}`, {
+  const response = await apiFetch(path, {
     ...init,
     headers: { "Content-Type": "application/json", ...init?.headers },
   });

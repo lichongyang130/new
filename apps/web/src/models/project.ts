@@ -9,6 +9,9 @@ export interface DesignProject {
   name: string;
   prompt: string;
   files: ProjectFile[];
+  designSystemId?: string;
+  workspaceName?: string;
+  executionPolicy?: string;
   createdAt: string;
   updatedAt: string;
   status: "draft";

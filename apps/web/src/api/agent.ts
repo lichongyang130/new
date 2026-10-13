@@ -1,3 +1,5 @@
+import { apiFetch } from "./client";
+
 export interface AgentTaskRequest {
   expertId: string;
   input: unknown;
@@ -8,10 +10,8 @@ export interface AgentTaskResponse {
   result?: unknown;
 }
 
-const API_BASE = '/api';
-
 export async function runAgentTask(request: AgentTaskRequest): Promise<AgentTaskResponse> {
-  const response = await fetch(`${API_BASE}/agent/run`, {
+  const response = await apiFetch("/agent/run", {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(request)

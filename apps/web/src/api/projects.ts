@@ -1,17 +1,18 @@
 import type { DesignProject } from "../models/project";
-
-const API_BASE = "/api";
+import { apiFetch } from "./client";
 
 export async function saveProjectToCloud(project: DesignProject): Promise<void> {
-  const response = await fetch(`${API_BASE}/projects`, {
+  const response = await apiFetch("/projects", {
     method: "POST",
-    credentials: "same-origin",
     headers: { Accept: "application/json", "Content-Type": "application/json" },
     body: JSON.stringify({
       id: project.id,
       name: project.name,
       prompt: project.prompt,
       files: project.files,
+      designSystemId: project.designSystemId,
+      workspaceName: project.workspaceName,
+      executionPolicy: project.executionPolicy,
       createdAt: project.createdAt,
       updatedAt: project.updatedAt,
       status: project.status,
