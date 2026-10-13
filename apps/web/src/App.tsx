@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import WorkspaceHub from "./pages/WorkspaceHub";
+import DesignLibrary from "./pages/DesignLibrary";
 import ProjectsPage from "./pages/ProjectsPage";
 import ProjectEditorPage from "./pages/ProjectEditorPage";
 import type { DesignProject } from "./models/project";
@@ -96,6 +97,7 @@ export default function App() {
     }
   }
 
+  if (currentPath.startsWith("/library")) return <DesignLibrary />;
   if (isWorkspaceHubPath(currentPath)) return <WorkspaceHub />;
   const editorMatch = currentPath.match(/^\/editor\/([^/]+)$/);
   if (editorMatch) {

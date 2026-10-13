@@ -1,0 +1,641 @@
+[
+  {
+    "id": "plugin-01",
+    "name": "Figma 文件桥接",
+    "category": "design",
+    "description": "读取 Figma 文件元数据与节点，支持导入前预览",
+    "version": "1.0.0",
+    "status": "catalog",
+    "permissions": [
+      "network:allowlisted",
+      "workspace:read"
+    ],
+    "risk": "需要用户确认",
+    "icon": "✦"
+  },
+  {
+    "id": "plugin-02",
+    "name": "截图转界面",
+    "category": "design",
+    "description": "将截图分析为组件树与可编辑页面草稿",
+    "version": "1.0.0",
+    "status": "catalog",
+    "permissions": [
+      "workspace:read"
+    ],
+    "risk": "低风险",
+    "icon": "⌘"
+  },
+  {
+    "id": "plugin-03",
+    "name": "设计 Token 同步",
+    "category": "design",
+    "description": "同步颜色、字体、间距与圆角变量",
+    "version": "1.0.0",
+    "status": "catalog",
+    "permissions": [
+      "workspace:read"
+    ],
+    "risk": "低风险",
+    "icon": "◈"
+  },
+  {
+    "id": "plugin-04",
+    "name": "网页采集器",
+    "category": "research",
+    "description": "保存网页参考图、标题、链接和色彩线索",
+    "version": "1.0.0",
+    "status": "catalog",
+    "permissions": [
+      "workspace:read"
+    ],
+    "risk": "低风险",
+    "icon": "↗"
+  },
+  {
+    "id": "plugin-05",
+    "name": "GitHub 仓库",
+    "category": "developer",
+    "description": "读取仓库、创建分支并整理变更摘要",
+    "version": "1.0.0",
+    "status": "catalog",
+    "permissions": [
+      "workspace:read"
+    ],
+    "risk": "低风险",
+    "icon": "▤"
+  },
+  {
+    "id": "plugin-06",
+    "name": "Pull Request 助手",
+    "category": "developer",
+    "description": "生成 PR 描述、风险清单和测试建议",
+    "version": "1.0.0",
+    "status": "catalog",
+    "permissions": [
+      "workspace:read",
+      "workspace:write:approval"
+    ],
+    "risk": "需要用户确认",
+    "icon": "◎"
+  },
+  {
+    "id": "plugin-07",
+    "name": "终端任务桥",
+    "category": "developer",
+    "description": "在用户确认后执行受控的开发命令",
+    "version": "1.0.0",
+    "status": "catalog",
+    "permissions": [
+      "workspace:read"
+    ],
+    "risk": "低风险",
+    "icon": "✦"
+  },
+  {
+    "id": "plugin-08",
+    "name": "浏览器预览器",
+    "category": "developer",
+    "description": "打开本地预览并采集控制台错误",
+    "version": "1.0.0",
+    "status": "catalog",
+    "permissions": [
+      "network:allowlisted",
+      "workspace:read"
+    ],
+    "risk": "低风险",
+    "icon": "⌘"
+  },
+  {
+    "id": "plugin-09",
+    "name": "Playwright 测试",
+    "category": "quality",
+    "description": "生成与执行页面交互测试",
+    "version": "1.0.0",
+    "status": "catalog",
+    "permissions": [
+      "workspace:read"
+    ],
+    "risk": "低风险",
+    "icon": "◈"
+  },
+  {
+    "id": "plugin-10",
+    "name": "无障碍审计",
+    "category": "quality",
+    "description": "检查语义、键盘路径与对比度",
+    "version": "1.0.0",
+    "status": "catalog",
+    "permissions": [
+      "workspace:read"
+    ],
+    "risk": "低风险",
+    "icon": "↗"
+  },
+  {
+    "id": "plugin-11",
+    "name": "响应式审计",
+    "category": "quality",
+    "description": "检查常见视口下的布局溢出",
+    "version": "1.0.0",
+    "status": "catalog",
+    "permissions": [
+      "workspace:read",
+      "workspace:write:approval"
+    ],
+    "risk": "需要用户确认",
+    "icon": "▤"
+  },
+  {
+    "id": "plugin-12",
+    "name": "视觉回归",
+    "category": "quality",
+    "description": "比较基线截图并标注差异",
+    "version": "1.0.0",
+    "status": "catalog",
+    "permissions": [
+      "workspace:read"
+    ],
+    "risk": "低风险",
+    "icon": "◎"
+  },
+  {
+    "id": "plugin-13",
+    "name": "API 文档读取器",
+    "category": "developer",
+    "description": "读取 OpenAPI 并生成接口调用说明",
+    "version": "1.0.0",
+    "status": "catalog",
+    "permissions": [
+      "workspace:read"
+    ],
+    "risk": "低风险",
+    "icon": "✦"
+  },
+  {
+    "id": "plugin-14",
+    "name": "数据库只读查询",
+    "category": "data",
+    "description": "使用授权连接执行只读查询",
+    "version": "1.0.0",
+    "status": "catalog",
+    "permissions": [
+      "workspace:read"
+    ],
+    "risk": "低风险",
+    "icon": "⌘"
+  },
+  {
+    "id": "plugin-15",
+    "name": "CSV 数据分析",
+    "category": "data",
+    "description": "分析字段、缺失值并生成图表建议",
+    "version": "1.0.0",
+    "status": "catalog",
+    "permissions": [
+      "network:allowlisted",
+      "workspace:read"
+    ],
+    "risk": "低风险",
+    "icon": "◈"
+  },
+  {
+    "id": "plugin-16",
+    "name": "表格导出",
+    "category": "office",
+    "description": "导出 CSV/XLSX 并保留字段类型",
+    "version": "1.0.0",
+    "status": "catalog",
+    "permissions": [
+      "workspace:read",
+      "workspace:write:approval"
+    ],
+    "risk": "需要用户确认",
+    "icon": "↗"
+  },
+  {
+    "id": "plugin-17",
+    "name": "文档生成",
+    "category": "office",
+    "description": "生成结构化 PRD、方案和会议纪要",
+    "version": "1.0.0",
+    "status": "catalog",
+    "permissions": [
+      "workspace:read"
+    ],
+    "risk": "低风险",
+    "icon": "▤"
+  },
+  {
+    "id": "plugin-18",
+    "name": "PDF 阅读器",
+    "category": "office",
+    "description": "提取 PDF 内容并定位引用页码",
+    "version": "1.0.0",
+    "status": "catalog",
+    "permissions": [
+      "workspace:read"
+    ],
+    "risk": "低风险",
+    "icon": "◎"
+  },
+  {
+    "id": "plugin-19",
+    "name": "演示文稿生成",
+    "category": "office",
+    "description": "生成有一致版式的演示文稿大纲",
+    "version": "1.0.0",
+    "status": "catalog",
+    "permissions": [
+      "workspace:read"
+    ],
+    "risk": "低风险",
+    "icon": "✦"
+  },
+  {
+    "id": "plugin-20",
+    "name": "图片生成工作流",
+    "category": "media",
+    "description": "构建图片生成提示词与资产记录",
+    "version": "1.0.0",
+    "status": "catalog",
+    "permissions": [
+      "workspace:read"
+    ],
+    "risk": "低风险",
+    "icon": "⌘"
+  },
+  {
+    "id": "plugin-21",
+    "name": "图片编辑工作流",
+    "category": "media",
+    "description": "管理裁切、背景和版本记录",
+    "version": "1.0.0",
+    "status": "catalog",
+    "permissions": [
+      "workspace:read",
+      "workspace:write:approval"
+    ],
+    "risk": "需要用户确认",
+    "icon": "◈"
+  },
+  {
+    "id": "plugin-22",
+    "name": "视频分镜规划",
+    "category": "media",
+    "description": "生成分镜、镜头提示与素材清单",
+    "version": "1.0.0",
+    "status": "catalog",
+    "permissions": [
+      "network:allowlisted",
+      "workspace:read"
+    ],
+    "risk": "低风险",
+    "icon": "↗"
+  },
+  {
+    "id": "plugin-23",
+    "name": "音频脚本助手",
+    "category": "media",
+    "description": "将脚本转为旁白与音效计划",
+    "version": "1.0.0",
+    "status": "catalog",
+    "permissions": [
+      "workspace:read"
+    ],
+    "risk": "低风险",
+    "icon": "▤"
+  },
+  {
+    "id": "plugin-24",
+    "name": "品牌资产库",
+    "category": "design",
+    "description": "集中管理品牌色、Logo 与图像规范",
+    "version": "1.0.0",
+    "status": "catalog",
+    "permissions": [
+      "workspace:read"
+    ],
+    "risk": "低风险",
+    "icon": "◎"
+  },
+  {
+    "id": "plugin-25",
+    "name": "组件目录",
+    "category": "design",
+    "description": "浏览组件变体并复制示例代码",
+    "version": "1.0.0",
+    "status": "catalog",
+    "permissions": [
+      "workspace:read"
+    ],
+    "risk": "低风险",
+    "icon": "✦"
+  },
+  {
+    "id": "plugin-26",
+    "name": "通知中心",
+    "category": "workflow",
+    "description": "向工作区展示任务完成和失败事件",
+    "version": "1.0.0",
+    "status": "catalog",
+    "permissions": [
+      "workspace:read",
+      "workspace:write:approval"
+    ],
+    "risk": "需要用户确认",
+    "icon": "⌘"
+  },
+  {
+    "id": "plugin-27",
+    "name": "任务计划器",
+    "category": "workflow",
+    "description": "将目标拆解为有依赖关系的步骤",
+    "version": "1.0.0",
+    "status": "catalog",
+    "permissions": [
+      "workspace:read"
+    ],
+    "risk": "低风险",
+    "icon": "◈"
+  },
+  {
+    "id": "plugin-28",
+    "name": "Memory 检索",
+    "category": "workflow",
+    "description": "检索项目决策、用户偏好与代码上下文",
+    "version": "1.0.0",
+    "status": "catalog",
+    "permissions": [
+      "workspace:read"
+    ],
+    "risk": "低风险",
+    "icon": "↗"
+  },
+  {
+    "id": "plugin-29",
+    "name": "发布到 Vercel",
+    "category": "deploy",
+    "description": "准备部署配置并检查必需环境变量",
+    "version": "1.0.0",
+    "status": "catalog",
+    "permissions": [
+      "network:allowlisted",
+      "workspace:read"
+    ],
+    "risk": "低风险",
+    "icon": "▤"
+  },
+  {
+    "id": "plugin-30",
+    "name": "Docker 打包",
+    "category": "deploy",
+    "description": "生成容器配置与健康检查",
+    "version": "1.0.0",
+    "status": "catalog",
+    "permissions": [
+      "workspace:read"
+    ],
+    "risk": "低风险",
+    "icon": "◎"
+  },
+  {
+    "id": "plugin-31",
+    "name": "变更日志生成",
+    "category": "developer",
+    "description": "根据提交差异生成面向用户的变更说明",
+    "version": "1.0.0",
+    "status": "catalog",
+    "permissions": [
+      "workspace:read",
+      "workspace:write:approval"
+    ],
+    "risk": "需要用户确认",
+    "icon": "✦"
+  },
+  {
+    "id": "plugin-32",
+    "name": "Issue 分诊",
+    "category": "developer",
+    "description": "归类缺陷、复现步骤和优先级",
+    "version": "1.0.0",
+    "status": "catalog",
+    "permissions": [
+      "workspace:read"
+    ],
+    "risk": "低风险",
+    "icon": "⌘"
+  },
+  {
+    "id": "plugin-33",
+    "name": "设计评审",
+    "category": "quality",
+    "description": "按一致性、层级和可用性给出建议",
+    "version": "1.0.0",
+    "status": "catalog",
+    "permissions": [
+      "workspace:read"
+    ],
+    "risk": "低风险",
+    "icon": "◈"
+  },
+  {
+    "id": "plugin-34",
+    "name": "竞品研究",
+    "category": "research",
+    "description": "收集公开资料并生成可追溯对比",
+    "version": "1.0.0",
+    "status": "catalog",
+    "permissions": [
+      "workspace:read"
+    ],
+    "risk": "低风险",
+    "icon": "↗"
+  },
+  {
+    "id": "plugin-35",
+    "name": "SEO 检查",
+    "category": "marketing",
+    "description": "检查标题、描述、结构与语义链接",
+    "version": "1.0.0",
+    "status": "catalog",
+    "permissions": [
+      "workspace:read"
+    ],
+    "risk": "低风险",
+    "icon": "▤"
+  },
+  {
+    "id": "plugin-36",
+    "name": "转化率评审",
+    "category": "marketing",
+    "description": "检查 CTA、信任线索与表单摩擦",
+    "version": "1.0.0",
+    "status": "catalog",
+    "permissions": [
+      "network:allowlisted",
+      "workspace:read"
+    ],
+    "risk": "需要用户确认",
+    "icon": "◎"
+  },
+  {
+    "id": "plugin-37",
+    "name": "本地化检查",
+    "category": "quality",
+    "description": "发现硬编码文案和翻译缺失",
+    "version": "1.0.0",
+    "status": "catalog",
+    "permissions": [
+      "workspace:read"
+    ],
+    "risk": "低风险",
+    "icon": "✦"
+  },
+  {
+    "id": "plugin-38",
+    "name": "安全扫描",
+    "category": "quality",
+    "description": "检查密钥误提交与危险配置模式",
+    "version": "1.0.0",
+    "status": "catalog",
+    "permissions": [
+      "workspace:read"
+    ],
+    "risk": "低风险",
+    "icon": "⌘"
+  },
+  {
+    "id": "plugin-39",
+    "name": "项目脚手架",
+    "category": "developer",
+    "description": "按选定模板生成目录与约定文件",
+    "version": "1.0.0",
+    "status": "catalog",
+    "permissions": [
+      "workspace:read"
+    ],
+    "risk": "低风险",
+    "icon": "◈"
+  },
+  {
+    "id": "plugin-40",
+    "name": "发布清单",
+    "category": "deploy",
+    "description": "检查测试、版本、资产和回滚步骤",
+    "version": "1.0.0",
+    "status": "catalog",
+    "permissions": [
+      "workspace:read"
+    ],
+    "risk": "低风险",
+    "icon": "↗"
+  },
+  {
+    "id": "plugin-41",
+    "name": "客服知识库",
+    "category": "support",
+    "description": "从批准的知识源检索答复",
+    "version": "1.0.0",
+    "status": "catalog",
+    "permissions": [
+      "workspace:read",
+      "workspace:write:approval"
+    ],
+    "risk": "需要用户确认",
+    "icon": "▤"
+  },
+  {
+    "id": "plugin-42",
+    "name": "日历连接",
+    "category": "workflow",
+    "description": "管理预约、时间块与提醒",
+    "version": "1.0.0",
+    "status": "catalog",
+    "permissions": [
+      "workspace:read"
+    ],
+    "risk": "低风险",
+    "icon": "◎"
+  },
+  {
+    "id": "plugin-43",
+    "name": "邮件草稿",
+    "category": "office",
+    "description": "起草邮件并在发送前要求确认",
+    "version": "1.0.0",
+    "status": "catalog",
+    "permissions": [
+      "network:allowlisted",
+      "workspace:read"
+    ],
+    "risk": "低风险",
+    "icon": "✦"
+  },
+  {
+    "id": "plugin-44",
+    "name": "Slack/飞书消息",
+    "category": "workflow",
+    "description": "在用户授权后发送工作流通知",
+    "version": "1.0.0",
+    "status": "catalog",
+    "permissions": [
+      "workspace:read"
+    ],
+    "risk": "低风险",
+    "icon": "⌘"
+  },
+  {
+    "id": "plugin-45",
+    "name": "云存储",
+    "category": "data",
+    "description": "读写明确授权的对象存储路径",
+    "version": "1.0.0",
+    "status": "catalog",
+    "permissions": [
+      "workspace:read"
+    ],
+    "risk": "低风险",
+    "icon": "◈"
+  },
+  {
+    "id": "plugin-46",
+    "name": "MCP 服务器桥",
+    "category": "developer",
+    "description": "连接已配置 MCP 工具并校验权限",
+    "version": "1.0.0",
+    "status": "catalog",
+    "permissions": [
+      "workspace:read",
+      "workspace:write:approval"
+    ],
+    "risk": "需要用户确认",
+    "icon": "↗"
+  },
+  {
+    "id": "plugin-47",
+    "name": "自定义 HTTP API",
+    "category": "developer",
+    "description": "配置经过白名单限制的外部 API",
+    "version": "1.0.0",
+    "status": "catalog",
+    "permissions": [
+      "workspace:read"
+    ],
+    "risk": "低风险",
+    "icon": "▤"
+  },
+  {
+    "id": "plugin-48",
+    "name": "工作流 Webhook",
+    "category": "workflow",
+    "description": "接收签名校验后的自动化事件",
+    "version": "1.0.0",
+    "status": "catalog",
+    "permissions": [
+      "workspace:read"
+    ],
+    "risk": "低风险",
+    "icon": "◎"
+  }
+]

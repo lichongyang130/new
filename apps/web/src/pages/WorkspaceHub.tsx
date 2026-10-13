@@ -110,7 +110,7 @@ export default function WorkspaceHub() {
       <div className="wb-side-caption">工作空间</div>
       <button className="wb-side-link" onClick={() => go("/")}><span>⌂</span>工作台</button>
       <div className="wb-side-caption wb-side-caption-spaced">发现与扩展</div>
-      {navTabs.map((item) => <button key={item.id} className={"wb-side-link" + (section === item.id ? " is-active" : "")} onClick={() => go(item.path)}><span>{item.id === "experts" ? "♙" : item.id === "skills" ? "✧" : "⌘"}</span>{item.label}{section === item.id && <i />}</button>)}
+      {navTabs.map((item) => <button key={item.id} className={"wb-side-link" + (section === item.id ? " is-active" : "")} onClick={() => go(item.path)}><span>{item.id === "experts" ? "♙" : item.id === "skills" ? "✧" : "⌘"}</span>{item.label}{section === item.id && <i />}</button>)}\n      <button className="wb-side-link" onClick={() => { window.location.href = "/library"; }}><span>◈</span>设计资产中心</button>
       <div className="wb-sidebar-spacer" />
       <div className="wb-sidebar-tip"><span>✦</span><strong>让专业能力成为生产力</strong><p>组合专家、技能与连接器，打造适合自己的工作流。</p></div>
       <div className="wb-profile"><span className="wb-profile-avatar">D</span><span><strong>DesignBuddy</strong><small>个人工作空间</small></span><span className="wb-profile-more">•••</span></div>

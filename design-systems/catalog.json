@@ -1,0 +1,2522 @@
+[
+  {
+    "id": "ds-01",
+    "name": "Linear",
+    "category": "产品协作",
+    "philosophy": "极简、紧凑、快捷键优先",
+    "primary": "#5E6AD2",
+    "tokens": {
+      "color": {
+        "primary": "#5E6AD2",
+        "background": "#F8F9FC",
+        "surface": "#F5F6FA",
+        "text": "#171923",
+        "muted": "#707584",
+        "border": "#E6E8EF",
+        "success": "#14866D",
+        "warning": "#B7791F",
+        "danger": "#C23D4B"
+      },
+      "typography": {
+        "display": "Inter, system-ui, sans-serif",
+        "body": "Inter, system-ui, sans-serif",
+        "scale": [
+          12,
+          14,
+          16,
+          20,
+          24,
+          32,
+          40
+        ],
+        "lineHeight": 1.5
+      },
+      "spacing": [
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        32,
+        40,
+        48,
+        64
+      ],
+      "radius": [
+        6,
+        10,
+        14,
+        20,
+        28
+      ],
+      "shadow": [
+        "none",
+        "0 2px 8px #1018280A",
+        "0 12px 32px #10182812"
+      ]
+    },
+    "components": [
+      "Button",
+      "Input",
+      "Select",
+      "Dialog",
+      "Popover",
+      "Tabs",
+      "Badge",
+      "Card",
+      "Table",
+      "Toast",
+      "Tooltip",
+      "Dropdown",
+      "Avatar",
+      "Skeleton",
+      "EmptyState",
+      "Pagination"
+    ],
+    "accessibility": [
+      "WCAG AA 对比度检查",
+      "可见键盘焦点",
+      "表单字段标签",
+      "减少动态效果",
+      "错误状态文字说明"
+    ],
+    "image": "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85"
+  },
+  {
+    "id": "ds-02",
+    "name": "Stripe",
+    "category": "金融科技",
+    "philosophy": "高对比、可信赖、清晰数据",
+    "primary": "#635BFF",
+    "tokens": {
+      "color": {
+        "primary": "#635BFF",
+        "background": "#FFFFFF",
+        "surface": "#F7F7F8",
+        "text": "#171923",
+        "muted": "#707584",
+        "border": "#E6E8EF",
+        "success": "#14866D",
+        "warning": "#B7791F",
+        "danger": "#C23D4B"
+      },
+      "typography": {
+        "display": "Inter, system-ui, sans-serif",
+        "body": "Inter, system-ui, sans-serif",
+        "scale": [
+          12,
+          14,
+          16,
+          20,
+          24,
+          32,
+          40
+        ],
+        "lineHeight": 1.5
+      },
+      "spacing": [
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        32,
+        40,
+        48,
+        64
+      ],
+      "radius": [
+        6,
+        10,
+        14,
+        20,
+        28
+      ],
+      "shadow": [
+        "none",
+        "0 2px 8px #1018280A",
+        "0 12px 32px #10182812"
+      ]
+    },
+    "components": [
+      "Button",
+      "Input",
+      "Select",
+      "Dialog",
+      "Popover",
+      "Tabs",
+      "Badge",
+      "Card",
+      "Table",
+      "Toast",
+      "Tooltip",
+      "Dropdown",
+      "Avatar",
+      "Skeleton",
+      "EmptyState",
+      "Pagination"
+    ],
+    "accessibility": [
+      "WCAG AA 对比度检查",
+      "可见键盘焦点",
+      "表单字段标签",
+      "减少动态效果",
+      "错误状态文字说明"
+    ],
+    "image": "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1200&q=85"
+  },
+  {
+    "id": "ds-03",
+    "name": "Notion",
+    "category": "知识管理",
+    "philosophy": "柔和中性色、灵活信息块",
+    "primary": "#191919",
+    "tokens": {
+      "color": {
+        "primary": "#191919",
+        "background": "#FFFFFF",
+        "surface": "#F5F6FA",
+        "text": "#171923",
+        "muted": "#707584",
+        "border": "#E6E8EF",
+        "success": "#14866D",
+        "warning": "#B7791F",
+        "danger": "#C23D4B"
+      },
+      "typography": {
+        "display": "Inter, system-ui, sans-serif",
+        "body": "Inter, system-ui, sans-serif",
+        "scale": [
+          12,
+          14,
+          16,
+          20,
+          24,
+          32,
+          40
+        ],
+        "lineHeight": 1.5
+      },
+      "spacing": [
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        32,
+        40,
+        48,
+        64
+      ],
+      "radius": [
+        6,
+        10,
+        14,
+        20,
+        28
+      ],
+      "shadow": [
+        "none",
+        "0 2px 8px #1018280A",
+        "0 12px 32px #10182812"
+      ]
+    },
+    "components": [
+      "Button",
+      "Input",
+      "Select",
+      "Dialog",
+      "Popover",
+      "Tabs",
+      "Badge",
+      "Card",
+      "Table",
+      "Toast",
+      "Tooltip",
+      "Dropdown",
+      "Avatar",
+      "Skeleton",
+      "EmptyState",
+      "Pagination"
+    ],
+    "accessibility": [
+      "WCAG AA 对比度检查",
+      "可见键盘焦点",
+      "表单字段标签",
+      "减少动态效果",
+      "错误状态文字说明"
+    ],
+    "image": "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=1200&q=85"
+  },
+  {
+    "id": "ds-04",
+    "name": "Figma",
+    "category": "设计工具",
+    "philosophy": "明亮画布、协作状态、色彩鲜明",
+    "primary": "#A259FF",
+    "tokens": {
+      "color": {
+        "primary": "#A259FF",
+        "background": "#F8F9FC",
+        "surface": "#F7F7F8",
+        "text": "#171923",
+        "muted": "#707584",
+        "border": "#E6E8EF",
+        "success": "#14866D",
+        "warning": "#B7791F",
+        "danger": "#C23D4B"
+      },
+      "typography": {
+        "display": "Inter, system-ui, sans-serif",
+        "body": "Inter, system-ui, sans-serif",
+        "scale": [
+          12,
+          14,
+          16,
+          20,
+          24,
+          32,
+          40
+        ],
+        "lineHeight": 1.5
+      },
+      "spacing": [
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        32,
+        40,
+        48,
+        64
+      ],
+      "radius": [
+        6,
+        10,
+        14,
+        20,
+        28
+      ],
+      "shadow": [
+        "none",
+        "0 2px 8px #1018280A",
+        "0 12px 32px #10182812"
+      ]
+    },
+    "components": [
+      "Button",
+      "Input",
+      "Select",
+      "Dialog",
+      "Popover",
+      "Tabs",
+      "Badge",
+      "Card",
+      "Table",
+      "Toast",
+      "Tooltip",
+      "Dropdown",
+      "Avatar",
+      "Skeleton",
+      "EmptyState",
+      "Pagination"
+    ],
+    "accessibility": [
+      "WCAG AA 对比度检查",
+      "可见键盘焦点",
+      "表单字段标签",
+      "减少动态效果",
+      "错误状态文字说明"
+    ],
+    "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=85"
+  },
+  {
+    "id": "ds-05",
+    "name": "Vercel",
+    "category": "开发者工具",
+    "philosophy": "黑白对比、细线、技术感",
+    "primary": "#111111",
+    "tokens": {
+      "color": {
+        "primary": "#111111",
+        "background": "#FFFFFF",
+        "surface": "#F5F6FA",
+        "text": "#171923",
+        "muted": "#707584",
+        "border": "#E6E8EF",
+        "success": "#14866D",
+        "warning": "#B7791F",
+        "danger": "#C23D4B"
+      },
+      "typography": {
+        "display": "Inter, system-ui, sans-serif",
+        "body": "Inter, system-ui, sans-serif",
+        "scale": [
+          12,
+          14,
+          16,
+          20,
+          24,
+          32,
+          40
+        ],
+        "lineHeight": 1.5
+      },
+      "spacing": [
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        32,
+        40,
+        48,
+        64
+      ],
+      "radius": [
+        6,
+        10,
+        14,
+        20,
+        28
+      ],
+      "shadow": [
+        "none",
+        "0 2px 8px #1018280A",
+        "0 12px 32px #10182812"
+      ]
+    },
+    "components": [
+      "Button",
+      "Input",
+      "Select",
+      "Dialog",
+      "Popover",
+      "Tabs",
+      "Badge",
+      "Card",
+      "Table",
+      "Toast",
+      "Tooltip",
+      "Dropdown",
+      "Avatar",
+      "Skeleton",
+      "EmptyState",
+      "Pagination"
+    ],
+    "accessibility": [
+      "WCAG AA 对比度检查",
+      "可见键盘焦点",
+      "表单字段标签",
+      "减少动态效果",
+      "错误状态文字说明"
+    ],
+    "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=85"
+  },
+  {
+    "id": "ds-06",
+    "name": "Apple",
+    "category": "消费科技",
+    "philosophy": "留白、精细排版、克制层级",
+    "primary": "#222222",
+    "tokens": {
+      "color": {
+        "primary": "#222222",
+        "background": "#FFFFFF",
+        "surface": "#F7F7F8",
+        "text": "#171923",
+        "muted": "#707584",
+        "border": "#E6E8EF",
+        "success": "#14866D",
+        "warning": "#B7791F",
+        "danger": "#C23D4B"
+      },
+      "typography": {
+        "display": "Inter, system-ui, sans-serif",
+        "body": "Inter, system-ui, sans-serif",
+        "scale": [
+          12,
+          14,
+          16,
+          20,
+          24,
+          32,
+          40
+        ],
+        "lineHeight": 1.5
+      },
+      "spacing": [
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        32,
+        40,
+        48,
+        64
+      ],
+      "radius": [
+        6,
+        10,
+        14,
+        20,
+        28
+      ],
+      "shadow": [
+        "none",
+        "0 2px 8px #1018280A",
+        "0 12px 32px #10182812"
+      ]
+    },
+    "components": [
+      "Button",
+      "Input",
+      "Select",
+      "Dialog",
+      "Popover",
+      "Tabs",
+      "Badge",
+      "Card",
+      "Table",
+      "Toast",
+      "Tooltip",
+      "Dropdown",
+      "Avatar",
+      "Skeleton",
+      "EmptyState",
+      "Pagination"
+    ],
+    "accessibility": [
+      "WCAG AA 对比度检查",
+      "可见键盘焦点",
+      "表单字段标签",
+      "减少动态效果",
+      "错误状态文字说明"
+    ],
+    "image": "https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=1200&q=85"
+  },
+  {
+    "id": "ds-07",
+    "name": "Airbnb",
+    "category": "旅行生活",
+    "philosophy": "温暖色彩、圆润卡片、故事感",
+    "primary": "#FF5A5F",
+    "tokens": {
+      "color": {
+        "primary": "#FF5A5F",
+        "background": "#F8F9FC",
+        "surface": "#F5F6FA",
+        "text": "#171923",
+        "muted": "#707584",
+        "border": "#E6E8EF",
+        "success": "#14866D",
+        "warning": "#B7791F",
+        "danger": "#C23D4B"
+      },
+      "typography": {
+        "display": "Inter, system-ui, sans-serif",
+        "body": "Inter, system-ui, sans-serif",
+        "scale": [
+          12,
+          14,
+          16,
+          20,
+          24,
+          32,
+          40
+        ],
+        "lineHeight": 1.5
+      },
+      "spacing": [
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        32,
+        40,
+        48,
+        64
+      ],
+      "radius": [
+        6,
+        10,
+        14,
+        20,
+        28
+      ],
+      "shadow": [
+        "none",
+        "0 2px 8px #1018280A",
+        "0 12px 32px #10182812"
+      ]
+    },
+    "components": [
+      "Button",
+      "Input",
+      "Select",
+      "Dialog",
+      "Popover",
+      "Tabs",
+      "Badge",
+      "Card",
+      "Table",
+      "Toast",
+      "Tooltip",
+      "Dropdown",
+      "Avatar",
+      "Skeleton",
+      "EmptyState",
+      "Pagination"
+    ],
+    "accessibility": [
+      "WCAG AA 对比度检查",
+      "可见键盘焦点",
+      "表单字段标签",
+      "减少动态效果",
+      "错误状态文字说明"
+    ],
+    "image": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=85"
+  },
+  {
+    "id": "ds-08",
+    "name": "Shopify",
+    "category": "电商",
+    "philosophy": "清晰商品层级、商业转化",
+    "primary": "#008060",
+    "tokens": {
+      "color": {
+        "primary": "#008060",
+        "background": "#FFFFFF",
+        "surface": "#F7F7F8",
+        "text": "#171923",
+        "muted": "#707584",
+        "border": "#E6E8EF",
+        "success": "#14866D",
+        "warning": "#B7791F",
+        "danger": "#C23D4B"
+      },
+      "typography": {
+        "display": "Inter, system-ui, sans-serif",
+        "body": "Inter, system-ui, sans-serif",
+        "scale": [
+          12,
+          14,
+          16,
+          20,
+          24,
+          32,
+          40
+        ],
+        "lineHeight": 1.5
+      },
+      "spacing": [
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        32,
+        40,
+        48,
+        64
+      ],
+      "radius": [
+        6,
+        10,
+        14,
+        20,
+        28
+      ],
+      "shadow": [
+        "none",
+        "0 2px 8px #1018280A",
+        "0 12px 32px #10182812"
+      ]
+    },
+    "components": [
+      "Button",
+      "Input",
+      "Select",
+      "Dialog",
+      "Popover",
+      "Tabs",
+      "Badge",
+      "Card",
+      "Table",
+      "Toast",
+      "Tooltip",
+      "Dropdown",
+      "Avatar",
+      "Skeleton",
+      "EmptyState",
+      "Pagination"
+    ],
+    "accessibility": [
+      "WCAG AA 对比度检查",
+      "可见键盘焦点",
+      "表单字段标签",
+      "减少动态效果",
+      "错误状态文字说明"
+    ],
+    "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=85"
+  },
+  {
+    "id": "ds-09",
+    "name": "Spotify",
+    "category": "媒体娱乐",
+    "philosophy": "深色画布、强视觉焦点",
+    "primary": "#1DB954",
+    "tokens": {
+      "color": {
+        "primary": "#1DB954",
+        "background": "#FFFFFF",
+        "surface": "#F5F6FA",
+        "text": "#171923",
+        "muted": "#707584",
+        "border": "#E6E8EF",
+        "success": "#14866D",
+        "warning": "#B7791F",
+        "danger": "#C23D4B"
+      },
+      "typography": {
+        "display": "Inter, system-ui, sans-serif",
+        "body": "Inter, system-ui, sans-serif",
+        "scale": [
+          12,
+          14,
+          16,
+          20,
+          24,
+          32,
+          40
+        ],
+        "lineHeight": 1.5
+      },
+      "spacing": [
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        32,
+        40,
+        48,
+        64
+      ],
+      "radius": [
+        6,
+        10,
+        14,
+        20,
+        28
+      ],
+      "shadow": [
+        "none",
+        "0 2px 8px #1018280A",
+        "0 12px 32px #10182812"
+      ]
+    },
+    "components": [
+      "Button",
+      "Input",
+      "Select",
+      "Dialog",
+      "Popover",
+      "Tabs",
+      "Badge",
+      "Card",
+      "Table",
+      "Toast",
+      "Tooltip",
+      "Dropdown",
+      "Avatar",
+      "Skeleton",
+      "EmptyState",
+      "Pagination"
+    ],
+    "accessibility": [
+      "WCAG AA 对比度检查",
+      "可见键盘焦点",
+      "表单字段标签",
+      "减少动态效果",
+      "错误状态文字说明"
+    ],
+    "image": "https://images.unsplash.com/photo-1523726491678-bf852e717f6a?auto=format&fit=crop&w=1200&q=85"
+  },
+  {
+    "id": "ds-10",
+    "name": "Slack",
+    "category": "团队协作",
+    "philosophy": "友好、彩色状态、可扫描布局",
+    "primary": "#611F69",
+    "tokens": {
+      "color": {
+        "primary": "#611F69",
+        "background": "#F8F9FC",
+        "surface": "#F7F7F8",
+        "text": "#171923",
+        "muted": "#707584",
+        "border": "#E6E8EF",
+        "success": "#14866D",
+        "warning": "#B7791F",
+        "danger": "#C23D4B"
+      },
+      "typography": {
+        "display": "Inter, system-ui, sans-serif",
+        "body": "Inter, system-ui, sans-serif",
+        "scale": [
+          12,
+          14,
+          16,
+          20,
+          24,
+          32,
+          40
+        ],
+        "lineHeight": 1.5
+      },
+      "spacing": [
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        32,
+        40,
+        48,
+        64
+      ],
+      "radius": [
+        6,
+        10,
+        14,
+        20,
+        28
+      ],
+      "shadow": [
+        "none",
+        "0 2px 8px #1018280A",
+        "0 12px 32px #10182812"
+      ]
+    },
+    "components": [
+      "Button",
+      "Input",
+      "Select",
+      "Dialog",
+      "Popover",
+      "Tabs",
+      "Badge",
+      "Card",
+      "Table",
+      "Toast",
+      "Tooltip",
+      "Dropdown",
+      "Avatar",
+      "Skeleton",
+      "EmptyState",
+      "Pagination"
+    ],
+    "accessibility": [
+      "WCAG AA 对比度检查",
+      "可见键盘焦点",
+      "表单字段标签",
+      "减少动态效果",
+      "错误状态文字说明"
+    ],
+    "image": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=85"
+  },
+  {
+    "id": "ds-11",
+    "name": "GitHub",
+    "category": "开发协作",
+    "philosophy": "文档化、状态透明、信息密度",
+    "primary": "#24292F",
+    "tokens": {
+      "color": {
+        "primary": "#24292F",
+        "background": "#FFFFFF",
+        "surface": "#F5F6FA",
+        "text": "#171923",
+        "muted": "#707584",
+        "border": "#E6E8EF",
+        "success": "#14866D",
+        "warning": "#B7791F",
+        "danger": "#C23D4B"
+      },
+      "typography": {
+        "display": "Inter, system-ui, sans-serif",
+        "body": "Inter, system-ui, sans-serif",
+        "scale": [
+          12,
+          14,
+          16,
+          20,
+          24,
+          32,
+          40
+        ],
+        "lineHeight": 1.5
+      },
+      "spacing": [
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        32,
+        40,
+        48,
+        64
+      ],
+      "radius": [
+        6,
+        10,
+        14,
+        20,
+        28
+      ],
+      "shadow": [
+        "none",
+        "0 2px 8px #1018280A",
+        "0 12px 32px #10182812"
+      ]
+    },
+    "components": [
+      "Button",
+      "Input",
+      "Select",
+      "Dialog",
+      "Popover",
+      "Tabs",
+      "Badge",
+      "Card",
+      "Table",
+      "Toast",
+      "Tooltip",
+      "Dropdown",
+      "Avatar",
+      "Skeleton",
+      "EmptyState",
+      "Pagination"
+    ],
+    "accessibility": [
+      "WCAG AA 对比度检查",
+      "可见键盘焦点",
+      "表单字段标签",
+      "减少动态效果",
+      "错误状态文字说明"
+    ],
+    "image": "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1200&q=85"
+  },
+  {
+    "id": "ds-12",
+    "name": "OpenAI",
+    "category": "AI 产品",
+    "philosophy": "简洁、柔和灰阶、聚焦输入",
+    "primary": "#10A37F",
+    "tokens": {
+      "color": {
+        "primary": "#10A37F",
+        "background": "#FFFFFF",
+        "surface": "#F7F7F8",
+        "text": "#171923",
+        "muted": "#707584",
+        "border": "#E6E8EF",
+        "success": "#14866D",
+        "warning": "#B7791F",
+        "danger": "#C23D4B"
+      },
+      "typography": {
+        "display": "Inter, system-ui, sans-serif",
+        "body": "Inter, system-ui, sans-serif",
+        "scale": [
+          12,
+          14,
+          16,
+          20,
+          24,
+          32,
+          40
+        ],
+        "lineHeight": 1.5
+      },
+      "spacing": [
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        32,
+        40,
+        48,
+        64
+      ],
+      "radius": [
+        6,
+        10,
+        14,
+        20,
+        28
+      ],
+      "shadow": [
+        "none",
+        "0 2px 8px #1018280A",
+        "0 12px 32px #10182812"
+      ]
+    },
+    "components": [
+      "Button",
+      "Input",
+      "Select",
+      "Dialog",
+      "Popover",
+      "Tabs",
+      "Badge",
+      "Card",
+      "Table",
+      "Toast",
+      "Tooltip",
+      "Dropdown",
+      "Avatar",
+      "Skeleton",
+      "EmptyState",
+      "Pagination"
+    ],
+    "accessibility": [
+      "WCAG AA 对比度检查",
+      "可见键盘焦点",
+      "表单字段标签",
+      "减少动态效果",
+      "错误状态文字说明"
+    ],
+    "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=85"
+  },
+  {
+    "id": "ds-13",
+    "name": "Claude",
+    "category": "AI 助手",
+    "philosophy": "暖白底色、编辑感、阅读优先",
+    "primary": "#C66B3D",
+    "tokens": {
+      "color": {
+        "primary": "#C66B3D",
+        "background": "#F8F9FC",
+        "surface": "#F5F6FA",
+        "text": "#171923",
+        "muted": "#707584",
+        "border": "#E6E8EF",
+        "success": "#14866D",
+        "warning": "#B7791F",
+        "danger": "#C23D4B"
+      },
+      "typography": {
+        "display": "Inter, system-ui, sans-serif",
+        "body": "Inter, system-ui, sans-serif",
+        "scale": [
+          12,
+          14,
+          16,
+          20,
+          24,
+          32,
+          40
+        ],
+        "lineHeight": 1.5
+      },
+      "spacing": [
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        32,
+        40,
+        48,
+        64
+      ],
+      "radius": [
+        6,
+        10,
+        14,
+        20,
+        28
+      ],
+      "shadow": [
+        "none",
+        "0 2px 8px #1018280A",
+        "0 12px 32px #10182812"
+      ]
+    },
+    "components": [
+      "Button",
+      "Input",
+      "Select",
+      "Dialog",
+      "Popover",
+      "Tabs",
+      "Badge",
+      "Card",
+      "Table",
+      "Toast",
+      "Tooltip",
+      "Dropdown",
+      "Avatar",
+      "Skeleton",
+      "EmptyState",
+      "Pagination"
+    ],
+    "accessibility": [
+      "WCAG AA 对比度检查",
+      "可见键盘焦点",
+      "表单字段标签",
+      "减少动态效果",
+      "错误状态文字说明"
+    ],
+    "image": "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85"
+  },
+  {
+    "id": "ds-14",
+    "name": "Raycast",
+    "category": "效率工具",
+    "philosophy": "深色、高密度、命令驱动",
+    "primary": "#FF6363",
+    "tokens": {
+      "color": {
+        "primary": "#FF6363",
+        "background": "#FFFFFF",
+        "surface": "#F7F7F8",
+        "text": "#171923",
+        "muted": "#707584",
+        "border": "#E6E8EF",
+        "success": "#14866D",
+        "warning": "#B7791F",
+        "danger": "#C23D4B"
+      },
+      "typography": {
+        "display": "Inter, system-ui, sans-serif",
+        "body": "Inter, system-ui, sans-serif",
+        "scale": [
+          12,
+          14,
+          16,
+          20,
+          24,
+          32,
+          40
+        ],
+        "lineHeight": 1.5
+      },
+      "spacing": [
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        32,
+        40,
+        48,
+        64
+      ],
+      "radius": [
+        6,
+        10,
+        14,
+        20,
+        28
+      ],
+      "shadow": [
+        "none",
+        "0 2px 8px #1018280A",
+        "0 12px 32px #10182812"
+      ]
+    },
+    "components": [
+      "Button",
+      "Input",
+      "Select",
+      "Dialog",
+      "Popover",
+      "Tabs",
+      "Badge",
+      "Card",
+      "Table",
+      "Toast",
+      "Tooltip",
+      "Dropdown",
+      "Avatar",
+      "Skeleton",
+      "EmptyState",
+      "Pagination"
+    ],
+    "accessibility": [
+      "WCAG AA 对比度检查",
+      "可见键盘焦点",
+      "表单字段标签",
+      "减少动态效果",
+      "错误状态文字说明"
+    ],
+    "image": "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1200&q=85"
+  },
+  {
+    "id": "ds-15",
+    "name": "Airtable",
+    "category": "数据工作台",
+    "philosophy": "表格与卡片混合、色彩编码",
+    "primary": "#166EE1",
+    "tokens": {
+      "color": {
+        "primary": "#166EE1",
+        "background": "#FFFFFF",
+        "surface": "#F5F6FA",
+        "text": "#171923",
+        "muted": "#707584",
+        "border": "#E6E8EF",
+        "success": "#14866D",
+        "warning": "#B7791F",
+        "danger": "#C23D4B"
+      },
+      "typography": {
+        "display": "Inter, system-ui, sans-serif",
+        "body": "Inter, system-ui, sans-serif",
+        "scale": [
+          12,
+          14,
+          16,
+          20,
+          24,
+          32,
+          40
+        ],
+        "lineHeight": 1.5
+      },
+      "spacing": [
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        32,
+        40,
+        48,
+        64
+      ],
+      "radius": [
+        6,
+        10,
+        14,
+        20,
+        28
+      ],
+      "shadow": [
+        "none",
+        "0 2px 8px #1018280A",
+        "0 12px 32px #10182812"
+      ]
+    },
+    "components": [
+      "Button",
+      "Input",
+      "Select",
+      "Dialog",
+      "Popover",
+      "Tabs",
+      "Badge",
+      "Card",
+      "Table",
+      "Toast",
+      "Tooltip",
+      "Dropdown",
+      "Avatar",
+      "Skeleton",
+      "EmptyState",
+      "Pagination"
+    ],
+    "accessibility": [
+      "WCAG AA 对比度检查",
+      "可见键盘焦点",
+      "表单字段标签",
+      "减少动态效果",
+      "错误状态文字说明"
+    ],
+    "image": "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=1200&q=85"
+  },
+  {
+    "id": "ds-16",
+    "name": "Intercom",
+    "category": "客户体验",
+    "philosophy": "对话优先、清楚的转化路径",
+    "primary": "#286EFA",
+    "tokens": {
+      "color": {
+        "primary": "#286EFA",
+        "background": "#F8F9FC",
+        "surface": "#F7F7F8",
+        "text": "#171923",
+        "muted": "#707584",
+        "border": "#E6E8EF",
+        "success": "#14866D",
+        "warning": "#B7791F",
+        "danger": "#C23D4B"
+      },
+      "typography": {
+        "display": "Inter, system-ui, sans-serif",
+        "body": "Inter, system-ui, sans-serif",
+        "scale": [
+          12,
+          14,
+          16,
+          20,
+          24,
+          32,
+          40
+        ],
+        "lineHeight": 1.5
+      },
+      "spacing": [
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        32,
+        40,
+        48,
+        64
+      ],
+      "radius": [
+        6,
+        10,
+        14,
+        20,
+        28
+      ],
+      "shadow": [
+        "none",
+        "0 2px 8px #1018280A",
+        "0 12px 32px #10182812"
+      ]
+    },
+    "components": [
+      "Button",
+      "Input",
+      "Select",
+      "Dialog",
+      "Popover",
+      "Tabs",
+      "Badge",
+      "Card",
+      "Table",
+      "Toast",
+      "Tooltip",
+      "Dropdown",
+      "Avatar",
+      "Skeleton",
+      "EmptyState",
+      "Pagination"
+    ],
+    "accessibility": [
+      "WCAG AA 对比度检查",
+      "可见键盘焦点",
+      "表单字段标签",
+      "减少动态效果",
+      "错误状态文字说明"
+    ],
+    "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=85"
+  },
+  {
+    "id": "ds-17",
+    "name": "Duolingo",
+    "category": "教育",
+    "philosophy": "高饱和、游戏化反馈、圆润",
+    "primary": "#58CC02",
+    "tokens": {
+      "color": {
+        "primary": "#58CC02",
+        "background": "#FFFFFF",
+        "surface": "#F5F6FA",
+        "text": "#171923",
+        "muted": "#707584",
+        "border": "#E6E8EF",
+        "success": "#14866D",
+        "warning": "#B7791F",
+        "danger": "#C23D4B"
+      },
+      "typography": {
+        "display": "Inter, system-ui, sans-serif",
+        "body": "Inter, system-ui, sans-serif",
+        "scale": [
+          12,
+          14,
+          16,
+          20,
+          24,
+          32,
+          40
+        ],
+        "lineHeight": 1.5
+      },
+      "spacing": [
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        32,
+        40,
+        48,
+        64
+      ],
+      "radius": [
+        6,
+        10,
+        14,
+        20,
+        28
+      ],
+      "shadow": [
+        "none",
+        "0 2px 8px #1018280A",
+        "0 12px 32px #10182812"
+      ]
+    },
+    "components": [
+      "Button",
+      "Input",
+      "Select",
+      "Dialog",
+      "Popover",
+      "Tabs",
+      "Badge",
+      "Card",
+      "Table",
+      "Toast",
+      "Tooltip",
+      "Dropdown",
+      "Avatar",
+      "Skeleton",
+      "EmptyState",
+      "Pagination"
+    ],
+    "accessibility": [
+      "WCAG AA 对比度检查",
+      "可见键盘焦点",
+      "表单字段标签",
+      "减少动态效果",
+      "错误状态文字说明"
+    ],
+    "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=85"
+  },
+  {
+    "id": "ds-18",
+    "name": "Canva",
+    "category": "创意工具",
+    "philosophy": "友好渐变、模板驱动、视觉丰富",
+    "primary": "#7D2AE8",
+    "tokens": {
+      "color": {
+        "primary": "#7D2AE8",
+        "background": "#FFFFFF",
+        "surface": "#F7F7F8",
+        "text": "#171923",
+        "muted": "#707584",
+        "border": "#E6E8EF",
+        "success": "#14866D",
+        "warning": "#B7791F",
+        "danger": "#C23D4B"
+      },
+      "typography": {
+        "display": "Inter, system-ui, sans-serif",
+        "body": "Inter, system-ui, sans-serif",
+        "scale": [
+          12,
+          14,
+          16,
+          20,
+          24,
+          32,
+          40
+        ],
+        "lineHeight": 1.5
+      },
+      "spacing": [
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        32,
+        40,
+        48,
+        64
+      ],
+      "radius": [
+        6,
+        10,
+        14,
+        20,
+        28
+      ],
+      "shadow": [
+        "none",
+        "0 2px 8px #1018280A",
+        "0 12px 32px #10182812"
+      ]
+    },
+    "components": [
+      "Button",
+      "Input",
+      "Select",
+      "Dialog",
+      "Popover",
+      "Tabs",
+      "Badge",
+      "Card",
+      "Table",
+      "Toast",
+      "Tooltip",
+      "Dropdown",
+      "Avatar",
+      "Skeleton",
+      "EmptyState",
+      "Pagination"
+    ],
+    "accessibility": [
+      "WCAG AA 对比度检查",
+      "可见键盘焦点",
+      "表单字段标签",
+      "减少动态效果",
+      "错误状态文字说明"
+    ],
+    "image": "https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=1200&q=85"
+  },
+  {
+    "id": "ds-19",
+    "name": "Webflow",
+    "category": "网站构建",
+    "philosophy": "编辑器导向、可视化控制",
+    "primary": "#4353FF",
+    "tokens": {
+      "color": {
+        "primary": "#4353FF",
+        "background": "#F8F9FC",
+        "surface": "#F5F6FA",
+        "text": "#171923",
+        "muted": "#707584",
+        "border": "#E6E8EF",
+        "success": "#14866D",
+        "warning": "#B7791F",
+        "danger": "#C23D4B"
+      },
+      "typography": {
+        "display": "Inter, system-ui, sans-serif",
+        "body": "Inter, system-ui, sans-serif",
+        "scale": [
+          12,
+          14,
+          16,
+          20,
+          24,
+          32,
+          40
+        ],
+        "lineHeight": 1.5
+      },
+      "spacing": [
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        32,
+        40,
+        48,
+        64
+      ],
+      "radius": [
+        6,
+        10,
+        14,
+        20,
+        28
+      ],
+      "shadow": [
+        "none",
+        "0 2px 8px #1018280A",
+        "0 12px 32px #10182812"
+      ]
+    },
+    "components": [
+      "Button",
+      "Input",
+      "Select",
+      "Dialog",
+      "Popover",
+      "Tabs",
+      "Badge",
+      "Card",
+      "Table",
+      "Toast",
+      "Tooltip",
+      "Dropdown",
+      "Avatar",
+      "Skeleton",
+      "EmptyState",
+      "Pagination"
+    ],
+    "accessibility": [
+      "WCAG AA 对比度检查",
+      "可见键盘焦点",
+      "表单字段标签",
+      "减少动态效果",
+      "错误状态文字说明"
+    ],
+    "image": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=85"
+  },
+  {
+    "id": "ds-20",
+    "name": "Framer",
+    "category": "网站设计",
+    "philosophy": "大胆标题、动态视觉、精致动效",
+    "primary": "#0055FF",
+    "tokens": {
+      "color": {
+        "primary": "#0055FF",
+        "background": "#FFFFFF",
+        "surface": "#F7F7F8",
+        "text": "#171923",
+        "muted": "#707584",
+        "border": "#E6E8EF",
+        "success": "#14866D",
+        "warning": "#B7791F",
+        "danger": "#C23D4B"
+      },
+      "typography": {
+        "display": "Inter, system-ui, sans-serif",
+        "body": "Inter, system-ui, sans-serif",
+        "scale": [
+          12,
+          14,
+          16,
+          20,
+          24,
+          32,
+          40
+        ],
+        "lineHeight": 1.5
+      },
+      "spacing": [
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        32,
+        40,
+        48,
+        64
+      ],
+      "radius": [
+        6,
+        10,
+        14,
+        20,
+        28
+      ],
+      "shadow": [
+        "none",
+        "0 2px 8px #1018280A",
+        "0 12px 32px #10182812"
+      ]
+    },
+    "components": [
+      "Button",
+      "Input",
+      "Select",
+      "Dialog",
+      "Popover",
+      "Tabs",
+      "Badge",
+      "Card",
+      "Table",
+      "Toast",
+      "Tooltip",
+      "Dropdown",
+      "Avatar",
+      "Skeleton",
+      "EmptyState",
+      "Pagination"
+    ],
+    "accessibility": [
+      "WCAG AA 对比度检查",
+      "可见键盘焦点",
+      "表单字段标签",
+      "减少动态效果",
+      "错误状态文字说明"
+    ],
+    "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=85"
+  },
+  {
+    "id": "ds-21",
+    "name": "Superhuman",
+    "category": "邮件效率",
+    "philosophy": "高密度、键盘效率、精致暗色",
+    "primary": "#6C5CE7",
+    "tokens": {
+      "color": {
+        "primary": "#6C5CE7",
+        "background": "#FFFFFF",
+        "surface": "#F5F6FA",
+        "text": "#171923",
+        "muted": "#707584",
+        "border": "#E6E8EF",
+        "success": "#14866D",
+        "warning": "#B7791F",
+        "danger": "#C23D4B"
+      },
+      "typography": {
+        "display": "Inter, system-ui, sans-serif",
+        "body": "Inter, system-ui, sans-serif",
+        "scale": [
+          12,
+          14,
+          16,
+          20,
+          24,
+          32,
+          40
+        ],
+        "lineHeight": 1.5
+      },
+      "spacing": [
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        32,
+        40,
+        48,
+        64
+      ],
+      "radius": [
+        6,
+        10,
+        14,
+        20,
+        28
+      ],
+      "shadow": [
+        "none",
+        "0 2px 8px #1018280A",
+        "0 12px 32px #10182812"
+      ]
+    },
+    "components": [
+      "Button",
+      "Input",
+      "Select",
+      "Dialog",
+      "Popover",
+      "Tabs",
+      "Badge",
+      "Card",
+      "Table",
+      "Toast",
+      "Tooltip",
+      "Dropdown",
+      "Avatar",
+      "Skeleton",
+      "EmptyState",
+      "Pagination"
+    ],
+    "accessibility": [
+      "WCAG AA 对比度检查",
+      "可见键盘焦点",
+      "表单字段标签",
+      "减少动态效果",
+      "错误状态文字说明"
+    ],
+    "image": "https://images.unsplash.com/photo-1523726491678-bf852e717f6a?auto=format&fit=crop&w=1200&q=85"
+  },
+  {
+    "id": "ds-22",
+    "name": "Ramp",
+    "category": "财务运营",
+    "philosophy": "清晰指标、专业对比、操作明确",
+    "primary": "#111111",
+    "tokens": {
+      "color": {
+        "primary": "#111111",
+        "background": "#F8F9FC",
+        "surface": "#F7F7F8",
+        "text": "#171923",
+        "muted": "#707584",
+        "border": "#E6E8EF",
+        "success": "#14866D",
+        "warning": "#B7791F",
+        "danger": "#C23D4B"
+      },
+      "typography": {
+        "display": "Inter, system-ui, sans-serif",
+        "body": "Inter, system-ui, sans-serif",
+        "scale": [
+          12,
+          14,
+          16,
+          20,
+          24,
+          32,
+          40
+        ],
+        "lineHeight": 1.5
+      },
+      "spacing": [
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        32,
+        40,
+        48,
+        64
+      ],
+      "radius": [
+        6,
+        10,
+        14,
+        20,
+        28
+      ],
+      "shadow": [
+        "none",
+        "0 2px 8px #1018280A",
+        "0 12px 32px #10182812"
+      ]
+    },
+    "components": [
+      "Button",
+      "Input",
+      "Select",
+      "Dialog",
+      "Popover",
+      "Tabs",
+      "Badge",
+      "Card",
+      "Table",
+      "Toast",
+      "Tooltip",
+      "Dropdown",
+      "Avatar",
+      "Skeleton",
+      "EmptyState",
+      "Pagination"
+    ],
+    "accessibility": [
+      "WCAG AA 对比度检查",
+      "可见键盘焦点",
+      "表单字段标签",
+      "减少动态效果",
+      "错误状态文字说明"
+    ],
+    "image": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=85"
+  },
+  {
+    "id": "ds-23",
+    "name": "Mercury",
+    "category": "金融服务",
+    "philosophy": "平静留白、可信赖表格",
+    "primary": "#3859E8",
+    "tokens": {
+      "color": {
+        "primary": "#3859E8",
+        "background": "#FFFFFF",
+        "surface": "#F5F6FA",
+        "text": "#171923",
+        "muted": "#707584",
+        "border": "#E6E8EF",
+        "success": "#14866D",
+        "warning": "#B7791F",
+        "danger": "#C23D4B"
+      },
+      "typography": {
+        "display": "Inter, system-ui, sans-serif",
+        "body": "Inter, system-ui, sans-serif",
+        "scale": [
+          12,
+          14,
+          16,
+          20,
+          24,
+          32,
+          40
+        ],
+        "lineHeight": 1.5
+      },
+      "spacing": [
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        32,
+        40,
+        48,
+        64
+      ],
+      "radius": [
+        6,
+        10,
+        14,
+        20,
+        28
+      ],
+      "shadow": [
+        "none",
+        "0 2px 8px #1018280A",
+        "0 12px 32px #10182812"
+      ]
+    },
+    "components": [
+      "Button",
+      "Input",
+      "Select",
+      "Dialog",
+      "Popover",
+      "Tabs",
+      "Badge",
+      "Card",
+      "Table",
+      "Toast",
+      "Tooltip",
+      "Dropdown",
+      "Avatar",
+      "Skeleton",
+      "EmptyState",
+      "Pagination"
+    ],
+    "accessibility": [
+      "WCAG AA 对比度检查",
+      "可见键盘焦点",
+      "表单字段标签",
+      "减少动态效果",
+      "错误状态文字说明"
+    ],
+    "image": "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1200&q=85"
+  },
+  {
+    "id": "ds-24",
+    "name": "Miro",
+    "category": "白板协作",
+    "philosophy": "无限画布、便签色彩、协同状态",
+    "primary": "#FFD02F",
+    "tokens": {
+      "color": {
+        "primary": "#FFD02F",
+        "background": "#FFFFFF",
+        "surface": "#F7F7F8",
+        "text": "#171923",
+        "muted": "#707584",
+        "border": "#E6E8EF",
+        "success": "#14866D",
+        "warning": "#B7791F",
+        "danger": "#C23D4B"
+      },
+      "typography": {
+        "display": "Inter, system-ui, sans-serif",
+        "body": "Inter, system-ui, sans-serif",
+        "scale": [
+          12,
+          14,
+          16,
+          20,
+          24,
+          32,
+          40
+        ],
+        "lineHeight": 1.5
+      },
+      "spacing": [
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        32,
+        40,
+        48,
+        64
+      ],
+      "radius": [
+        6,
+        10,
+        14,
+        20,
+        28
+      ],
+      "shadow": [
+        "none",
+        "0 2px 8px #1018280A",
+        "0 12px 32px #10182812"
+      ]
+    },
+    "components": [
+      "Button",
+      "Input",
+      "Select",
+      "Dialog",
+      "Popover",
+      "Tabs",
+      "Badge",
+      "Card",
+      "Table",
+      "Toast",
+      "Tooltip",
+      "Dropdown",
+      "Avatar",
+      "Skeleton",
+      "EmptyState",
+      "Pagination"
+    ],
+    "accessibility": [
+      "WCAG AA 对比度检查",
+      "可见键盘焦点",
+      "表单字段标签",
+      "减少动态效果",
+      "错误状态文字说明"
+    ],
+    "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=85"
+  },
+  {
+    "id": "ds-25",
+    "name": "ClickUp",
+    "category": "项目管理",
+    "philosophy": "状态丰富、任务层级明确",
+    "primary": "#7B68EE",
+    "tokens": {
+      "color": {
+        "primary": "#7B68EE",
+        "background": "#F8F9FC",
+        "surface": "#F5F6FA",
+        "text": "#171923",
+        "muted": "#707584",
+        "border": "#E6E8EF",
+        "success": "#14866D",
+        "warning": "#B7791F",
+        "danger": "#C23D4B"
+      },
+      "typography": {
+        "display": "Inter, system-ui, sans-serif",
+        "body": "Inter, system-ui, sans-serif",
+        "scale": [
+          12,
+          14,
+          16,
+          20,
+          24,
+          32,
+          40
+        ],
+        "lineHeight": 1.5
+      },
+      "spacing": [
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        32,
+        40,
+        48,
+        64
+      ],
+      "radius": [
+        6,
+        10,
+        14,
+        20,
+        28
+      ],
+      "shadow": [
+        "none",
+        "0 2px 8px #1018280A",
+        "0 12px 32px #10182812"
+      ]
+    },
+    "components": [
+      "Button",
+      "Input",
+      "Select",
+      "Dialog",
+      "Popover",
+      "Tabs",
+      "Badge",
+      "Card",
+      "Table",
+      "Toast",
+      "Tooltip",
+      "Dropdown",
+      "Avatar",
+      "Skeleton",
+      "EmptyState",
+      "Pagination"
+    ],
+    "accessibility": [
+      "WCAG AA 对比度检查",
+      "可见键盘焦点",
+      "表单字段标签",
+      "减少动态效果",
+      "错误状态文字说明"
+    ],
+    "image": "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85"
+  },
+  {
+    "id": "ds-26",
+    "name": "Atlassian",
+    "category": "企业协作",
+    "philosophy": "系统化组件、强可读性",
+    "primary": "#1868DB",
+    "tokens": {
+      "color": {
+        "primary": "#1868DB",
+        "background": "#FFFFFF",
+        "surface": "#F7F7F8",
+        "text": "#171923",
+        "muted": "#707584",
+        "border": "#E6E8EF",
+        "success": "#14866D",
+        "warning": "#B7791F",
+        "danger": "#C23D4B"
+      },
+      "typography": {
+        "display": "Inter, system-ui, sans-serif",
+        "body": "Inter, system-ui, sans-serif",
+        "scale": [
+          12,
+          14,
+          16,
+          20,
+          24,
+          32,
+          40
+        ],
+        "lineHeight": 1.5
+      },
+      "spacing": [
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        32,
+        40,
+        48,
+        64
+      ],
+      "radius": [
+        6,
+        10,
+        14,
+        20,
+        28
+      ],
+      "shadow": [
+        "none",
+        "0 2px 8px #1018280A",
+        "0 12px 32px #10182812"
+      ]
+    },
+    "components": [
+      "Button",
+      "Input",
+      "Select",
+      "Dialog",
+      "Popover",
+      "Tabs",
+      "Badge",
+      "Card",
+      "Table",
+      "Toast",
+      "Tooltip",
+      "Dropdown",
+      "Avatar",
+      "Skeleton",
+      "EmptyState",
+      "Pagination"
+    ],
+    "accessibility": [
+      "WCAG AA 对比度检查",
+      "可见键盘焦点",
+      "表单字段标签",
+      "减少动态效果",
+      "错误状态文字说明"
+    ],
+    "image": "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1200&q=85"
+  },
+  {
+    "id": "ds-27",
+    "name": "Duolingo Max",
+    "category": "AI 学习",
+    "philosophy": "互动优先、渐进反馈",
+    "primary": "#58CC02",
+    "tokens": {
+      "color": {
+        "primary": "#58CC02",
+        "background": "#FFFFFF",
+        "surface": "#F5F6FA",
+        "text": "#171923",
+        "muted": "#707584",
+        "border": "#E6E8EF",
+        "success": "#14866D",
+        "warning": "#B7791F",
+        "danger": "#C23D4B"
+      },
+      "typography": {
+        "display": "Inter, system-ui, sans-serif",
+        "body": "Inter, system-ui, sans-serif",
+        "scale": [
+          12,
+          14,
+          16,
+          20,
+          24,
+          32,
+          40
+        ],
+        "lineHeight": 1.5
+      },
+      "spacing": [
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        32,
+        40,
+        48,
+        64
+      ],
+      "radius": [
+        6,
+        10,
+        14,
+        20,
+        28
+      ],
+      "shadow": [
+        "none",
+        "0 2px 8px #1018280A",
+        "0 12px 32px #10182812"
+      ]
+    },
+    "components": [
+      "Button",
+      "Input",
+      "Select",
+      "Dialog",
+      "Popover",
+      "Tabs",
+      "Badge",
+      "Card",
+      "Table",
+      "Toast",
+      "Tooltip",
+      "Dropdown",
+      "Avatar",
+      "Skeleton",
+      "EmptyState",
+      "Pagination"
+    ],
+    "accessibility": [
+      "WCAG AA 对比度检查",
+      "可见键盘焦点",
+      "表单字段标签",
+      "减少动态效果",
+      "错误状态文字说明"
+    ],
+    "image": "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=1200&q=85"
+  },
+  {
+    "id": "ds-28",
+    "name": "NVIDIA",
+    "category": "开发平台",
+    "philosophy": "深色科技感、荧光绿强调",
+    "primary": "#76B900",
+    "tokens": {
+      "color": {
+        "primary": "#76B900",
+        "background": "#F8F9FC",
+        "surface": "#F7F7F8",
+        "text": "#171923",
+        "muted": "#707584",
+        "border": "#E6E8EF",
+        "success": "#14866D",
+        "warning": "#B7791F",
+        "danger": "#C23D4B"
+      },
+      "typography": {
+        "display": "Inter, system-ui, sans-serif",
+        "body": "Inter, system-ui, sans-serif",
+        "scale": [
+          12,
+          14,
+          16,
+          20,
+          24,
+          32,
+          40
+        ],
+        "lineHeight": 1.5
+      },
+      "spacing": [
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        32,
+        40,
+        48,
+        64
+      ],
+      "radius": [
+        6,
+        10,
+        14,
+        20,
+        28
+      ],
+      "shadow": [
+        "none",
+        "0 2px 8px #1018280A",
+        "0 12px 32px #10182812"
+      ]
+    },
+    "components": [
+      "Button",
+      "Input",
+      "Select",
+      "Dialog",
+      "Popover",
+      "Tabs",
+      "Badge",
+      "Card",
+      "Table",
+      "Toast",
+      "Tooltip",
+      "Dropdown",
+      "Avatar",
+      "Skeleton",
+      "EmptyState",
+      "Pagination"
+    ],
+    "accessibility": [
+      "WCAG AA 对比度检查",
+      "可见键盘焦点",
+      "表单字段标签",
+      "减少动态效果",
+      "错误状态文字说明"
+    ],
+    "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=85"
+  },
+  {
+    "id": "ds-29",
+    "name": "Xiaomi",
+    "category": "消费硬件",
+    "philosophy": "简洁产品摄影、克制布局",
+    "primary": "#FF6900",
+    "tokens": {
+      "color": {
+        "primary": "#FF6900",
+        "background": "#FFFFFF",
+        "surface": "#F5F6FA",
+        "text": "#171923",
+        "muted": "#707584",
+        "border": "#E6E8EF",
+        "success": "#14866D",
+        "warning": "#B7791F",
+        "danger": "#C23D4B"
+      },
+      "typography": {
+        "display": "Inter, system-ui, sans-serif",
+        "body": "Inter, system-ui, sans-serif",
+        "scale": [
+          12,
+          14,
+          16,
+          20,
+          24,
+          32,
+          40
+        ],
+        "lineHeight": 1.5
+      },
+      "spacing": [
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        32,
+        40,
+        48,
+        64
+      ],
+      "radius": [
+        6,
+        10,
+        14,
+        20,
+        28
+      ],
+      "shadow": [
+        "none",
+        "0 2px 8px #1018280A",
+        "0 12px 32px #10182812"
+      ]
+    },
+    "components": [
+      "Button",
+      "Input",
+      "Select",
+      "Dialog",
+      "Popover",
+      "Tabs",
+      "Badge",
+      "Card",
+      "Table",
+      "Toast",
+      "Tooltip",
+      "Dropdown",
+      "Avatar",
+      "Skeleton",
+      "EmptyState",
+      "Pagination"
+    ],
+    "accessibility": [
+      "WCAG AA 对比度检查",
+      "可见键盘焦点",
+      "表单字段标签",
+      "减少动态效果",
+      "错误状态文字说明"
+    ],
+    "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=85"
+  },
+  {
+    "id": "ds-30",
+    "name": "Xiaohongshu",
+    "category": "内容社区",
+    "philosophy": "生活化图片、瀑布流、轻社交",
+    "primary": "#FF2442",
+    "tokens": {
+      "color": {
+        "primary": "#FF2442",
+        "background": "#FFFFFF",
+        "surface": "#F7F7F8",
+        "text": "#171923",
+        "muted": "#707584",
+        "border": "#E6E8EF",
+        "success": "#14866D",
+        "warning": "#B7791F",
+        "danger": "#C23D4B"
+      },
+      "typography": {
+        "display": "Inter, system-ui, sans-serif",
+        "body": "Inter, system-ui, sans-serif",
+        "scale": [
+          12,
+          14,
+          16,
+          20,
+          24,
+          32,
+          40
+        ],
+        "lineHeight": 1.5
+      },
+      "spacing": [
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        32,
+        40,
+        48,
+        64
+      ],
+      "radius": [
+        6,
+        10,
+        14,
+        20,
+        28
+      ],
+      "shadow": [
+        "none",
+        "0 2px 8px #1018280A",
+        "0 12px 32px #10182812"
+      ]
+    },
+    "components": [
+      "Button",
+      "Input",
+      "Select",
+      "Dialog",
+      "Popover",
+      "Tabs",
+      "Badge",
+      "Card",
+      "Table",
+      "Toast",
+      "Tooltip",
+      "Dropdown",
+      "Avatar",
+      "Skeleton",
+      "EmptyState",
+      "Pagination"
+    ],
+    "accessibility": [
+      "WCAG AA 对比度检查",
+      "可见键盘焦点",
+      "表单字段标签",
+      "减少动态效果",
+      "错误状态文字说明"
+    ],
+    "image": "https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=1200&q=85"
+  }
+]
