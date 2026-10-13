@@ -32,7 +32,7 @@ export default function App() {
 
   useEffect(() => {
     const syncPath = () => {
-      setCurrentPath(window.location.pathname);
+      setCurrentPath(normalizeAppPath(window.location.pathname));
       setProjects(listProjects());
     };
     window.addEventListener("popstate", syncPath);
@@ -56,7 +56,7 @@ export default function App() {
       setNotice("");
       setPrompt("");
       navigateTo(`/editor/${encodeURIComponent(project.id)}`);
-      setCurrentPath(window.location.pathname);
+      setCurrentPath(normalizeAppPath(window.location.pathname));
     } catch (cause) {
       setNotice(cause instanceof Error ? cause.message : "项目创建失败，请检查浏览器存储设置。");
     } finally {
