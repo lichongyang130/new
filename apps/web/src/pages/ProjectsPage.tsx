@@ -41,6 +41,7 @@ export default function ProjectsPage() {
     <main className="db-page">
       <header className="db-page-header">
         <div>
+          <button className="db-back-home" onClick={() => navigateTo("/")} aria-label="返回 DesignBuddy 首页">← DesignBuddy</button>
           <p className="db-eyebrow">YOUR WORKSPACE</p>
           <h1>我的项目</h1>
           <p>管理你的设计草稿，继续编辑或打开实时预览。</p>
