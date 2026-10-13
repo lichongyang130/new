@@ -31,6 +31,16 @@ const modes: { id: WorkMode; label: string; icon: string }[] = [
   { id: "design", label: "设计创意", icon: "◈" },
 ];
 
+const modelOptions = [
+  { id: "hy4-preview", name: "Hy4 preview", icon: "◉", badge: "夜间免费", badgeTone: "mint", cost: "0.29x" },
+  { id: "hy3", name: "Hy3", icon: "◉", badge: "限时免费", badgeTone: "mint", cost: "0.00x" },
+  { id: "", name: "Step-5-Preview", icon: "♫", badge: "独家限免", badgeTone: "mint", cost: "0.00x" },
+  { id: "space-bunny", name: "Space-Bunny", icon: "◉", badge: "", badgeTone: "", cost: "0.08x" },
+  { id: "deepseek-v4.1-flash", name: "Deepseek-V4.1-Flash", icon: "◈", badge: "夜间折扣", badgeTone: "mint", cost: "0.11x" },
+  { id: "glm-5.3", name: "GLM-5.3", icon: "Z", badge: "订阅优先", badgeTone: "warm", cost: "0.79x" },
+  { id: "glm-5.3-flash", name: "GLM-5.3-Flash", icon: "Z", badge: "订阅优先", badgeTone: "warm", cost: "0.06x" },
+];
+
 const expertCatalog = [
   { id: "dev", name: "高级开发工程师", description: "全栈开发、系统架构与工程效率", terms: ["开发", "代码", "编程", "前端", "后端", "react", "网页", "网站", "调试", "bug", "架构", "接口", "程序"] },
   { id: "product", name: "产品策略顾问", description: "产品规划、用户研究与需求梳理", terms: ["产品", "需求", "prd", "用户", "调研", "规划", "路线图", "功能", "原型", "体验"] },
@@ -58,6 +68,9 @@ export default function App() {
   const [projects, setProjects] = useState<DesignProject[]>(() => listProjects());
   const [busy, setBusy] = useState(false);
   const [model, setModel] = useState("");
+  const [modelMenuOpen, setModelMenuOpen] = useState(false);
+  const [maxMode, setMaxMode] = useState(false);
+  const [thinkingMode, setThinkingMode] = useState<"balanced" | "extreme">("balanced");
   const [workspace, setWorkspace] = useState("默认工作空间");
   const [permission, setPermission] = useState("默认权限");
   const [attachments, setAttachments] = useState<TaskAttachment[]>([]);
@@ -65,6 +78,7 @@ export default function App() {
   const [selectedSkill, setSelectedSkill] = useState("");
   const customExperts = useWorkspaceStore((state) => state.experts);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const modelMenuRef = useRef<HTMLDivElement>(null);
   const recommendedExperts = useMemo(() => {
     const request = prompt.trim();
     if (request.length < 2) return [];
@@ -107,6 +121,20 @@ export default function App() {
       setNotice("已载入所选专家/技能，请描述任务后开始。");
     } catch { setNotice("无法读取所选专家或技能，请重新选择。"); }
   }, [currentPath]);
+
+  useEffect(() => {
+    if (!modelMenuOpen) return;
+    const closeOnOutside = (event: PointerEvent) => {
+      if (event.target instanceof Node && !modelMenuRef.current?.contains(event.target)) setModelMenuOpen(false);
+    };
+    const closeOnEscape = (event: KeyboardEvent) => { if (event.key === "Escape") setModelMenuOpen(false); };
+    document.addEventListener("pointerdown", closeOnOutside);
+    document.addEventListener("keydown", closeOnEscape);
+    return () => {
+      document.removeEventListener("pointerdown", closeOnOutside);
+      document.removeEventListener("keydown", closeOnEscape);
+    };
+  }, [modelMenuOpen]);
 
   function go(path: string) {
     navigateTo(path);
@@ -308,16 +336,22 @@ export default function App() {
                   }}
                 />
                 <div className="composer-actions-right">
-                  <label className="model-picker">
-                    <span className="model-spark">♫</span>
-                    <select value={model} aria-label="模型选择" onChange={(event) => setModel(event.target.value)}>
-                      <option value="">Step-5-Preview</option>
-                      <option value="gpt-4o-mini">GPT · gpt-4o-mini</option>
-                      <option value="claude-3-5-sonnet-latest">Claude · Sonnet</option>
-                      <option value="llama3.1">兼容网关 · llama3.1</option>
-                    </select>
-                    <span>⌄</span>
-                  </label>
+                  <div className="model-picker-host" ref={modelMenuRef}>
+                    <button className="model-picker" type="button" aria-haspopup="listbox" aria-expanded={modelMenuOpen} onClick={() => setModelMenuOpen((open) => !open)}>
+                      <span className="model-spark">♫</span><span>{modelOptions.find((option) => option.id === model)?.name ?? model}</span><span className={modelMenuOpen ? "model-chevron is-open" : "model-chevron"}>⌄</span>
+                    </button>
+                    {modelMenuOpen && <div className="model-menu-popover" role="dialog" aria-label="选择大模型">
+                      <div className="model-menu-max-row"><span className="model-menu-max-icon">♧</span><b>Max 模式</b><button className={maxMode ? "model-toggle is-on" : "model-toggle"} type="button" role="switch" aria-checked={maxMode} aria-label="Max 模式" onClick={() => setMaxMode((enabled) => !enabled)}><i /></button></div>
+                      <div className="model-menu-reasoning" role="group" aria-label="推理模式">
+                        <button type="button" className={thinkingMode === "balanced" ? "is-active" : ""} onClick={() => setThinkingMode("balanced")}><span>◉</span><b>均衡</b><small>0.65x</small></button>
+                        <button type="button" className={thinkingMode === "extreme" ? "is-active" : ""} onClick={() => setThinkingMode("extreme")}><span>◇</span><b>极致</b><small>1.20x</small></button>
+                      </div>
+                      <div className="model-menu-list" role="listbox" aria-label="大模型">
+                        {modelOptions.map((option) => <button type="button" role="option" aria-selected={model === option.id} key={option.name} className={model === option.id ? "model-menu-option is-selected" : "model-menu-option"} onClick={() => { setModel(option.id); setModelMenuOpen(false); }}><span className={`model-option-icon model-icon-${option.icon === "Z" ? "z" : option.icon === "♫" ? "step" : "orb"}`}>{option.icon}</span><b>{option.name}</b>{option.badge && <i className={`model-option-badge badge-${option.badgeTone}`}>{option.badge}</i>}<small>{option.cost}</small>{model === option.id && <span className="model-option-check">✓</span>}</button>)}
+                      </div>
+                      <button className="model-custom-config" type="button" onClick={() => { setModelMenuOpen(false); setNotice("自定义模型配置需要后端模型服务支持。"); }}><span>♧</span>配置自定义模型</button>
+                    </div>}
+                  </div>
                   <button className="microphone-button" title="语音输入" aria-label="语音输入" onClick={() => setNotice("语音输入暂未接入，请直接在输入框中描述任务。")}>♩</button>
                   <button className="send-button" disabled={busy || !prompt.trim()} title="开始任务" aria-label="开始任务" onClick={() => startProject()}>
                     {busy ? "…" : "➤"}

@@ -87,3 +87,45 @@
   .home-content-v2 .model-picker select { max-width:91px; }
   .home-content-v2 .composer-footer { gap:7px; }
 }
+
+/* Model picker opens upward from the task composer, as in the reference. */
+.home-content-v2 .model-picker-host { position:relative; z-index:8; }
+.home-content-v2 .model-picker { display:flex; align-items:center; gap:6px; min-height:30px; padding:0 7px; border:0; border-radius:16px; background:transparent; color:#292927; font-size:12px; white-space:nowrap; cursor:pointer; }
+.home-content-v2 .model-picker:hover,.home-content-v2 .model-picker[aria-expanded="true"] { background:#f4f4f3; }
+.model-picker .model-spark { display:inline-grid; place-items:center; color:#272727; font-size:13px; }
+.model-chevron { display:inline-block; color:#92928d; font-size:12px; transition:transform .15s ease; }
+.model-chevron.is-open { transform:rotate(180deg); }
+.model-menu-popover { position:absolute; right:-7px; bottom:calc(100% + 10px); z-index:30; display:flex; flex-direction:column; width:min(340px,calc(100vw - 32px)); padding:8px; border:1px solid #e3e3e1; border-radius:17px; background:#fff; box-shadow:0 12px 36px #1717171a,0 2px 6px #1717170a; color:#272725; text-align:left; }
+.model-menu-max-row { display:flex; align-items:center; gap:8px; min-height:36px; padding:0 8px; border-bottom:1px solid #efefed; font-size:13px; }
+.model-menu-max-icon { color:#777770; font-size:14px; }
+.model-menu-max-row b { flex:1; font-weight:550; }
+.model-toggle { position:relative; width:27px; height:16px; padding:0; border:0; border-radius:9px; background:#e5e5e4; cursor:pointer; }
+.model-toggle i { position:absolute; top:2px; left:2px; width:12px; height:12px; border-radius:50%; background:white; box-shadow:0 1px 2px #0002; transition:transform .15s ease; }
+.model-toggle.is-on { background:#333; }
+.model-toggle.is-on i { transform:translateX(11px); }
+.model-menu-reasoning { display:grid; grid-template-columns:1fr 1fr; gap:3px; padding:5px 0 7px; border-bottom:1px solid #efefed; }
+.model-menu-reasoning button { display:flex; align-items:center; gap:7px; min-width:0; height:31px; padding:0 8px; border:1px solid transparent; border-radius:8px; background:white; color:#333330; text-align:left; font-size:12px; }
+.model-menu-reasoning button:hover,.model-menu-reasoning button.is-active { background:#f6f6f5; }
+.model-menu-reasoning button>span { color:#44443f; font-size:14px; }
+.model-menu-reasoning button>b { font-weight:500; }
+.model-menu-reasoning button>small { margin-left:auto; color:#92928d; font-size:11px; }
+.model-menu-list { display:flex; flex-direction:column; max-height:244px; overflow-y:auto; padding:4px 0; scrollbar-color:#d7d7d4 transparent; scrollbar-width:thin; }
+.model-menu-option { display:flex; align-items:center; gap:7px; min-height:32px; padding:0 8px; border:0; border-radius:8px; background:#fff; color:#333330; text-align:left; font-size:12px; }
+.model-menu-option:hover { background:#f7f7f6; }
+.model-menu-option.is-selected { background:#f5f5f4; }
+.model-option-icon { display:inline-grid; place-items:center; flex:0 0 16px; width:16px; color:#55554f; font-size:13px; font-weight:700; }
+.model-icon-step { font-size:13px; }
+.model-icon-orb { font-size:14px; }
+.model-icon-z { font-size:14px; font-style:italic; }
+.model-menu-option>b { overflow:hidden; font-weight:500; text-overflow:ellipsis; white-space:nowrap; }
+.model-menu-option.is-selected>b { font-weight:650; }
+.model-option-badge { flex:0 0 auto; padding:2px 5px; border-radius:7px; background:#e6f5f1; color:#4a9b89; font-size:9px; font-style:normal; line-height:1.3; }
+.model-option-badge.badge-warm { background:#f8eee6; color:#bc7847; }
+.model-menu-option>small { margin-left:auto; color:#91918c; font-size:10px; white-space:nowrap; }
+.model-option-check { color:#1bb58c; font-size:13px; }
+.model-custom-config { display:flex; align-items:center; gap:8px; min-height:36px; padding:0 8px; border:0; border-top:1px solid #efefed; background:#fff; color:#333330; text-align:left; font-size:12px; }
+.model-custom-config:hover { color:#6154cc; }
+.model-custom-config>span { color:#777770; font-size:14px; }
+@media(max-width:680px) {
+  .model-menu-popover { right:-5px; width:min(340px,calc(100vw - 28px)); }
+}
