@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { beginConnectorOAuth } from "../api/connectors";
 import type { Connector, Expert, Skill } from "../models/workspace";
-import { navigateTo, resolveWorkspaceRoute, workspaceRoutes } from "../router/workspaceRoutes";
+import { navigateTo, normalizeAppPath, resolveWorkspaceRoute, workspaceRoutes } from "../router/workspaceRoutes";
 import { useWorkspaceStore, workspaceStore } from "../store/workspaceStore";
 
 const buttonStyle: React.CSSProperties = { border: "1px solid #e1e5eb", borderRadius: 10, padding: "9px 13px", background: "#fff", cursor: "pointer", color: "#202632" };
@@ -15,7 +15,7 @@ const providers: Array<Pick<Connector, "id" | "name" | "description" | "provider
 ];
 
 export default function WorkspaceHub() {
-  const [pathname, setPathname] = useState(window.location.pathname);
+  const [pathname, setPathname] = useState(normalizeAppPath(window.location.pathname));
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [busy, setBusy] = useState("");
@@ -24,12 +24,12 @@ export default function WorkspaceHub() {
   const skills = useWorkspaceStore((state) => state.skills);
   const connectors = useWorkspaceStore((state) => state.connectors);
   useEffect(() => {
-    const updatePath = () => setPathname(window.location.pathname);
+    const updatePath = () => setPathname(normalizeAppPath(window.location.pathname));
     window.addEventListener("popstate", updatePath);
     return () => window.removeEventListener("popstate", updatePath);
   }, []);
   const route = resolveWorkspaceRoute(pathname);
-  const go = (path: string) => { navigateTo(path); setPathname(window.location.pathname); setError(""); };
+  const go = (path: string) => { navigateTo(path); setPathname(normalizeAppPath(window.location.pathname)); setError(""); };
   const saveExpert = () => {
     if (!name.trim()) { setError("请先填写名称"); return; }
     const expert: Expert = { id: crypto.randomUUID(), name: name.trim(), description: description.trim(), skills: [], capabilities: [], status: "draft", createdAt: new Date().toISOString() };
