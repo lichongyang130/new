@@ -75,8 +75,8 @@ export default function App() {
   const [permission, setPermission] = useState("默认权限");
   const [notice, setNotice] = useState("");
   const [attachedFiles, setAttachedFiles] = useState<string[]>([]);
-  const fileInputRef = useRef<HTMLInputElement>(null);
-  const quickActionsRef = useRef<HTMLDivElement>(null);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const quickActionsRef = useRef<HTMLDivElement | null>(null);
 
   const submitPrompt = () => {
     if (!prompt.trim() && attachedFiles.length === 0) return;
