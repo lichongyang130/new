@@ -9,8 +9,8 @@ export interface EmbeddingProvider {
 
 /**
  * Uses a configured embedding provider when supplied; otherwise falls back to a
- * deterministic hashed-token vector. The local fallback is useful for development
- * and lexical retrieval, but is not a substitute for a semantic embedding model.
+ * deterministic hashed-token vector. This fallback supports lexical retrieval,
+ * not semantic quality comparable to a trained embedding model.
  */
 export class EmbeddingService {
   constructor(
@@ -38,7 +38,7 @@ export class EmbeddingService {
 
   private localEmbedding(text: string): number[] {
     const vector = new Array<number>(this.dimensions).fill(0);
-    const tokens = text.toLocaleLowerCase().match(/[\\p{L}\\p{N}_-]+/gu) ?? [];
+    const tokens = text.toLocaleLowerCase().match(/[\p{L}\p{N}_-]+/gu) ?? [];
     for (const token of tokens) {
       let hash = 2166136261;
       for (let i = 0; i < token.length; i++) {
