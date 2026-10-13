@@ -4,7 +4,7 @@ import ProjectsPage from "./pages/ProjectsPage";
 import ProjectEditorPage from "./pages/ProjectEditorPage";
 import type { DesignProject } from "./models/project";
 import { createProject, listProjects } from "./store/projectStore";
-import { navigateTo } from "./router/workspaceRoutes";
+import { navigateTo, normalizeAppPath } from "./router/workspaceRoutes";
 import "./styles.css";
 
 const templates = [
@@ -23,7 +23,7 @@ function isWorkspaceHubPath(path: string) {
 }
 
 export default function App() {
-  const [currentPath, setCurrentPath] = useState(window.location.pathname);
+  const [currentPath, setCurrentPath] = useState(normalizeAppPath(window.location.pathname));
   const [prompt, setPrompt] = useState("");
   const [mode, setMode] = useState<"website" | "dashboard" | "prototype">("website");
   const [notice, setNotice] = useState("");
