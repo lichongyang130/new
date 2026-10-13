@@ -1022,3 +1022,8 @@ button:disabled { cursor: not-allowed; }
   .wb-create-inline { align-items:flex-start; flex-direction:column; }
   .wb-form-panel { margin:20px 0; padding:20px; }
 }
+
+.wb-market-search { display:flex; align-items:center; gap:9px; width:min(420px,100%); height:38px; margin:-9px 0 23px; padding:0 12px; border:1px solid #e4e6ee; border-radius:9px; background:#fff; color:#999eac; }
+.wb-market-search>span { font-size:19px; }
+.wb-market-search input { flex:1; min-width:0; border:0; outline:0; background:transparent; color:#33384a; font-size:11px; }
+.wb-market-search input::placeholder { color:#a2a6b3; }
