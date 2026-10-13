@@ -10,6 +10,7 @@ import { createProject, listProjects, updateProject } from "./store/projectStore
 import { useWorkspaceStore } from "./store/workspaceStore";
 import { navigateTo, normalizeAppPath } from "./router/workspaceRoutes";
 import "./styles.css";
+import "./home-workspace.css";
 
 type WorkMode = "office" | "code" | "design";
 type TaskAttachment = { name: string; text?: string };
@@ -43,21 +44,6 @@ const expertCatalog = [
 function scoreExpert(text: string, terms: string[]) {
   const normalized = text.toLocaleLowerCase();
   return terms.reduce((score, term) => normalized.includes(term.toLocaleLowerCase()) ? score + (term.length > 2 ? 2 : 1) : score, 0);
-}
-
-function RobotMascot() {
-  return (
-    <div className="buddy-mascot" aria-hidden="true">
-      <span className="mascot-status">✦</span>
-      <span className="mascot-antenna" />
-      <span className="mascot-head">
-        <i className="mascot-ear mascot-ear--left" />
-        <i className="mascot-ear mascot-ear--right" />
-        <span className="mascot-face"><i /><i /><b /></span>
-      </span>
-      <span className="mascot-body" />
-    </div>
-  );
 }
 
 function isWorkspaceHubPath(path: string) {
@@ -98,6 +84,7 @@ export default function App() {
     }));
     return [...personal, ...builtIn].filter((expert) => expert.score > 0).sort((a, b) => b.score - a.score).slice(0, 3);
   }, [prompt, customExperts]);
+  const recentProjects = useMemo(() => [...projects].sort((a, b) => b.updatedAt.localeCompare(a.updatedAt)).slice(0, 4), [projects]);
 
   useEffect(() => {
     const syncPath = () => {
@@ -245,14 +232,16 @@ export default function App() {
         </div>
       </aside>
 
-      <main className="main-workspace">
-        <button className="top-promo" onClick={() => { setMode("design"); setPrompt("帮我梳理一个产品创意，并设计对应的网页首页与交互原型。"); }}>
-          <span className="promo-mark">✦</span> 发现更多设计灵感 <span>›</span>
-        </button>
-
-        <div className="home-content">
+      <main className="main-workspace home-workspace-v2">
+        <header className="workspace-topbar">
+          <div className="workspace-breadcrumb"><span>个人工作空间</span><i>/</i><strong>工作台</strong></div>
+          <div className="workspace-topbar-actions"><span className="workspace-status"><i />本地工作区</span><button onClick={() => go("/projects")}>⌕ <span>搜索项目</span></button><button className="workspace-avatar" onClick={() => setNotice("当前为个人工作空间，项目草稿保存在此浏览器。")}>D</button></div>
+        </header>
+        <div className="home-content home-content-v2">
           <header className="welcome-header">
-            <h1>DesignBuddy，我帮你</h1>
+            <span className="home-eyebrow"><i>✦</i> DESIGNBUDDY WORKSPACE</span>
+            <h1>早上好，今天想创造什么？</h1>
+            <p>描述你的想法，智能助手会推荐合适的专家并帮你开始制作。</p>
             <div className="mode-switch" role="tablist" aria-label="任务模式">
               {modes.map((item) => (
                 <button
@@ -267,22 +256,6 @@ export default function App() {
               ))}
             </div>
           </header>
-
-          <section className="quick-actions-row" aria-label="快捷任务场景">
-            <div className="quick-actions-list">
-              {quickActions.map((action) => (
-                <button
-                  key={action.title}
-                  className="quick-action-chip"
-                  onClick={() => { setMode(action.mode); setPrompt(action.prompt); setSelectedExpert(""); setSelectedSkill(""); setNotice(""); }}
-                >
-                  <span>{action.icon}</span>{action.title}
-                </button>
-              ))}
-            </div>
-            <button className="quick-scroll-button" title="查看全部快捷场景" aria-label="查看全部快捷场景" onClick={() => setNotice("已展示常用设计场景：网页、原型、视觉、数据看板、产品需求与设计系统。")}>›</button>
-            <RobotMascot />
-          </section>
 
           <section className="composer-shell" aria-label="创建任务">
             <div className="composer-main">
@@ -379,6 +352,16 @@ export default function App() {
                 <span>⌄</span>
               </label>
             </div>
+          </section>
+
+          <section className="home-scenarios" aria-label="快捷任务场景">
+            <div className="home-section-heading"><div><span>QUICK START</span><h2>从一个场景开始</h2></div><button onClick={() => go("/studio")}>探索创作工具 <b>↗</b></button></div>
+            <div className="home-scenario-grid">{quickActions.slice(0, 4).map((action, index) => <button key={action.title} className={`home-scenario-card scenario-${index + 1}`} onClick={() => { setMode(action.mode); setPrompt(action.prompt); setSelectedExpert(""); setSelectedSkill(""); setNotice(""); }}><span className="home-scenario-icon">{action.icon}</span><span className="home-scenario-copy"><b>{action.title}</b><small>{["打造品牌与产品页面", "快速呈现产品交互流程", "建立统一的产品视觉", "让关键数据一目了然"][index]}</small></span><span className="home-scenario-arrow">↗</span></button>)}</div>
+          </section>
+
+          <section className="home-recent-projects">
+            <div className="home-section-heading"><div><span>YOUR WORKSPACE</span><h2>最近项目</h2></div><button onClick={() => go("/projects")}>查看全部 <b>→</b></button></div>
+            {recentProjects.length ? <div className="home-project-grid">{recentProjects.map((project, index) => <button key={project.id} className={`home-project-card project-tone-${index + 1}`} onClick={() => go(`/editor/${encodeURIComponent(project.id)}`)}><span className="home-project-preview"><i>{project.name.slice(0, 1) || "✦"}</i><small>{project.files.length} 个文件</small></span><span className="home-project-meta"><b>{project.name}</b><small>{project.workspaceName || "默认工作空间"}<i>·</i>{new Date(project.updatedAt).toLocaleDateString("zh-CN")}</small></span><span className="home-project-open">↗</span></button>)}</div> : <div className="home-project-empty"><span>▧</span><div><b>你的项目会显示在这里</b><small>从上方描述一个想法，创建第一个作品。</small></div><button onClick={() => document.querySelector<HTMLTextAreaElement>(".composer-main textarea")?.focus()}>开始创作 <b>→</b></button></div>}
           </section>
 
           {notice && (
