@@ -68,7 +68,7 @@ export default function ProjectsPage() {
               <div className="db-project-card-body">
                 <div className="db-project-title-row">
                   <h2>{project.name}</h2>
-                  <button className="db-icon-button" aria-label={`删除项目 ${project.name}`} onClick={() => deleteProject(project)}>•••</button>
+                  <button className="db-icon-button" aria-label={`删除项目 ${project.name}`} onClick={() => deleteProject(project)}>删除</button>
                 </div>
                 <p>{project.prompt || "从一个空白项目开始设计。"}</p>
                 <div className="db-project-meta">
