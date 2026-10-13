@@ -1,321 +1,195 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import WorkspaceHub from "./pages/WorkspaceHub";
+import ProjectsPage from "./pages/ProjectsPage";
+import ProjectEditorPage from "./pages/ProjectEditorPage";
+import type { DesignProject } from "./models/project";
+import { createProject, listProjects } from "./store/projectStore";
 import { navigateTo } from "./router/workspaceRoutes";
 import "./styles.css";
 
-type IconProps = { name: string; size?: number };
+const templates = [
+  { id: "saas", title: "SaaS 产品首页", description: "产品介绍、功能特性、价格方案", prompt: "设计一个现代简约的 SaaS 产品首页，包含导航、主视觉、功能特性和价格方案。" },
+  { id: "dashboard", title: "数据管理后台", description: "指标卡片、数据表格、筛选工具", prompt: "设计一个清晰专业的数据管理后台，包含侧边栏、统计卡片、筛选区和数据表格。" },
+  { id: "store", title: "电商产品页面", description: "产品展示、详情信息、购买入口", prompt: "设计一个简洁精致的电商产品展示页，包含产品介绍、视觉图片区域、功能卖点和购买入口。" },
+  { id: "portfolio", title: "个人作品集", description: "个人介绍、作品展示、联系信息", prompt: "设计一个有编辑感的个人作品集网站，包含个人介绍、项目精选和联系信息。" },
+];
 
-const iconPaths: Record<string, string> = {
-  panel: "M4 5h16M4 19h16M7 5v14",
-  search: "m20 20-4.2-4.2M17 10.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0Z",
-  filter: "M4 5h16l-6.2 7.1v5.2l-3.6 1.8v-7Z",
-  spark: "m12 3 1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3ZM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8L19 16Z",
-  plus: "M12 5v14M5 12h14",
-  assistant: "M12 3 5.5 6v5.5c0 4.5 2.6 7.8 6.5 9.5 3.9-1.7 6.5-5 6.5-9.5V6L12 3ZM9 11l2 2 4-4",
-  folder: "M3 7.5A1.5 1.5 0 0 1 4.5 6H9l2 2h8.5A1.5 1.5 0 0 1 21 9.5v8a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 17.5Z",
-  settings: "M12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7ZM19.4 13.5l1.1.9-1.7 3-1.4-.5a7.8 7.8 0 0 1-1.6.9l-.3 1.5h-3.5l-.3-1.5a7.8 7.8 0 0 1-1.6-.9l-1.4.5-1.7-3 1.1-.9a7 7 0 0 1 0-1.9L7 10.7l1.7-3 1.4.5a7.8 7.8 0 0 1 1.6-.9l.3-1.5h3.5l.3 1.5a7.8 7.8 0 0 1 1.6.9l1.4-.5 1.7 3-1.1.9a7 7 0 0 1 0 1.9Z",
-  expert: "M12 3 4.5 7v5c0 4.3 2.8 7.4 7.5 9 4.7-1.6 7.5-4.7 7.5-9V7L12 3ZM9 12l2 2 4-4",
-  clock: "M12 8v4l2.5 1.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z",
-  book: "M4 5.5A2.5 2.5 0 0 1 6.5 3H20v17H6.5A2.5 2.5 0 0 0 4 22ZM4 5.5v14A2.5 2.5 0 0 1 6.5 17H20",
-  grid: "M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z",
-  message: "M20 11.5a7.5 7.5 0 0 1-8 7.5 8.7 8.7 0 0 1-3.3-.7L4 20l1.2-4A7.2 7.2 0 0 1 4 11.5 7.5 7.5 0 0 1 12 4a7.5 7.5 0 0 1 8 7.5Z",
-  file: "M6 3h8l5 5v13H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2ZM14 3v5h5M8 13h8M8 17h6",
-  chart: "M4 19V5M4 19h17M8 15l3-4 3 2 5-7",
-  briefcase: "M3 8h18v11H3zM8 8V5h8v3M3 12h18M10 12v2h4v-2",
-  layout: "M4 4h16v16H4zM4 9h16M10 9v11",
-  code: "m8 7-5 5 5 5M16 7l5 5-5 5M14 4l-4 16",
-  palette: "M12 3a9 9 0 1 0 0 18h1.5a2.5 2.5 0 0 0 1.3-4.6 1.5 1.5 0 0 1 .8-2.8H18a3 3 0 0 0 3-3c0-4.2-4-7.6-9-7.6ZM7.5 11h.1M10 7.5h.1M15 7.5h.1M17 11h.1",
-  presentation: "M3 4h18v12H3zM12 16v5M8 21h8M7 8h4M7 12h8",
-  chevron: "m9 18 6-6-6-6",
-  down: "m7 10 5 5 5-5",
-  mic: "M12 14a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v5a3 3 0 0 0 3 3ZM5 11a7 7 0 0 0 14 0M12 18v4M9 22h6",
-  send: "m22 2-7 20-4-9-9-4ZM22 2 11 13",
-  shield: "M12 3 4.5 6v5c0 4.3 2.8 7.4 7.5 10 4.7-2.6 7.5-5.7 7.5-10V6Z",
-  bell: "M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9ZM10 21h4",
-  device: "M3 5h13v10H3zM7 19h5M18 9h3v11h-8v-4"
-};
-
-function Icon({ name, size = 18 }: IconProps) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path d={iconPaths[name] ?? iconPaths.spark} stroke="currentColor" strokeWidth="1.65" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
+function BrandMark() {
+  return <span className="db-brand-mark" aria-hidden="true">D</span>;
 }
 
-const navItems = [
-  { label: "新建任务", icon: "plus", prominent: true },
-  { label: "助理", icon: "assistant", beta: true },
-  { label: "专家·技能·连接器", icon: "expert" },
-  { label: "定时任务", icon: "clock" },
-  { label: "资料库", icon: "book" },
-  { label: "更多", icon: "grid", hint: "灵感" }
-];
-
-const modes = [
-  { label: "日常办公", icon: "briefcase" },
-  { label: "代码开发", icon: "code" },
-  { label: "设计创意", icon: "palette" }
-];
-
-const quickActions = [
-  { label: "文档处理", icon: "file" },
-  { label: "金融服务", icon: "briefcase" },
-  { label: "数据分析及可视化", icon: "chart" },
-  { label: "个人工作台", icon: "layout" },
-  { label: "幻灯片", icon: "presentation" },
-  { label: "代码助手", icon: "code" },
-  { label: "创意设计", icon: "palette" }
-];
+function isWorkspaceHubPath(path: string) {
+  return path.startsWith("/experts") || path.startsWith("/skills") || path.startsWith("/connectors");
+}
 
 export default function App() {
-  const [activeNav, setActiveNav] = useState("新建任务");
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
+  const [prompt, setPrompt] = useState("");
+  const [mode, setMode] = useState<"website" | "dashboard" | "prototype">("website");
+  const [notice, setNotice] = useState("");
+  const [projects, setProjects] = useState<DesignProject[]>(() => listProjects());
+  const [busy, setBusy] = useState(false);
+
   useEffect(() => {
-    const syncPath = () => setCurrentPath(window.location.pathname);
+    const syncPath = () => {
+      setCurrentPath(window.location.pathname);
+      setProjects(listProjects());
+    };
     window.addEventListener("popstate", syncPath);
     return () => window.removeEventListener("popstate", syncPath);
   }, []);
-  const [activeMode, setActiveMode] = useState("日常办公");
-  const [prompt, setPrompt] = useState("");
-  const [model, setModel] = useState("Step-5-Preview");
-  const [workspace, setWorkspace] = useState("选择工作空间");
-  const [permission, setPermission] = useState("默认权限");
-  const [notice, setNotice] = useState("");
-  const [attachedFiles, setAttachedFiles] = useState<string[]>([]);
-  const fileInputRef = useRef<HTMLInputElement | null>(null);
-  const quickActionsRef = useRef<HTMLDivElement | null>(null);
 
-  if (currentPath !== "/") return <WorkspaceHub />;
+  function startProject(initialPrompt = prompt.trim(), projectName?: string) {
+    if (!initialPrompt.trim() && !projectName) {
+      setNotice("先描述你想创建的网页或选择一个模板。");
+      return;
+    }
+    try {
+      setBusy(true);
+      const request = mode === "dashboard"
+        ? `数据后台设计需求：${initialPrompt}`
+        : mode === "prototype"
+          ? `可交互原型设计需求：${initialPrompt}`
+          : initialPrompt;
+      const project = createProject(request, projectName);
+      setProjects(listProjects());
+      setNotice("");
+      setPrompt("");
+      navigateTo(`/editor/${encodeURIComponent(project.id)}`);
+      setCurrentPath(window.location.pathname);
+    } catch (cause) {
+      setNotice(cause instanceof Error ? cause.message : "项目创建失败，请检查浏览器存储设置。");
+    } finally {
+      setBusy(false);
+    }
+  }
 
-  const submitPrompt = () => {
-    if (!prompt.trim() && attachedFiles.length === 0) return;
-    setNotice("需求已准备就绪。连接任务执行服务后，即可在这里启动 AI 助理。");
-  };
+  if (isWorkspaceHubPath(currentPath)) return <WorkspaceHub />;
+  const editorMatch = currentPath.match(/^\/editor\/([^/]+)$/);
+  if (editorMatch) {
+    let projectId = editorMatch[1];
+    try { projectId = decodeURIComponent(projectId); } catch { /* Keep the raw id for the not-found screen. */ }
+    return <ProjectEditorPage projectId={projectId} />;
+  }
+  if (currentPath === "/projects") return <ProjectsPage />;
 
   return (
-    <div className="workbuddy-app">
-      <aside className="app-sidebar">
-        <div className="sidebar-windowbar">
-          <div className="window-dots" aria-label="窗口控制">
-            <span className="window-dot window-dot--red" />
-            <span className="window-dot window-dot--yellow" />
-            <span className="window-dot window-dot--green" />
-          </div>
-          <div className="sidebar-utilities">
-            <button type="button" aria-label="收起侧边栏"><Icon name="panel" size={17} /></button>
-            <button type="button" aria-label="搜索"><Icon name="search" size={17} /></button>
-            <button type="button" aria-label="筛选"><Icon name="filter" size={17} /></button>
-          </div>
-        </div>
-
-        <div className="brand-row">
-          <div className="brand-lockup">
-            <strong>WorkBuddy</strong>
-            <span>5.7.7</span>
-          </div>
-          <button type="button" className="discover-button" onClick={() => setNotice("应用中心入口已选中。")}>
-            <Icon name="spark" size={13} />
-            <span>发现应用</span>
-            <Icon name="down" size={12} />
+    <div className="db-app-shell">
+      <aside className="db-app-sidebar">
+        <button className="db-brand-lockup" onClick={() => navigateTo("/")} aria-label="返回 DesignBuddy 首页">
+          <BrandMark />
+          <span><strong>DesignBuddy</strong><small>AI DESIGN WORKSPACE</small></span>
+        </button>
+        <button className="db-new-project-button" onClick={() => { setPrompt(""); navigateTo("/"); setCurrentPath("/"); }}>
+          <span>＋</span> 新建项目
+        </button>
+        <nav className="db-primary-nav" aria-label="主导航">
+          <button className={currentPath === "/" ? "is-active" : ""} onClick={() => { navigateTo("/"); setCurrentPath("/"); }}>
+            <span className="db-nav-icon">⌂</span> 创建设计
           </button>
-        </div>
-
-        <nav className="sidebar-navigation" aria-label="主导航">
-          {navItems.map((item) => (
-            <button
-              type="button"
-              key={item.label}
-              className={`sidebar-nav-item ${activeNav === item.label ? "is-active" : ""} ${item.prominent ? "is-prominent" : ""}`}
-              onClick={() => {
-                setActiveNav(item.label);
-                if (item.label === "专家·技能·连接器") {
-                  navigateTo("/experts");
-                  setCurrentPath("/experts");
-                  return;
-                }
-                setNotice(item.label === "新建任务" ? "" : `已切换到「${item.label}」入口。当前展示的是首页模板。`);
-              }}
-            >
-              <Icon name={item.icon} size={17} />
-              <span className="sidebar-nav-label">{item.label}</span>
-              {item.beta && <span className="beta-label">BETA</span>}
-              {item.hint && <span className="nav-hint">{item.hint}</span>}
-              {item.label === "助理" && (
-                <span className="nav-trailing-actions">
-                  <span onClick={(event) => event.stopPropagation()}><Icon name="folder" size={16} /></span>
-                  <span onClick={(event) => event.stopPropagation()}><Icon name="settings" size={16} /></span>
-                </span>
-              )}
+          <button className={currentPath === "/projects" ? "is-active" : ""} onClick={() => { navigateTo("/projects"); setCurrentPath("/projects"); }}>
+            <span className="db-nav-icon">▦</span> 我的项目 <span className="db-nav-count">{projects.length}</span>
+          </button>
+          <button onClick={() => { navigateTo("/experts"); setCurrentPath("/experts"); }}>
+            <span className="db-nav-icon">✳</span> Agent 与技能
+          </button>
+        </nav>
+        <div className="db-sidebar-section-label">最近项目</div>
+        <div className="db-sidebar-recent">
+          {projects.slice(0, 5).map((project) => (
+            <button key={project.id} title={project.name} onClick={() => navigateTo(`/editor/${encodeURIComponent(project.id)}`)}>
+              <span className="db-mini-project-icon">◇</span><span>{project.name}</span>
             </button>
           ))}
-        </nav>
-
-        <div className="sidebar-lists">
-          <button type="button" onClick={() => setNotice("任务列表入口已选中。")}>任务 <span>(3)</span></button>
-          <button type="button" onClick={() => setNotice("空间列表入口已选中。")}>空间 <span>(2)</span></button>
+          {projects.length === 0 && <p>你的项目会显示在这里。</p>}
         </div>
-
-        <div className="sidebar-bottom">
-          <div className="profile-avatar"><Icon name="spark" size={20} /></div>
-          <strong>19932101651</strong>
-          <button type="button" aria-label="通知" onClick={() => setNotice("暂时没有新的通知。")}><Icon name="bell" size={17} /></button>
-          <button type="button" aria-label="设备" onClick={() => setNotice("桌面端工作空间")}><Icon name="device" size={17} /></button>
+        <div className="db-sidebar-footer">
+          <div className="db-avatar">D</div>
+          <div><strong>本机工作区</strong><span>项目草稿保存在此浏览器</span></div>
         </div>
       </aside>
 
-      <main className="main-workspace">
-        <button type="button" className="top-promo" onClick={() => setNotice("做任务赢积分活动入口已选中。")}>
-          <span className="promo-mark"><Icon name="assistant" size={13} /></span>
-          <span>做任务赢积分好礼</span>
-          <Icon name="chevron" size={14} />
-        </button>
+      <main className="db-home-main">
+        <header className="db-home-topbar">
+          <span className="db-breadcrumb">工作台 <span>/</span> 创建设计</span>
+          <button className="db-topbar-link" onClick={() => navigateTo("/projects")}>查看所有项目 <span>→</span></button>
+        </header>
+        <div className="db-home-content">
+          <section className="db-home-hero">
+            <div className="db-hero-orb" aria-hidden="true"><span>✳</span></div>
+            <p className="db-eyebrow">IDEAS INTO INTERFACES</p>
+            <h1>把你的想法，<br /><span>变成真正的作品。</span></h1>
+            <p className="db-home-subtitle">描述你想要的网站或产品界面，建立项目草稿，接着编辑代码并实时预览。</p>
+          </section>
 
-        <section className="home-content" aria-label="新建任务">
-          <header className="welcome-header">
-            <h1>WorkBuddy, 我帮你</h1>
-            <div className="mode-switch" role="tablist" aria-label="任务模式">
-              {modes.map((mode) => (
-                <button
-                  type="button"
-                  role="tab"
-                  aria-selected={activeMode === mode.label}
-                  className={activeMode === mode.label ? "mode-tab is-selected" : "mode-tab"}
-                  key={mode.label}
-                  onClick={() => setActiveMode(mode.label)}
-                >
-                  <Icon name={mode.icon} size={15} />
-                  {mode.label}
-                </button>
-              ))}
-            </div>
-          </header>
-
-          <div className="quick-actions-row">
-            <div className="quick-actions-list" ref={quickActionsRef}>
-              {quickActions.map((action) => (
-                <button
-                  type="button"
-                  className="quick-action-chip"
-                  key={action.label}
-                  onClick={() => {
-                    setPrompt((current) => current ? `${current}，请使用「${action.label}」能力完成。 ` : `请帮我完成一项「${action.label}」任务：`);
-                    setNotice("");
-                  }}
-                >
-                  <Icon name={action.icon} size={15} />
-                  <span>{action.label}</span>
-                </button>
-              ))}
-            </div>
-            <button
-              type="button"
-              className="quick-scroll-button"
-              aria-label="查看更多能力"
-              onClick={() => quickActionsRef.current?.scrollBy({ left: 240, behavior: "smooth" })}
-            >
-              <Icon name="chevron" size={16} />
-            </button>
-            <div className="buddy-mascot" aria-label="WorkBuddy 助手形象">
-              <span className="mascot-status"><Icon name="spark" size={10} /></span>
-              <div className="mascot-antenna" />
-              <div className="mascot-head">
-                <span className="mascot-ear mascot-ear--left" />
-                <span className="mascot-ear mascot-ear--right" />
-                <div className="mascot-face"><i /><i /><b /></div>
+          <section className="db-prompt-panel" aria-label="创建项目">
+            <div className="db-prompt-label"><span className="db-prompt-dot" />描述你的设计需求</div>
+            <textarea
+              value={prompt}
+              onChange={(event) => { setPrompt(event.target.value); setNotice(""); }}
+              onKeyDown={(event) => {
+                if (event.key === "Enter" && !event.shiftKey) {
+                  event.preventDefault();
+                  startProject();
+                }
+              }}
+              placeholder="例如：设计一个精致的 SaaS 产品首页，使用浅色背景、醒目的主标题、功能介绍和价格卡片……"
+              rows={4}
+              aria-label="设计需求描述"
+            />
+            <div className="db-prompt-bottom">
+              <div className="db-mode-tabs" aria-label="项目类型">
+                <button className={mode === "website" ? "is-active" : ""} onClick={() => setMode("website")}>◇ 网页设计</button>
+                <button className={mode === "dashboard" ? "is-active" : ""} onClick={() => setMode("dashboard")}>▦ 数据后台</button>
+                <button className={mode === "prototype" ? "is-active" : ""} onClick={() => setMode("prototype")}>⌘ 交互原型</button>
               </div>
-              <div className="mascot-body" />
+              <button className="db-button db-button-primary" disabled={busy} onClick={() => startProject()}>
+                {busy ? "正在创建…" : "创建项目"} <span>↗</span>
+              </button>
             </div>
-          </div>
+          </section>
+          {notice && <p className="db-alert" role="alert">{notice}</p>}
+          <p className="db-local-disclaimer">当前版本会创建可编辑的项目起始模板；AI 自动生成服务尚未接通，不会把模板冒充成 AI 生成结果。</p>
 
-          <form
-            className="composer-shell"
-            onSubmit={(event) => {
-              event.preventDefault();
-              submitPrompt();
-            }}
-          >
-            <div className="composer-main">
-              <textarea
-                value={prompt}
-                onChange={(event) => {
-                  setPrompt(event.target.value);
-                  setNotice("");
-                }}
-                onKeyDown={(event) => {
-                  if (event.key === "Enter" && !event.shiftKey) {
-                    event.preventDefault();
-                    submitPrompt();
-                  }
-                }}
-                aria-label="描述任务"
-                placeholder="今天帮你做些什么？ @ 添加上下文，/ 调用技能与指令"
-                rows={3}
-              />
-              {attachedFiles.length > 0 && (
-                <div className="attachment-list">
-                  {attachedFiles.map((file) => <span className="attachment-chip" key={file}><Icon name="file" size={12} />{file}</span>)}
-                </div>
-              )}
-              <div className="composer-controls">
-                <button type="button" className="attach-button" aria-label="添加文件" onClick={() => fileInputRef.current?.click()}>
-                  <Icon name="plus" size={21} />
+          <section className="db-template-section">
+            <div className="db-section-heading">
+              <div><p className="db-eyebrow">START WITH A TEMPLATE</p><h2>从一个起点开始</h2></div>
+              <button onClick={() => navigateTo("/projects")}>管理项目 <span>→</span></button>
+            </div>
+            <div className="db-template-grid">
+              {templates.map((template, index) => (
+                <button className="db-template-card" key={template.id} onClick={() => startProject(template.prompt, template.title)}>
+                  <span className={`db-template-art db-template-art-${index + 1}`}>
+                    <i className="db-art-nav" /><i className="db-art-heading" /><i className="db-art-heading-short" />
+                    <i className="db-art-visual" /><i className="db-art-card-one" /><i className="db-art-card-two" />
+                  </span>
+                  <span className="db-template-card-title">{template.title}<span>↗</span></span>
+                  <span className="db-template-description">{template.description}</span>
                 </button>
-                <input
-                  ref={fileInputRef}
-                  className="visually-hidden-input"
-                  type="file"
-                  multiple
-                  onChange={(event) => {
-                    const names = Array.from(event.target.files ?? []).map((file) => file.name);
-                    setAttachedFiles((current) => [...current, ...names].slice(0, 5));
-                    setNotice("");
-                    event.currentTarget.value = "";
-                  }}
-                />
-                <div className="composer-actions-right">
-                  <label className="model-picker" aria-label="选择模型">
-                    <span className="model-spark">▰</span>
-                    <select value={model} onChange={(event) => setModel(event.target.value)}>
-                      <option>Step-5-Preview</option>
-                      <option>Auto</option>
-                      <option>DeepSeek</option>
-                      <option>Claude</option>
-                    </select>
-                    <Icon name="down" size={12} />
-                  </label>
-                  <button type="button" className="microphone-button" aria-label="语音输入" onClick={() => setNotice("语音输入功能尚未连接。")}><Icon name="mic" size={17} /></button>
-                  <button type="submit" className="send-button" aria-label="发送任务" disabled={!prompt.trim() && attachedFiles.length === 0}>
-                    <Icon name="send" size={18} />
+              ))}
+            </div>
+          </section>
+
+          <section className="db-recent-section">
+            <div className="db-section-heading">
+              <div><p className="db-eyebrow">PICK UP WHERE YOU LEFT OFF</p><h2>最近项目</h2></div>
+              <button onClick={() => navigateTo("/projects")}>全部项目 <span>→</span></button>
+            </div>
+            {projects.length > 0 ? (
+              <div className="db-recent-list">
+                {projects.slice(0, 3).map((project) => (
+                  <button key={project.id} className="db-recent-project" onClick={() => navigateTo(`/editor/${encodeURIComponent(project.id)}`)}>
+                    <span className="db-recent-icon">◇</span>
+                    <span className="db-recent-project-name">{project.name}<small>{project.prompt || "空白设计项目"}</small></span>
+                    <span className="db-recent-status">草稿</span><span className="db-recent-arrow">→</span>
                   </button>
-                </div>
+                ))}
               </div>
-            </div>
-            <div className="composer-footer">
-              <label className="footer-select">
-                <Icon name="folder" size={16} />
-                <select value={workspace} onChange={(event) => setWorkspace(event.target.value)} aria-label="工作空间">
-                  <option>选择工作空间</option>
-                  <option>个人空间</option>
-                  <option>默认工作空间</option>
-                  <option>新建工作空间</option>
-                </select>
-                <Icon name="down" size={12} />
-              </label>
-              <label className="footer-select">
-                <Icon name="shield" size={16} />
-                <select value={permission} onChange={(event) => setPermission(event.target.value)} aria-label="权限设置">
-                  <option>默认权限</option>
-                  <option>每次操作前确认</option>
-                  <option>允许安全操作</option>
-                </select>
-                <Icon name="down" size={12} />
-              </label>
-            </div>
-          </form>
-
-          {notice && <div className="home-notice" role="status"><Icon name="spark" size={15} /><span>{notice}</span><button type="button" aria-label="关闭提示" onClick={() => setNotice("")}>×</button></div>}
-        </section>
+            ) : (
+              <div className="db-recent-empty"><span>◈</span><p>还没有项目。描述一个想法，或选择上面的模板开始。</p></div>
+            )}
+          </section>
+        </div>
       </main>
     </div>
   );
