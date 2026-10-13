@@ -76,7 +76,6 @@ export default function App() {
     window.addEventListener("popstate", syncPath);
     return () => window.removeEventListener("popstate", syncPath);
   }, []);
-  if (currentPath !== "/") return <WorkspaceHub />;
   const [activeMode, setActiveMode] = useState("日常办公");
   const [prompt, setPrompt] = useState("");
   const [model, setModel] = useState("Step-5-Preview");
@@ -86,6 +85,8 @@ export default function App() {
   const [attachedFiles, setAttachedFiles] = useState<string[]>([]);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const quickActionsRef = useRef<HTMLDivElement | null>(null);
+
+  if (currentPath !== "/") return <WorkspaceHub />;
 
   const submitPrompt = () => {
     if (!prompt.trim() && attachedFiles.length === 0) return;
