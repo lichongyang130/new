@@ -133,7 +133,7 @@ if (search) {
 <html lang="zh-CN">
 <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>日常精选</title><link rel="stylesheet" href="./src/styles.css"></head>
 <body>
-  <header class="shop-nav"><a class="shop-brand" href="#">FORME<span> OBJECTS FOR EVERYDAY</span></a><nav><a href="#shop">全部商品</a><a href="#story">品牌故事</a></nav><button class="cart-button" id="cart-button">购物袋 <b id="cart-count">0</b></button></header>
+  <header class="shop-nav"><a class="shop-brand" href="#">FORME<span> OBJECTS FOR EVERYDAY</span></a><nav><a href="#shop">全部商品</a><a href="#story">品牌故事</a></nav><button class="cart-button" id="cart-button">购物袋 <b id="cart-count">0</b></button></header><p id="cart-notice" class="cart-notice" aria-live="polite"></p>
   <main><section class="shop-hero"><div><p class="eyebrow">THE EVERYDAY EDITION</p><h1>让日常，<br><em>值得被设计。</em></h1><p>精选质感生活物件，以克制的造型、耐用的材质和恰到好处的细节，陪伴每一天。</p><a href="#shop" class="shop-cta">探索精选 ↗</a></div><div class="hero-object"><span class="object-sun"></span><div class="vase"></div><div class="object-shadow"></div></div></section>
   <section class="shop-section" id="shop"><div class="shop-section-heading"><div><p class="eyebrow">CURATED FOR YOU</p><h2>本季精选</h2></div><span>01 — 04 / OBJECTS</span></div><div class="product-grid">
     <article class="product-card"><div class="product-art art-vase"><i></i></div><p>陶艺系列</p><h3>手作陶器花瓶</h3><b>¥ 269</b><button class="add-cart">加入购物袋 +</button></article>
@@ -165,7 +165,8 @@ document.querySelectorAll('.add-cart').forEach((button) => {
   });
 });
 document.querySelector('#cart-button')?.addEventListener('click', () => {
-  window.alert(count ? '购物袋中有 ' + count + ' 件演示商品。' : '购物袋还是空的。');
+  const notice = document.querySelector('#cart-notice');
+  if (notice) notice.textContent = count ? '购物袋中有 ' + count + ' 件演示商品。' : '购物袋还是空的。';
 });`
       }
     ];
