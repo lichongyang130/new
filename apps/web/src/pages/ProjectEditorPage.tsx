@@ -52,7 +52,7 @@ export default function ProjectEditorPage({ projectId }: { projectId: string }) 
     try {
       const saved = updateProject(updated);
       setProject(saved);
-      setNotice("修改已保存在此浏览器中。");
+      setNotice("");
     } catch (cause) {
       setNotice(cause instanceof Error ? cause.message : "保存失败。");
     }
@@ -97,7 +97,7 @@ export default function ProjectEditorPage({ projectId }: { projectId: string }) 
         <div className="db-editor-header-actions">
           <button className={view === "code" ? "db-button db-button-secondary is-selected" : "db-button db-button-secondary"} onClick={() => setView("code")}>{"</>"} 代码</button>
           <button className={view === "preview" ? "db-button db-button-secondary is-selected" : "db-button db-button-secondary"} onClick={() => setView("preview")}>◫ 预览</button>
-          <button className="db-button db-button-primary" onClick={() => void copySource()}>导出源码 <span>↗</span></button>
+          <button className="db-button db-button-primary" onClick={() => void copySource()}>复制全部源码 <span>↗</span></button>
         </div>
       </header>
 
