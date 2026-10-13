@@ -46,10 +46,6 @@ function scoreExpert(text: string, terms: string[]) {
   return terms.reduce((score, term) => normalized.includes(term.toLocaleLowerCase()) ? score + (term.length > 2 ? 2 : 1) : score, 0);
 }
 
-function RobotMascot() {
-  return <div className="buddy-mascot" aria-hidden="true"><span className="mascot-status">✦</span><span className="mascot-antenna" /><span className="mascot-head"><i className="mascot-ear mascot-ear--left" /><i className="mascot-ear mascot-ear--right" /><span className="mascot-face"><i /><i /><b /></span></span><span className="mascot-body" /></div>;
-}
-
 function isWorkspaceHubPath(path: string) {
   return path.startsWith("/experts") || path.startsWith("/skills") || path.startsWith("/connectors");
 }
@@ -251,7 +247,7 @@ export default function App() {
 
           <section className="quick-actions-row" aria-label="快捷任务场景">
             <div className="quick-actions-list">{quickActions.map((action) => <button key={action.title} className="quick-action-chip" onClick={() => { setMode(action.mode); setPrompt(action.prompt); setSelectedExpert(""); setSelectedSkill(""); setNotice(""); }}><span>{action.icon}</span>{action.title}</button>)}</div>
-            <button className="quick-scroll-button" title="查看任务场景" aria-label="查看任务场景" onClick={() => setNotice("已展示常用任务场景。")}>›</button><RobotMascot />
+            <button className="quick-scroll-button" title="查看任务场景" aria-label="查看任务场景" onClick={() => setNotice("已展示常用任务场景。")}>›</button>
           </section>
 
           <section className="composer-shell" aria-label="创建任务">
