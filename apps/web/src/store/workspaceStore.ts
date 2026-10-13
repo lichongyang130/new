@@ -25,4 +25,4 @@ export const useWorkspaceStore = create<WorkspaceState>((set) => ({
   upsertConnector: (connector) => set((state) => ({ connectors: [...state.connectors.filter((item) => item.id !== connector.id), connector] })),
 }));
 
-export const workspaceStore = useWorkspaceStore.getState;
+export const workspaceStore = useWorkspaceStore.getState();
