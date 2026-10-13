@@ -81,8 +81,7 @@ export default function ProjectEditorPage({ projectId }: { projectId: string }) 
   function submitAssistant(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (!assistantDraft.trim()) return;
-    setNotice("需求已记录。当前版本尚未连接 AI 生成接口，因此不会伪称已经自动修改项目。你可以在代码模式中编辑文件并立即预览。");
-    setAssistantDraft("");
+    setNotice("AI 生成接口尚未连接，需求没有发送或保存。接入 Agent API 后才能自动修改项目；当前可在代码模式编辑并实时预览。");
   }
 
   return (
