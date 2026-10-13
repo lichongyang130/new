@@ -145,6 +145,9 @@ export default function App() {
           <button className="sidebar-nav-item" onClick={() => go("/experts")}>
             <span>♧</span><span className="sidebar-nav-label">专家 · 技能 · 连接器</span>
           </button>
+          <button className="sidebar-nav-item" onClick={() => go("/library")}>
+            <span>◈</span><span className="sidebar-nav-label">设计资产中心</span>
+          </button>
           <button className="sidebar-nav-item" onClick={() => setNotice("定时任务入口正在规划中；当前可直接在输入框创建设计任务。")}>
             <span>◴</span><span className="sidebar-nav-label">定时任务</span>
           </button>
