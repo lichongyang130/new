@@ -1,3 +1,16 @@
-export function DeploymentTimeline({ events = [] }: { events?: string[] }) {
-  return <div>{events.map(event => <p key={event}>{event}</p>)}</div>;
+export interface DeploymentEvent {
+  time: string;
+  message: string;
+}
+
+export function DeploymentTimeline({ events = [] }: { events?: DeploymentEvent[] }) {
+  return (
+    <div>
+      {events.map(event => (
+        <p key={`${event.time}-${event.message}`}>
+          {event.time}: {event.message}
+        </p>
+      ))}
+    </div>
+  );
 }
