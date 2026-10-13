@@ -21,6 +21,7 @@ export default function ProjectEditorPage({ projectId }: { projectId: string }) 
   const [view, setView] = useState<"preview" | "code">("preview");
   const [device, setDevice] = useState<"desktop" | "tablet" | "mobile">("desktop");
   const [notice, setNotice] = useState("");
+  const [saveFailed, setSaveFailed] = useState(false);
   const [assistantDraft, setAssistantDraft] = useState("");
 
   useEffect(() => {
@@ -52,8 +53,10 @@ export default function ProjectEditorPage({ projectId }: { projectId: string }) 
     try {
       const saved = updateProject(updated);
       setProject(saved);
+      setSaveFailed(false);
       setNotice("");
     } catch (cause) {
+      setSaveFailed(true);
       setNotice(cause instanceof Error ? cause.message : "保存失败。");
     }
   }
@@ -63,8 +66,10 @@ export default function ProjectEditorPage({ projectId }: { projectId: string }) 
     if (!nextName?.trim()) return;
     try {
       setProject(updateProject({ ...project, name: nextName.trim().slice(0, 80) }));
+      setSaveFailed(false);
       setNotice("项目名称已更新。");
     } catch (cause) {
+      setSaveFailed(true);
       setNotice(cause instanceof Error ? cause.message : "重命名失败。");
     }
   }
@@ -91,7 +96,7 @@ export default function ProjectEditorPage({ projectId }: { projectId: string }) 
         <div className="db-editor-project-name">
           <strong>{project.name}</strong>
           <button onClick={renameProject} aria-label="重命名项目">✎</button>
-          <span className="db-save-state"><i /> 已保存</span>
+          <span className={saveFailed ? "db-save-state is-error" : "db-save-state"}><i />{saveFailed ? "保存失败" : "已保存在本机"}</span>
         </div>
         <div className="db-editor-header-actions">
           <button className={view === "code" ? "db-button db-button-secondary is-selected" : "db-button db-button-secondary"} onClick={() => setView("code")}>{"</>"} 代码</button>
