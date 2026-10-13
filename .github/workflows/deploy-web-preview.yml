@@ -42,7 +42,11 @@ jobs:
         working-directory: apps/web
         run: npm run build
 
-      - name: Configure static-host fallback for client-side routes\n        working-directory: apps/web\n        run: cp dist/index.html dist/404.html\n\n      - name: Upload static frontend artifact
+      - name: Configure static-host fallback for client-side routes
+        working-directory: apps/web
+        run: cp dist/index.html dist/404.html
+
+      - name: Upload static frontend artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: apps/web/dist
