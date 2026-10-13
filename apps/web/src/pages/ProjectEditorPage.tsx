@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, type FormEvent } from "react";
 import type { DesignProject, ProjectFile } from "../models/project";
 import { getProject, updateProject } from "../store/projectStore";
 import { navigateTo } from "../router/workspaceRoutes";
@@ -78,7 +78,7 @@ export default function ProjectEditorPage({ projectId }: { projectId: string }) 
     }
   }
 
-  function submitAssistant(event: React.FormEvent<HTMLFormElement>) {
+  function submitAssistant(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (!assistantDraft.trim()) return;
     setNotice("需求已记录。当前版本尚未连接 AI 生成接口，因此不会伪称已经自动修改项目。你可以在代码模式中编辑文件并立即预览。");
