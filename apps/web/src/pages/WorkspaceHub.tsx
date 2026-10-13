@@ -62,7 +62,7 @@ export default function WorkspaceHub() {
 
   return <div style={{ minHeight: "100vh", background: "#f7f8fb", color: "#202632", display: "flex", fontFamily: "Inter, system-ui, sans-serif" }}>
     <aside style={{ width: 228, flexShrink: 0, padding: 20, background: "#fff", borderRight: "1px solid #e9ebf0" }}>
-      <strong style={{ display: "block", fontSize: 20, marginBottom: 28 }}>WorkBuddy</strong>
+      <strong style={{ display: "block", fontSize: 20, marginBottom: 28 }}>DesignBuddy</strong>
       <button style={{ ...buttonStyle, width: "100%", textAlign: "left", marginBottom: 18 }} onClick={() => go("/")}>← 返回工作台</button>
       <div style={{ fontSize: 12, color: "#8b91a0", margin: "12px 8px" }}>专家 · 技能 · 连接器</div>
       {nav.map(([label, path, section]) => <button key={path} style={{ ...buttonStyle, display: "block", width: "100%", textAlign: "left", marginBottom: 7, background: route.section === section && pathname === path ? "#f0efff" : "#fff", borderColor: route.section === section && pathname === path ? "#d8d3ff" : "#e1e5eb" }} onClick={() => go(path)}>{label}</button>)}
