@@ -1,3 +1,5 @@
+import React from 'react';
+
 export interface DeploymentStatus {
   id: string;
   environment: string;
