@@ -774,3 +774,6 @@ button:disabled { cursor: not-allowed; }
   .db-editor-project-name strong { max-width: 130px; }
   .db-editor-header-actions .db-button { padding: 0 7px; font-size: 9px; }
 }
+
+.db-back-home { display: inline-flex; align-items: center; gap: 6px; margin: 0 0 10px; padding: 0; border: 0; background: transparent; color: #7c8390; font-size: 10px; cursor: pointer; }
+.db-back-home:hover { color: var(--db-accent); }
