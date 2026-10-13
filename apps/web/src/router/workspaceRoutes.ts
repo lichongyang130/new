@@ -1,5 +1,8 @@
+const BASE_PATH = import.meta.env.BASE_URL.replace(/\/+$/, "");
+
 export const workspaceRoutes = {
   home: "/",
+  projects: "/projects",
   experts: "/experts",
   myExperts: "/experts/mine",
   createExpert: "/experts/create",
@@ -12,14 +15,26 @@ export const workspaceRoutes = {
 
 export type WorkspaceRouteKey = keyof typeof workspaceRoutes;
 
+/** Strip the Vite deploy base so route matching also works on repository Pages URLs. */
+export function normalizeAppPath(pathname: string): string {
+  let path = pathname;
+  if (BASE_PATH && (path === BASE_PATH || path.startsWith(BASE_PATH + "/"))) {
+    path = path.slice(BASE_PATH.length) || "/";
+  }
+  if (!path.startsWith("/")) path = "/" + path;
+  return path.replace(/\/+$/, "") || "/";
+}
+
 export function navigateTo(path: string): void {
-  if (window.location.pathname === path) return;
-  window.history.pushState({}, "", path);
+  const normalized = normalizeAppPath(path);
+  const target = BASE_PATH ? BASE_PATH + normalized : normalized;
+  if (normalizeAppPath(window.location.pathname) === normalized) return;
+  window.history.pushState({}, "", target);
   window.dispatchEvent(new PopStateEvent("popstate"));
 }
 
 export function resolveWorkspaceRoute(pathname: string): { section: "home" | "experts" | "skills" | "connectors"; page: string; id?: string } {
-  const path = pathname.replace(/\/+$/, "") || "/";
+  const path = normalizeAppPath(pathname);
   if (path === "/experts/create") return { section: "experts", page: "create" };
   if (path === "/experts/mine") return { section: "experts", page: "mine" };
   if (path === "/experts") return { section: "experts", page: "marketplace" };
