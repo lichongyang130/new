@@ -2518,5 +2518,2273 @@
       "错误状态文字说明"
     ],
     "image": "https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=1200&q=85"
+  },
+  {
+    "id": "ds-031",
+    "name": "Editorial Luxe",
+    "category": "内容出版",
+    "philosophy": "大字号标题、衬线字与杂志式网格",
+    "primary": "#29231F",
+    "tokens": {
+      "color": {
+        "primary": "#29231F",
+        "background": "#FFFFFF",
+        "surface": "#F7F7F8",
+        "text": "#171923",
+        "muted": "#707584",
+        "border": "#E6E8EF",
+        "success": "#14866D",
+        "warning": "#B7791F",
+        "danger": "#C23D4B"
+      },
+      "typography": {
+        "display": "Inter, system-ui, sans-serif",
+        "body": "Inter, system-ui, sans-serif",
+        "scale": [
+          12,
+          14,
+          16,
+          20,
+          24,
+          32,
+          40
+        ],
+        "lineHeight": 1.5
+      },
+      "spacing": [
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        32,
+        40,
+        48,
+        64
+      ],
+      "radius": [
+        6,
+        10,
+        14,
+        20,
+        28
+      ],
+      "shadow": [
+        "none",
+        "0 2px 8px #1018280A",
+        "0 12px 32px #10182812"
+      ]
+    },
+    "components": [
+      "Button",
+      "Input",
+      "Select",
+      "Dialog",
+      "Popover",
+      "Tabs",
+      "Badge",
+      "Card",
+      "Table",
+      "Toast",
+      "Tooltip",
+      "Dropdown",
+      "Avatar",
+      "Skeleton",
+      "EmptyState",
+      "Pagination"
+    ],
+    "accessibility": [
+      "WCAG AA 对比度检查",
+      "可见键盘焦点",
+      "表单字段标签",
+      "减少动态效果",
+      "错误状态文字说明"
+    ],
+    "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=85"
+  },
+  {
+    "id": "ds-032",
+    "name": "Neo Brutal",
+    "category": "创意工具",
+    "philosophy": "粗边框、高对比、强烈块面",
+    "primary": "#FF5B35",
+    "tokens": {
+      "color": {
+        "primary": "#FF5B35",
+        "background": "#FFFFFF",
+        "surface": "#F5F6FA",
+        "text": "#171923",
+        "muted": "#707584",
+        "border": "#E6E8EF",
+        "success": "#14866D",
+        "warning": "#B7791F",
+        "danger": "#C23D4B"
+      },
+      "typography": {
+        "display": "Inter, system-ui, sans-serif",
+        "body": "Inter, system-ui, sans-serif",
+        "scale": [
+          12,
+          14,
+          16,
+          20,
+          24,
+          32,
+          40
+        ],
+        "lineHeight": 1.5
+      },
+      "spacing": [
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        32,
+        40,
+        48,
+        64
+      ],
+      "radius": [
+        6,
+        10,
+        14,
+        20,
+        28
+      ],
+      "shadow": [
+        "none",
+        "0 2px 8px #1018280A",
+        "0 12px 32px #10182812"
+      ]
+    },
+    "components": [
+      "Button",
+      "Input",
+      "Select",
+      "Dialog",
+      "Popover",
+      "Tabs",
+      "Badge",
+      "Card",
+      "Table",
+      "Toast",
+      "Tooltip",
+      "Dropdown",
+      "Avatar",
+      "Skeleton",
+      "EmptyState",
+      "Pagination"
+    ],
+    "accessibility": [
+      "WCAG AA 对比度检查",
+      "可见键盘焦点",
+      "表单字段标签",
+      "减少动态效果",
+      "错误状态文字说明"
+    ],
+    "image": "https://images.unsplash.com/photo-1523726491678-bf852e717f6a?auto=format&fit=crop&w=1200&q=85"
+  },
+  {
+    "id": "ds-033",
+    "name": "Soft Clay",
+    "category": "消费应用",
+    "philosophy": "柔和体积感、圆润表面与轻阴影",
+    "primary": "#7468E8",
+    "tokens": {
+      "color": {
+        "primary": "#7468E8",
+        "background": "#F8F9FC",
+        "surface": "#F7F7F8",
+        "text": "#171923",
+        "muted": "#707584",
+        "border": "#E6E8EF",
+        "success": "#14866D",
+        "warning": "#B7791F",
+        "danger": "#C23D4B"
+      },
+      "typography": {
+        "display": "Inter, system-ui, sans-serif",
+        "body": "Inter, system-ui, sans-serif",
+        "scale": [
+          12,
+          14,
+          16,
+          20,
+          24,
+          32,
+          40
+        ],
+        "lineHeight": 1.5
+      },
+      "spacing": [
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        32,
+        40,
+        48,
+        64
+      ],
+      "radius": [
+        6,
+        10,
+        14,
+        20,
+        28
+      ],
+      "shadow": [
+        "none",
+        "0 2px 8px #1018280A",
+        "0 12px 32px #10182812"
+      ]
+    },
+    "components": [
+      "Button",
+      "Input",
+      "Select",
+      "Dialog",
+      "Popover",
+      "Tabs",
+      "Badge",
+      "Card",
+      "Table",
+      "Toast",
+      "Tooltip",
+      "Dropdown",
+      "Avatar",
+      "Skeleton",
+      "EmptyState",
+      "Pagination"
+    ],
+    "accessibility": [
+      "WCAG AA 对比度检查",
+      "可见键盘焦点",
+      "表单字段标签",
+      "减少动态效果",
+      "错误状态文字说明"
+    ],
+    "image": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=85"
+  },
+  {
+    "id": "ds-034",
+    "name": "Glass Studio",
+    "category": "数据产品",
+    "philosophy": "透明层、背景模糊和清晰对比",
+    "primary": "#5269D8",
+    "tokens": {
+      "color": {
+        "primary": "#5269D8",
+        "background": "#FFFFFF",
+        "surface": "#F5F6FA",
+        "text": "#171923",
+        "muted": "#707584",
+        "border": "#E6E8EF",
+        "success": "#14866D",
+        "warning": "#B7791F",
+        "danger": "#C23D4B"
+      },
+      "typography": {
+        "display": "Inter, system-ui, sans-serif",
+        "body": "Inter, system-ui, sans-serif",
+        "scale": [
+          12,
+          14,
+          16,
+          20,
+          24,
+          32,
+          40
+        ],
+        "lineHeight": 1.5
+      },
+      "spacing": [
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        32,
+        40,
+        48,
+        64
+      ],
+      "radius": [
+        6,
+        10,
+        14,
+        20,
+        28
+      ],
+      "shadow": [
+        "none",
+        "0 2px 8px #1018280A",
+        "0 12px 32px #10182812"
+      ]
+    },
+    "components": [
+      "Button",
+      "Input",
+      "Select",
+      "Dialog",
+      "Popover",
+      "Tabs",
+      "Badge",
+      "Card",
+      "Table",
+      "Toast",
+      "Tooltip",
+      "Dropdown",
+      "Avatar",
+      "Skeleton",
+      "EmptyState",
+      "Pagination"
+    ],
+    "accessibility": [
+      "WCAG AA 对比度检查",
+      "可见键盘焦点",
+      "表单字段标签",
+      "减少动态效果",
+      "错误状态文字说明"
+    ],
+    "image": "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1200&q=85"
+  },
+  {
+    "id": "ds-035",
+    "name": "Nordic Calm",
+    "category": "生活方式",
+    "philosophy": "低饱和自然色、宽松节奏",
+    "primary": "#6E8572",
+    "tokens": {
+      "color": {
+        "primary": "#6E8572",
+        "background": "#FFFFFF",
+        "surface": "#F7F7F8",
+        "text": "#171923",
+        "muted": "#707584",
+        "border": "#E6E8EF",
+        "success": "#14866D",
+        "warning": "#B7791F",
+        "danger": "#C23D4B"
+      },
+      "typography": {
+        "display": "Inter, system-ui, sans-serif",
+        "body": "Inter, system-ui, sans-serif",
+        "scale": [
+          12,
+          14,
+          16,
+          20,
+          24,
+          32,
+          40
+        ],
+        "lineHeight": 1.5
+      },
+      "spacing": [
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        32,
+        40,
+        48,
+        64
+      ],
+      "radius": [
+        6,
+        10,
+        14,
+        20,
+        28
+      ],
+      "shadow": [
+        "none",
+        "0 2px 8px #1018280A",
+        "0 12px 32px #10182812"
+      ]
+    },
+    "components": [
+      "Button",
+      "Input",
+      "Select",
+      "Dialog",
+      "Popover",
+      "Tabs",
+      "Badge",
+      "Card",
+      "Table",
+      "Toast",
+      "Tooltip",
+      "Dropdown",
+      "Avatar",
+      "Skeleton",
+      "EmptyState",
+      "Pagination"
+    ],
+    "accessibility": [
+      "WCAG AA 对比度检查",
+      "可见键盘焦点",
+      "表单字段标签",
+      "减少动态效果",
+      "错误状态文字说明"
+    ],
+    "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=85"
+  },
+  {
+    "id": "ds-036",
+    "name": "Swiss Grid",
+    "category": "企业产品",
+    "philosophy": "严格网格、排版秩序、精确对齐",
+    "primary": "#E53935",
+    "tokens": {
+      "color": {
+        "primary": "#E53935",
+        "background": "#F8F9FC",
+        "surface": "#F5F6FA",
+        "text": "#171923",
+        "muted": "#707584",
+        "border": "#E6E8EF",
+        "success": "#14866D",
+        "warning": "#B7791F",
+        "danger": "#C23D4B"
+      },
+      "typography": {
+        "display": "Inter, system-ui, sans-serif",
+        "body": "Inter, system-ui, sans-serif",
+        "scale": [
+          12,
+          14,
+          16,
+          20,
+          24,
+          32,
+          40
+        ],
+        "lineHeight": 1.5
+      },
+      "spacing": [
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        32,
+        40,
+        48,
+        64
+      ],
+      "radius": [
+        6,
+        10,
+        14,
+        20,
+        28
+      ],
+      "shadow": [
+        "none",
+        "0 2px 8px #1018280A",
+        "0 12px 32px #10182812"
+      ]
+    },
+    "components": [
+      "Button",
+      "Input",
+      "Select",
+      "Dialog",
+      "Popover",
+      "Tabs",
+      "Badge",
+      "Card",
+      "Table",
+      "Toast",
+      "Tooltip",
+      "Dropdown",
+      "Avatar",
+      "Skeleton",
+      "EmptyState",
+      "Pagination"
+    ],
+    "accessibility": [
+      "WCAG AA 对比度检查",
+      "可见键盘焦点",
+      "表单字段标签",
+      "减少动态效果",
+      "错误状态文字说明"
+    ],
+    "image": "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85"
+  },
+  {
+    "id": "ds-037",
+    "name": "Mono Terminal",
+    "category": "开发者工具",
+    "philosophy": "等宽字体、命令感与高密度信息",
+    "primary": "#20252B",
+    "tokens": {
+      "color": {
+        "primary": "#20252B",
+        "background": "#FFFFFF",
+        "surface": "#F7F7F8",
+        "text": "#171923",
+        "muted": "#707584",
+        "border": "#E6E8EF",
+        "success": "#14866D",
+        "warning": "#B7791F",
+        "danger": "#C23D4B"
+      },
+      "typography": {
+        "display": "Inter, system-ui, sans-serif",
+        "body": "Inter, system-ui, sans-serif",
+        "scale": [
+          12,
+          14,
+          16,
+          20,
+          24,
+          32,
+          40
+        ],
+        "lineHeight": 1.5
+      },
+      "spacing": [
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        32,
+        40,
+        48,
+        64
+      ],
+      "radius": [
+        6,
+        10,
+        14,
+        20,
+        28
+      ],
+      "shadow": [
+        "none",
+        "0 2px 8px #1018280A",
+        "0 12px 32px #10182812"
+      ]
+    },
+    "components": [
+      "Button",
+      "Input",
+      "Select",
+      "Dialog",
+      "Popover",
+      "Tabs",
+      "Badge",
+      "Card",
+      "Table",
+      "Toast",
+      "Tooltip",
+      "Dropdown",
+      "Avatar",
+      "Skeleton",
+      "EmptyState",
+      "Pagination"
+    ],
+    "accessibility": [
+      "WCAG AA 对比度检查",
+      "可见键盘焦点",
+      "表单字段标签",
+      "减少动态效果",
+      "错误状态文字说明"
+    ],
+    "image": "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1200&q=85"
+  },
+  {
+    "id": "ds-038",
+    "name": "Warm Minimal",
+    "category": "品牌零售",
+    "philosophy": "暖白、细分隔线和真实摄影",
+    "primary": "#B96D48",
+    "tokens": {
+      "color": {
+        "primary": "#B96D48",
+        "background": "#FFFFFF",
+        "surface": "#F5F6FA",
+        "text": "#171923",
+        "muted": "#707584",
+        "border": "#E6E8EF",
+        "success": "#14866D",
+        "warning": "#B7791F",
+        "danger": "#C23D4B"
+      },
+      "typography": {
+        "display": "Inter, system-ui, sans-serif",
+        "body": "Inter, system-ui, sans-serif",
+        "scale": [
+          12,
+          14,
+          16,
+          20,
+          24,
+          32,
+          40
+        ],
+        "lineHeight": 1.5
+      },
+      "spacing": [
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        32,
+        40,
+        48,
+        64
+      ],
+      "radius": [
+        6,
+        10,
+        14,
+        20,
+        28
+      ],
+      "shadow": [
+        "none",
+        "0 2px 8px #1018280A",
+        "0 12px 32px #10182812"
+      ]
+    },
+    "components": [
+      "Button",
+      "Input",
+      "Select",
+      "Dialog",
+      "Popover",
+      "Tabs",
+      "Badge",
+      "Card",
+      "Table",
+      "Toast",
+      "Tooltip",
+      "Dropdown",
+      "Avatar",
+      "Skeleton",
+      "EmptyState",
+      "Pagination"
+    ],
+    "accessibility": [
+      "WCAG AA 对比度检查",
+      "可见键盘焦点",
+      "表单字段标签",
+      "减少动态效果",
+      "错误状态文字说明"
+    ],
+    "image": "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=1200&q=85"
+  },
+  {
+    "id": "ds-039",
+    "name": "Playful Orbit",
+    "category": "教育产品",
+    "philosophy": "圆形图形、鲜明强调与轻动效",
+    "primary": "#6757E8",
+    "tokens": {
+      "color": {
+        "primary": "#6757E8",
+        "background": "#F8F9FC",
+        "surface": "#F7F7F8",
+        "text": "#171923",
+        "muted": "#707584",
+        "border": "#E6E8EF",
+        "success": "#14866D",
+        "warning": "#B7791F",
+        "danger": "#C23D4B"
+      },
+      "typography": {
+        "display": "Inter, system-ui, sans-serif",
+        "body": "Inter, system-ui, sans-serif",
+        "scale": [
+          12,
+          14,
+          16,
+          20,
+          24,
+          32,
+          40
+        ],
+        "lineHeight": 1.5
+      },
+      "spacing": [
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        32,
+        40,
+        48,
+        64
+      ],
+      "radius": [
+        6,
+        10,
+        14,
+        20,
+        28
+      ],
+      "shadow": [
+        "none",
+        "0 2px 8px #1018280A",
+        "0 12px 32px #10182812"
+      ]
+    },
+    "components": [
+      "Button",
+      "Input",
+      "Select",
+      "Dialog",
+      "Popover",
+      "Tabs",
+      "Badge",
+      "Card",
+      "Table",
+      "Toast",
+      "Tooltip",
+      "Dropdown",
+      "Avatar",
+      "Skeleton",
+      "EmptyState",
+      "Pagination"
+    ],
+    "accessibility": [
+      "WCAG AA 对比度检查",
+      "可见键盘焦点",
+      "表单字段标签",
+      "减少动态效果",
+      "错误状态文字说明"
+    ],
+    "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=85"
+  },
+  {
+    "id": "ds-040",
+    "name": "Cobalt Enterprise",
+    "category": "企业 SaaS",
+    "philosophy": "冷蓝强调、稳健表格与层级",
+    "primary": "#2256D8",
+    "tokens": {
+      "color": {
+        "primary": "#2256D8",
+        "background": "#FFFFFF",
+        "surface": "#F5F6FA",
+        "text": "#171923",
+        "muted": "#707584",
+        "border": "#E6E8EF",
+        "success": "#14866D",
+        "warning": "#B7791F",
+        "danger": "#C23D4B"
+      },
+      "typography": {
+        "display": "Inter, system-ui, sans-serif",
+        "body": "Inter, system-ui, sans-serif",
+        "scale": [
+          12,
+          14,
+          16,
+          20,
+          24,
+          32,
+          40
+        ],
+        "lineHeight": 1.5
+      },
+      "spacing": [
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        32,
+        40,
+        48,
+        64
+      ],
+      "radius": [
+        6,
+        10,
+        14,
+        20,
+        28
+      ],
+      "shadow": [
+        "none",
+        "0 2px 8px #1018280A",
+        "0 12px 32px #10182812"
+      ]
+    },
+    "components": [
+      "Button",
+      "Input",
+      "Select",
+      "Dialog",
+      "Popover",
+      "Tabs",
+      "Badge",
+      "Card",
+      "Table",
+      "Toast",
+      "Tooltip",
+      "Dropdown",
+      "Avatar",
+      "Skeleton",
+      "EmptyState",
+      "Pagination"
+    ],
+    "accessibility": [
+      "WCAG AA 对比度检查",
+      "可见键盘焦点",
+      "表单字段标签",
+      "减少动态效果",
+      "错误状态文字说明"
+    ],
+    "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=85"
+  },
+  {
+    "id": "ds-041",
+    "name": "Pastel Studio",
+    "category": "创意社区",
+    "philosophy": "柔和粉彩、轻边框和友好图标",
+    "primary": "#A78BFA",
+    "tokens": {
+      "color": {
+        "primary": "#A78BFA",
+        "background": "#FFFFFF",
+        "surface": "#F7F7F8",
+        "text": "#171923",
+        "muted": "#707584",
+        "border": "#E6E8EF",
+        "success": "#14866D",
+        "warning": "#B7791F",
+        "danger": "#C23D4B"
+      },
+      "typography": {
+        "display": "Inter, system-ui, sans-serif",
+        "body": "Inter, system-ui, sans-serif",
+        "scale": [
+          12,
+          14,
+          16,
+          20,
+          24,
+          32,
+          40
+        ],
+        "lineHeight": 1.5
+      },
+      "spacing": [
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        32,
+        40,
+        48,
+        64
+      ],
+      "radius": [
+        6,
+        10,
+        14,
+        20,
+        28
+      ],
+      "shadow": [
+        "none",
+        "0 2px 8px #1018280A",
+        "0 12px 32px #10182812"
+      ]
+    },
+    "components": [
+      "Button",
+      "Input",
+      "Select",
+      "Dialog",
+      "Popover",
+      "Tabs",
+      "Badge",
+      "Card",
+      "Table",
+      "Toast",
+      "Tooltip",
+      "Dropdown",
+      "Avatar",
+      "Skeleton",
+      "EmptyState",
+      "Pagination"
+    ],
+    "accessibility": [
+      "WCAG AA 对比度检查",
+      "可见键盘焦点",
+      "表单字段标签",
+      "减少动态效果",
+      "错误状态文字说明"
+    ],
+    "image": "https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=1200&q=85"
+  },
+  {
+    "id": "ds-042",
+    "name": "Dark Operator",
+    "category": "运维控制台",
+    "philosophy": "深色底、状态色和紧凑数据",
+    "primary": "#19B5A5",
+    "tokens": {
+      "color": {
+        "primary": "#19B5A5",
+        "background": "#F8F9FC",
+        "surface": "#F5F6FA",
+        "text": "#171923",
+        "muted": "#707584",
+        "border": "#E6E8EF",
+        "success": "#14866D",
+        "warning": "#B7791F",
+        "danger": "#C23D4B"
+      },
+      "typography": {
+        "display": "Inter, system-ui, sans-serif",
+        "body": "Inter, system-ui, sans-serif",
+        "scale": [
+          12,
+          14,
+          16,
+          20,
+          24,
+          32,
+          40
+        ],
+        "lineHeight": 1.5
+      },
+      "spacing": [
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        32,
+        40,
+        48,
+        64
+      ],
+      "radius": [
+        6,
+        10,
+        14,
+        20,
+        28
+      ],
+      "shadow": [
+        "none",
+        "0 2px 8px #1018280A",
+        "0 12px 32px #10182812"
+      ]
+    },
+    "components": [
+      "Button",
+      "Input",
+      "Select",
+      "Dialog",
+      "Popover",
+      "Tabs",
+      "Badge",
+      "Card",
+      "Table",
+      "Toast",
+      "Tooltip",
+      "Dropdown",
+      "Avatar",
+      "Skeleton",
+      "EmptyState",
+      "Pagination"
+    ],
+    "accessibility": [
+      "WCAG AA 对比度检查",
+      "可见键盘焦点",
+      "表单字段标签",
+      "减少动态效果",
+      "错误状态文字说明"
+    ],
+    "image": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=85"
+  },
+  {
+    "id": "ds-043",
+    "name": "Botanical",
+    "category": "健康生活",
+    "philosophy": "植物色、舒缓留白和圆角卡片",
+    "primary": "#497A5B",
+    "tokens": {
+      "color": {
+        "primary": "#497A5B",
+        "background": "#FFFFFF",
+        "surface": "#F7F7F8",
+        "text": "#171923",
+        "muted": "#707584",
+        "border": "#E6E8EF",
+        "success": "#14866D",
+        "warning": "#B7791F",
+        "danger": "#C23D4B"
+      },
+      "typography": {
+        "display": "Inter, system-ui, sans-serif",
+        "body": "Inter, system-ui, sans-serif",
+        "scale": [
+          12,
+          14,
+          16,
+          20,
+          24,
+          32,
+          40
+        ],
+        "lineHeight": 1.5
+      },
+      "spacing": [
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        32,
+        40,
+        48,
+        64
+      ],
+      "radius": [
+        6,
+        10,
+        14,
+        20,
+        28
+      ],
+      "shadow": [
+        "none",
+        "0 2px 8px #1018280A",
+        "0 12px 32px #10182812"
+      ]
+    },
+    "components": [
+      "Button",
+      "Input",
+      "Select",
+      "Dialog",
+      "Popover",
+      "Tabs",
+      "Badge",
+      "Card",
+      "Table",
+      "Toast",
+      "Tooltip",
+      "Dropdown",
+      "Avatar",
+      "Skeleton",
+      "EmptyState",
+      "Pagination"
+    ],
+    "accessibility": [
+      "WCAG AA 对比度检查",
+      "可见键盘焦点",
+      "表单字段标签",
+      "减少动态效果",
+      "错误状态文字说明"
+    ],
+    "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=85"
+  },
+  {
+    "id": "ds-044",
+    "name": "Vivid Commerce",
+    "category": "电商零售",
+    "philosophy": "高冲击商品图、价格层级与转化按钮",
+    "primary": "#F04E37",
+    "tokens": {
+      "color": {
+        "primary": "#F04E37",
+        "background": "#FFFFFF",
+        "surface": "#F5F6FA",
+        "text": "#171923",
+        "muted": "#707584",
+        "border": "#E6E8EF",
+        "success": "#14866D",
+        "warning": "#B7791F",
+        "danger": "#C23D4B"
+      },
+      "typography": {
+        "display": "Inter, system-ui, sans-serif",
+        "body": "Inter, system-ui, sans-serif",
+        "scale": [
+          12,
+          14,
+          16,
+          20,
+          24,
+          32,
+          40
+        ],
+        "lineHeight": 1.5
+      },
+      "spacing": [
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        32,
+        40,
+        48,
+        64
+      ],
+      "radius": [
+        6,
+        10,
+        14,
+        20,
+        28
+      ],
+      "shadow": [
+        "none",
+        "0 2px 8px #1018280A",
+        "0 12px 32px #10182812"
+      ]
+    },
+    "components": [
+      "Button",
+      "Input",
+      "Select",
+      "Dialog",
+      "Popover",
+      "Tabs",
+      "Badge",
+      "Card",
+      "Table",
+      "Toast",
+      "Tooltip",
+      "Dropdown",
+      "Avatar",
+      "Skeleton",
+      "EmptyState",
+      "Pagination"
+    ],
+    "accessibility": [
+      "WCAG AA 对比度检查",
+      "可见键盘焦点",
+      "表单字段标签",
+      "减少动态效果",
+      "错误状态文字说明"
+    ],
+    "image": "https://images.unsplash.com/photo-1523726491678-bf852e717f6a?auto=format&fit=crop&w=1200&q=85"
+  },
+  {
+    "id": "ds-045",
+    "name": "Cinematic",
+    "category": "媒体内容",
+    "philosophy": "大幅图像、暗色渐变与沉浸感",
+    "primary": "#171717",
+    "tokens": {
+      "color": {
+        "primary": "#171717",
+        "background": "#F8F9FC",
+        "surface": "#F7F7F8",
+        "text": "#171923",
+        "muted": "#707584",
+        "border": "#E6E8EF",
+        "success": "#14866D",
+        "warning": "#B7791F",
+        "danger": "#C23D4B"
+      },
+      "typography": {
+        "display": "Inter, system-ui, sans-serif",
+        "body": "Inter, system-ui, sans-serif",
+        "scale": [
+          12,
+          14,
+          16,
+          20,
+          24,
+          32,
+          40
+        ],
+        "lineHeight": 1.5
+      },
+      "spacing": [
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        32,
+        40,
+        48,
+        64
+      ],
+      "radius": [
+        6,
+        10,
+        14,
+        20,
+        28
+      ],
+      "shadow": [
+        "none",
+        "0 2px 8px #1018280A",
+        "0 12px 32px #10182812"
+      ]
+    },
+    "components": [
+      "Button",
+      "Input",
+      "Select",
+      "Dialog",
+      "Popover",
+      "Tabs",
+      "Badge",
+      "Card",
+      "Table",
+      "Toast",
+      "Tooltip",
+      "Dropdown",
+      "Avatar",
+      "Skeleton",
+      "EmptyState",
+      "Pagination"
+    ],
+    "accessibility": [
+      "WCAG AA 对比度检查",
+      "可见键盘焦点",
+      "表单字段标签",
+      "减少动态效果",
+      "错误状态文字说明"
+    ],
+    "image": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=85"
+  },
+  {
+    "id": "ds-046",
+    "name": "Accessible High Contrast",
+    "category": "无障碍产品",
+    "philosophy": "高对比、清晰焦点和可读字号",
+    "primary": "#0039A6",
+    "tokens": {
+      "color": {
+        "primary": "#0039A6",
+        "background": "#FFFFFF",
+        "surface": "#F5F6FA",
+        "text": "#171923",
+        "muted": "#707584",
+        "border": "#E6E8EF",
+        "success": "#14866D",
+        "warning": "#B7791F",
+        "danger": "#C23D4B"
+      },
+      "typography": {
+        "display": "Inter, system-ui, sans-serif",
+        "body": "Inter, system-ui, sans-serif",
+        "scale": [
+          12,
+          14,
+          16,
+          20,
+          24,
+          32,
+          40
+        ],
+        "lineHeight": 1.5
+      },
+      "spacing": [
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        32,
+        40,
+        48,
+        64
+      ],
+      "radius": [
+        6,
+        10,
+        14,
+        20,
+        28
+      ],
+      "shadow": [
+        "none",
+        "0 2px 8px #1018280A",
+        "0 12px 32px #10182812"
+      ]
+    },
+    "components": [
+      "Button",
+      "Input",
+      "Select",
+      "Dialog",
+      "Popover",
+      "Tabs",
+      "Badge",
+      "Card",
+      "Table",
+      "Toast",
+      "Tooltip",
+      "Dropdown",
+      "Avatar",
+      "Skeleton",
+      "EmptyState",
+      "Pagination"
+    ],
+    "accessibility": [
+      "WCAG AA 对比度检查",
+      "可见键盘焦点",
+      "表单字段标签",
+      "减少动态效果",
+      "错误状态文字说明"
+    ],
+    "image": "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1200&q=85"
+  },
+  {
+    "id": "ds-047",
+    "name": "Data Ink",
+    "category": "分析产品",
+    "philosophy": "墨色文本、网格图表与注释",
+    "primary": "#3559A8",
+    "tokens": {
+      "color": {
+        "primary": "#3559A8",
+        "background": "#FFFFFF",
+        "surface": "#F7F7F8",
+        "text": "#171923",
+        "muted": "#707584",
+        "border": "#E6E8EF",
+        "success": "#14866D",
+        "warning": "#B7791F",
+        "danger": "#C23D4B"
+      },
+      "typography": {
+        "display": "Inter, system-ui, sans-serif",
+        "body": "Inter, system-ui, sans-serif",
+        "scale": [
+          12,
+          14,
+          16,
+          20,
+          24,
+          32,
+          40
+        ],
+        "lineHeight": 1.5
+      },
+      "spacing": [
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        32,
+        40,
+        48,
+        64
+      ],
+      "radius": [
+        6,
+        10,
+        14,
+        20,
+        28
+      ],
+      "shadow": [
+        "none",
+        "0 2px 8px #1018280A",
+        "0 12px 32px #10182812"
+      ]
+    },
+    "components": [
+      "Button",
+      "Input",
+      "Select",
+      "Dialog",
+      "Popover",
+      "Tabs",
+      "Badge",
+      "Card",
+      "Table",
+      "Toast",
+      "Tooltip",
+      "Dropdown",
+      "Avatar",
+      "Skeleton",
+      "EmptyState",
+      "Pagination"
+    ],
+    "accessibility": [
+      "WCAG AA 对比度检查",
+      "可见键盘焦点",
+      "表单字段标签",
+      "减少动态效果",
+      "错误状态文字说明"
+    ],
+    "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=85"
+  },
+  {
+    "id": "ds-048",
+    "name": "Friendly Forms",
+    "category": "服务平台",
+    "philosophy": "清晰字段、柔和状态与可理解错误",
+    "primary": "#3478F6",
+    "tokens": {
+      "color": {
+        "primary": "#3478F6",
+        "background": "#F8F9FC",
+        "surface": "#F5F6FA",
+        "text": "#171923",
+        "muted": "#707584",
+        "border": "#E6E8EF",
+        "success": "#14866D",
+        "warning": "#B7791F",
+        "danger": "#C23D4B"
+      },
+      "typography": {
+        "display": "Inter, system-ui, sans-serif",
+        "body": "Inter, system-ui, sans-serif",
+        "scale": [
+          12,
+          14,
+          16,
+          20,
+          24,
+          32,
+          40
+        ],
+        "lineHeight": 1.5
+      },
+      "spacing": [
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        32,
+        40,
+        48,
+        64
+      ],
+      "radius": [
+        6,
+        10,
+        14,
+        20,
+        28
+      ],
+      "shadow": [
+        "none",
+        "0 2px 8px #1018280A",
+        "0 12px 32px #10182812"
+      ]
+    },
+    "components": [
+      "Button",
+      "Input",
+      "Select",
+      "Dialog",
+      "Popover",
+      "Tabs",
+      "Badge",
+      "Card",
+      "Table",
+      "Toast",
+      "Tooltip",
+      "Dropdown",
+      "Avatar",
+      "Skeleton",
+      "EmptyState",
+      "Pagination"
+    ],
+    "accessibility": [
+      "WCAG AA 对比度检查",
+      "可见键盘焦点",
+      "表单字段标签",
+      "减少动态效果",
+      "错误状态文字说明"
+    ],
+    "image": "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85"
+  },
+  {
+    "id": "ds-049",
+    "name": "Premium Finance",
+    "category": "金融服务",
+    "philosophy": "深海军蓝、精细数字与信任线索",
+    "primary": "#1E3557",
+    "tokens": {
+      "color": {
+        "primary": "#1E3557",
+        "background": "#FFFFFF",
+        "surface": "#F7F7F8",
+        "text": "#171923",
+        "muted": "#707584",
+        "border": "#E6E8EF",
+        "success": "#14866D",
+        "warning": "#B7791F",
+        "danger": "#C23D4B"
+      },
+      "typography": {
+        "display": "Inter, system-ui, sans-serif",
+        "body": "Inter, system-ui, sans-serif",
+        "scale": [
+          12,
+          14,
+          16,
+          20,
+          24,
+          32,
+          40
+        ],
+        "lineHeight": 1.5
+      },
+      "spacing": [
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        32,
+        40,
+        48,
+        64
+      ],
+      "radius": [
+        6,
+        10,
+        14,
+        20,
+        28
+      ],
+      "shadow": [
+        "none",
+        "0 2px 8px #1018280A",
+        "0 12px 32px #10182812"
+      ]
+    },
+    "components": [
+      "Button",
+      "Input",
+      "Select",
+      "Dialog",
+      "Popover",
+      "Tabs",
+      "Badge",
+      "Card",
+      "Table",
+      "Toast",
+      "Tooltip",
+      "Dropdown",
+      "Avatar",
+      "Skeleton",
+      "EmptyState",
+      "Pagination"
+    ],
+    "accessibility": [
+      "WCAG AA 对比度检查",
+      "可见键盘焦点",
+      "表单字段标签",
+      "减少动态效果",
+      "错误状态文字说明"
+    ],
+    "image": "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1200&q=85"
+  },
+  {
+    "id": "ds-050",
+    "name": "Motion First",
+    "category": "创意产品",
+    "philosophy": "动效节奏、分层转场与状态反馈",
+    "primary": "#6A45D7",
+    "tokens": {
+      "color": {
+        "primary": "#6A45D7",
+        "background": "#FFFFFF",
+        "surface": "#F5F6FA",
+        "text": "#171923",
+        "muted": "#707584",
+        "border": "#E6E8EF",
+        "success": "#14866D",
+        "warning": "#B7791F",
+        "danger": "#C23D4B"
+      },
+      "typography": {
+        "display": "Inter, system-ui, sans-serif",
+        "body": "Inter, system-ui, sans-serif",
+        "scale": [
+          12,
+          14,
+          16,
+          20,
+          24,
+          32,
+          40
+        ],
+        "lineHeight": 1.5
+      },
+      "spacing": [
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        32,
+        40,
+        48,
+        64
+      ],
+      "radius": [
+        6,
+        10,
+        14,
+        20,
+        28
+      ],
+      "shadow": [
+        "none",
+        "0 2px 8px #1018280A",
+        "0 12px 32px #10182812"
+      ]
+    },
+    "components": [
+      "Button",
+      "Input",
+      "Select",
+      "Dialog",
+      "Popover",
+      "Tabs",
+      "Badge",
+      "Card",
+      "Table",
+      "Toast",
+      "Tooltip",
+      "Dropdown",
+      "Avatar",
+      "Skeleton",
+      "EmptyState",
+      "Pagination"
+    ],
+    "accessibility": [
+      "WCAG AA 对比度检查",
+      "可见键盘焦点",
+      "表单字段标签",
+      "减少动态效果",
+      "错误状态文字说明"
+    ],
+    "image": "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=1200&q=85"
+  },
+  {
+    "id": "ds-051",
+    "name": "Bento Studio",
+    "category": "产品官网",
+    "philosophy": "模块化 Bento 网格与图文组合",
+    "primary": "#635BFF",
+    "tokens": {
+      "color": {
+        "primary": "#635BFF",
+        "background": "#F8F9FC",
+        "surface": "#F7F7F8",
+        "text": "#171923",
+        "muted": "#707584",
+        "border": "#E6E8EF",
+        "success": "#14866D",
+        "warning": "#B7791F",
+        "danger": "#C23D4B"
+      },
+      "typography": {
+        "display": "Inter, system-ui, sans-serif",
+        "body": "Inter, system-ui, sans-serif",
+        "scale": [
+          12,
+          14,
+          16,
+          20,
+          24,
+          32,
+          40
+        ],
+        "lineHeight": 1.5
+      },
+      "spacing": [
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        32,
+        40,
+        48,
+        64
+      ],
+      "radius": [
+        6,
+        10,
+        14,
+        20,
+        28
+      ],
+      "shadow": [
+        "none",
+        "0 2px 8px #1018280A",
+        "0 12px 32px #10182812"
+      ]
+    },
+    "components": [
+      "Button",
+      "Input",
+      "Select",
+      "Dialog",
+      "Popover",
+      "Tabs",
+      "Badge",
+      "Card",
+      "Table",
+      "Toast",
+      "Tooltip",
+      "Dropdown",
+      "Avatar",
+      "Skeleton",
+      "EmptyState",
+      "Pagination"
+    ],
+    "accessibility": [
+      "WCAG AA 对比度检查",
+      "可见键盘焦点",
+      "表单字段标签",
+      "减少动态效果",
+      "错误状态文字说明"
+    ],
+    "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=85"
+  },
+  {
+    "id": "ds-052",
+    "name": "Craft Paper",
+    "category": "文档工具",
+    "philosophy": "纸感背景、细线和编辑式排版",
+    "primary": "#8C6A4F",
+    "tokens": {
+      "color": {
+        "primary": "#8C6A4F",
+        "background": "#FFFFFF",
+        "surface": "#F5F6FA",
+        "text": "#171923",
+        "muted": "#707584",
+        "border": "#E6E8EF",
+        "success": "#14866D",
+        "warning": "#B7791F",
+        "danger": "#C23D4B"
+      },
+      "typography": {
+        "display": "Inter, system-ui, sans-serif",
+        "body": "Inter, system-ui, sans-serif",
+        "scale": [
+          12,
+          14,
+          16,
+          20,
+          24,
+          32,
+          40
+        ],
+        "lineHeight": 1.5
+      },
+      "spacing": [
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        32,
+        40,
+        48,
+        64
+      ],
+      "radius": [
+        6,
+        10,
+        14,
+        20,
+        28
+      ],
+      "shadow": [
+        "none",
+        "0 2px 8px #1018280A",
+        "0 12px 32px #10182812"
+      ]
+    },
+    "components": [
+      "Button",
+      "Input",
+      "Select",
+      "Dialog",
+      "Popover",
+      "Tabs",
+      "Badge",
+      "Card",
+      "Table",
+      "Toast",
+      "Tooltip",
+      "Dropdown",
+      "Avatar",
+      "Skeleton",
+      "EmptyState",
+      "Pagination"
+    ],
+    "accessibility": [
+      "WCAG AA 对比度检查",
+      "可见键盘焦点",
+      "表单字段标签",
+      "减少动态效果",
+      "错误状态文字说明"
+    ],
+    "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=85"
+  },
+  {
+    "id": "ds-053",
+    "name": "Signal Orange",
+    "category": "效率工具",
+    "philosophy": "中性界面与橙色动作强调",
+    "primary": "#EF6B32",
+    "tokens": {
+      "color": {
+        "primary": "#EF6B32",
+        "background": "#FFFFFF",
+        "surface": "#F7F7F8",
+        "text": "#171923",
+        "muted": "#707584",
+        "border": "#E6E8EF",
+        "success": "#14866D",
+        "warning": "#B7791F",
+        "danger": "#C23D4B"
+      },
+      "typography": {
+        "display": "Inter, system-ui, sans-serif",
+        "body": "Inter, system-ui, sans-serif",
+        "scale": [
+          12,
+          14,
+          16,
+          20,
+          24,
+          32,
+          40
+        ],
+        "lineHeight": 1.5
+      },
+      "spacing": [
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        32,
+        40,
+        48,
+        64
+      ],
+      "radius": [
+        6,
+        10,
+        14,
+        20,
+        28
+      ],
+      "shadow": [
+        "none",
+        "0 2px 8px #1018280A",
+        "0 12px 32px #10182812"
+      ]
+    },
+    "components": [
+      "Button",
+      "Input",
+      "Select",
+      "Dialog",
+      "Popover",
+      "Tabs",
+      "Badge",
+      "Card",
+      "Table",
+      "Toast",
+      "Tooltip",
+      "Dropdown",
+      "Avatar",
+      "Skeleton",
+      "EmptyState",
+      "Pagination"
+    ],
+    "accessibility": [
+      "WCAG AA 对比度检查",
+      "可见键盘焦点",
+      "表单字段标签",
+      "减少动态效果",
+      "错误状态文字说明"
+    ],
+    "image": "https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=1200&q=85"
+  },
+  {
+    "id": "ds-054",
+    "name": "Oceanic",
+    "category": "数据平台",
+    "philosophy": "蓝绿层次、图表和清楚的状态色",
+    "primary": "#137C8B",
+    "tokens": {
+      "color": {
+        "primary": "#137C8B",
+        "background": "#F8F9FC",
+        "surface": "#F5F6FA",
+        "text": "#171923",
+        "muted": "#707584",
+        "border": "#E6E8EF",
+        "success": "#14866D",
+        "warning": "#B7791F",
+        "danger": "#C23D4B"
+      },
+      "typography": {
+        "display": "Inter, system-ui, sans-serif",
+        "body": "Inter, system-ui, sans-serif",
+        "scale": [
+          12,
+          14,
+          16,
+          20,
+          24,
+          32,
+          40
+        ],
+        "lineHeight": 1.5
+      },
+      "spacing": [
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        32,
+        40,
+        48,
+        64
+      ],
+      "radius": [
+        6,
+        10,
+        14,
+        20,
+        28
+      ],
+      "shadow": [
+        "none",
+        "0 2px 8px #1018280A",
+        "0 12px 32px #10182812"
+      ]
+    },
+    "components": [
+      "Button",
+      "Input",
+      "Select",
+      "Dialog",
+      "Popover",
+      "Tabs",
+      "Badge",
+      "Card",
+      "Table",
+      "Toast",
+      "Tooltip",
+      "Dropdown",
+      "Avatar",
+      "Skeleton",
+      "EmptyState",
+      "Pagination"
+    ],
+    "accessibility": [
+      "WCAG AA 对比度检查",
+      "可见键盘焦点",
+      "表单字段标签",
+      "减少动态效果",
+      "错误状态文字说明"
+    ],
+    "image": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=85"
+  },
+  {
+    "id": "ds-055",
+    "name": "Aurora",
+    "category": "AI 产品",
+    "philosophy": "深色渐变、光晕与克制强调",
+    "primary": "#7658E8",
+    "tokens": {
+      "color": {
+        "primary": "#7658E8",
+        "background": "#FFFFFF",
+        "surface": "#F7F7F8",
+        "text": "#171923",
+        "muted": "#707584",
+        "border": "#E6E8EF",
+        "success": "#14866D",
+        "warning": "#B7791F",
+        "danger": "#C23D4B"
+      },
+      "typography": {
+        "display": "Inter, system-ui, sans-serif",
+        "body": "Inter, system-ui, sans-serif",
+        "scale": [
+          12,
+          14,
+          16,
+          20,
+          24,
+          32,
+          40
+        ],
+        "lineHeight": 1.5
+      },
+      "spacing": [
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        32,
+        40,
+        48,
+        64
+      ],
+      "radius": [
+        6,
+        10,
+        14,
+        20,
+        28
+      ],
+      "shadow": [
+        "none",
+        "0 2px 8px #1018280A",
+        "0 12px 32px #10182812"
+      ]
+    },
+    "components": [
+      "Button",
+      "Input",
+      "Select",
+      "Dialog",
+      "Popover",
+      "Tabs",
+      "Badge",
+      "Card",
+      "Table",
+      "Toast",
+      "Tooltip",
+      "Dropdown",
+      "Avatar",
+      "Skeleton",
+      "EmptyState",
+      "Pagination"
+    ],
+    "accessibility": [
+      "WCAG AA 对比度检查",
+      "可见键盘焦点",
+      "表单字段标签",
+      "减少动态效果",
+      "错误状态文字说明"
+    ],
+    "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=85"
+  },
+  {
+    "id": "ds-056",
+    "name": "Monochrome Editorial",
+    "category": "内容平台",
+    "philosophy": "黑白摄影、网格与标题层级",
+    "primary": "#202020",
+    "tokens": {
+      "color": {
+        "primary": "#202020",
+        "background": "#FFFFFF",
+        "surface": "#F5F6FA",
+        "text": "#171923",
+        "muted": "#707584",
+        "border": "#E6E8EF",
+        "success": "#14866D",
+        "warning": "#B7791F",
+        "danger": "#C23D4B"
+      },
+      "typography": {
+        "display": "Inter, system-ui, sans-serif",
+        "body": "Inter, system-ui, sans-serif",
+        "scale": [
+          12,
+          14,
+          16,
+          20,
+          24,
+          32,
+          40
+        ],
+        "lineHeight": 1.5
+      },
+      "spacing": [
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        32,
+        40,
+        48,
+        64
+      ],
+      "radius": [
+        6,
+        10,
+        14,
+        20,
+        28
+      ],
+      "shadow": [
+        "none",
+        "0 2px 8px #1018280A",
+        "0 12px 32px #10182812"
+      ]
+    },
+    "components": [
+      "Button",
+      "Input",
+      "Select",
+      "Dialog",
+      "Popover",
+      "Tabs",
+      "Badge",
+      "Card",
+      "Table",
+      "Toast",
+      "Tooltip",
+      "Dropdown",
+      "Avatar",
+      "Skeleton",
+      "EmptyState",
+      "Pagination"
+    ],
+    "accessibility": [
+      "WCAG AA 对比度检查",
+      "可见键盘焦点",
+      "表单字段标签",
+      "减少动态效果",
+      "错误状态文字说明"
+    ],
+    "image": "https://images.unsplash.com/photo-1523726491678-bf852e717f6a?auto=format&fit=crop&w=1200&q=85"
+  },
+  {
+    "id": "ds-057",
+    "name": "Retro Future",
+    "category": "创意科技",
+    "philosophy": "复古科技色、像素细节和大胆标题",
+    "primary": "#F15BB5",
+    "tokens": {
+      "color": {
+        "primary": "#F15BB5",
+        "background": "#F8F9FC",
+        "surface": "#F7F7F8",
+        "text": "#171923",
+        "muted": "#707584",
+        "border": "#E6E8EF",
+        "success": "#14866D",
+        "warning": "#B7791F",
+        "danger": "#C23D4B"
+      },
+      "typography": {
+        "display": "Inter, system-ui, sans-serif",
+        "body": "Inter, system-ui, sans-serif",
+        "scale": [
+          12,
+          14,
+          16,
+          20,
+          24,
+          32,
+          40
+        ],
+        "lineHeight": 1.5
+      },
+      "spacing": [
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        32,
+        40,
+        48,
+        64
+      ],
+      "radius": [
+        6,
+        10,
+        14,
+        20,
+        28
+      ],
+      "shadow": [
+        "none",
+        "0 2px 8px #1018280A",
+        "0 12px 32px #10182812"
+      ]
+    },
+    "components": [
+      "Button",
+      "Input",
+      "Select",
+      "Dialog",
+      "Popover",
+      "Tabs",
+      "Badge",
+      "Card",
+      "Table",
+      "Toast",
+      "Tooltip",
+      "Dropdown",
+      "Avatar",
+      "Skeleton",
+      "EmptyState",
+      "Pagination"
+    ],
+    "accessibility": [
+      "WCAG AA 对比度检查",
+      "可见键盘焦点",
+      "表单字段标签",
+      "减少动态效果",
+      "错误状态文字说明"
+    ],
+    "image": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=85"
   }
 ]

@@ -7678,5 +7678,3845 @@
         ]
       }
     ]
+  },
+  {
+    "id": "tpl-031",
+    "name": "企业 HR 门户",
+    "category": "productivity",
+    "description": "员工档案、入职任务、假期申请和审批工作流",
+    "cover": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=85",
+    "tags": [
+      "响应式",
+      "可交互",
+      "商业模板",
+      "设计资产"
+    ],
+    "screenCount": 24,
+    "screens": [
+      {
+        "id": "31-1",
+        "name": "总览",
+        "kind": "dashboard",
+        "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "点击导航切换页面",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "31-2",
+        "name": "登录",
+        "kind": "login",
+        "image": "https://images.unsplash.com/photo-1523726491678-bf852e717f6a?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "搜索与即时筛选",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "31-3",
+        "name": "注册",
+        "kind": "signup",
+        "image": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "表单校验与提交",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "31-4",
+        "name": "引导设置",
+        "kind": "onboarding",
+        "image": "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "弹窗确认/取消",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "31-5",
+        "name": "列表浏览",
+        "kind": "listing",
+        "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "收藏与撤销",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "31-6",
+        "name": "详情页",
+        "kind": "detail",
+        "image": "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "排序与分页",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "31-7",
+        "name": "搜索结果",
+        "kind": "search",
+        "image": "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "加载/空/错误状态",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "31-8",
+        "name": "筛选面板",
+        "kind": "filter",
+        "image": "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "响应式菜单",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "31-9",
+        "name": "创建表单",
+        "kind": "create",
+        "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "点击导航切换页面",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "31-10",
+        "name": "编辑表单",
+        "kind": "edit",
+        "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "搜索与即时筛选",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "31-11",
+        "name": "确认弹窗",
+        "kind": "confirm",
+        "image": "https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "表单校验与提交",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "31-12",
+        "name": "空状态",
+        "kind": "empty",
+        "image": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "弹窗确认/取消",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "31-13",
+        "name": "加载状态",
+        "kind": "loading",
+        "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "收藏与撤销",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "31-14",
+        "name": "错误反馈",
+        "kind": "error",
+        "image": "https://images.unsplash.com/photo-1523726491678-bf852e717f6a?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "排序与分页",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "31-15",
+        "name": "成功反馈",
+        "kind": "success",
+        "image": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "加载/空/错误状态",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "31-16",
+        "name": "通知中心",
+        "kind": "notifications",
+        "image": "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "响应式菜单",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "31-17",
+        "name": "个人资料",
+        "kind": "profile",
+        "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "点击导航切换页面",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "31-18",
+        "name": "团队成员",
+        "kind": "team",
+        "image": "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "搜索与即时筛选",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "31-19",
+        "name": "设置中心",
+        "kind": "settings",
+        "image": "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "表单校验与提交",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "31-20",
+        "name": "权限管理",
+        "kind": "permissions",
+        "image": "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "弹窗确认/取消",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "31-21",
+        "name": "账单与套餐",
+        "kind": "billing",
+        "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "收藏与撤销",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "31-22",
+        "name": "帮助中心",
+        "kind": "help",
+        "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "排序与分页",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "31-23",
+        "name": "移动端布局",
+        "kind": "mobile",
+        "image": "https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "加载/空/错误状态",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "31-24",
+        "name": "无障碍状态",
+        "kind": "accessibility",
+        "image": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "响应式菜单",
+          "键盘可操作"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "tpl-032",
+    "name": "供应商采购平台",
+    "category": "commerce",
+    "description": "供应商目录、采购申请、报价对比和审批",
+    "cover": "https://images.unsplash.com/photo-1523726491678-bf852e717f6a?auto=format&fit=crop&w=1200&q=85",
+    "tags": [
+      "响应式",
+      "可交互",
+      "商业模板",
+      "设计资产"
+    ],
+    "screenCount": 24,
+    "screens": [
+      {
+        "id": "32-1",
+        "name": "总览",
+        "kind": "dashboard",
+        "image": "https://images.unsplash.com/photo-1523726491678-bf852e717f6a?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "点击导航切换页面",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "32-2",
+        "name": "登录",
+        "kind": "login",
+        "image": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "搜索与即时筛选",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "32-3",
+        "name": "注册",
+        "kind": "signup",
+        "image": "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "表单校验与提交",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "32-4",
+        "name": "引导设置",
+        "kind": "onboarding",
+        "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "弹窗确认/取消",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "32-5",
+        "name": "列表浏览",
+        "kind": "listing",
+        "image": "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "收藏与撤销",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "32-6",
+        "name": "详情页",
+        "kind": "detail",
+        "image": "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "排序与分页",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "32-7",
+        "name": "搜索结果",
+        "kind": "search",
+        "image": "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "加载/空/错误状态",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "32-8",
+        "name": "筛选面板",
+        "kind": "filter",
+        "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "响应式菜单",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "32-9",
+        "name": "创建表单",
+        "kind": "create",
+        "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "点击导航切换页面",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "32-10",
+        "name": "编辑表单",
+        "kind": "edit",
+        "image": "https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "搜索与即时筛选",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "32-11",
+        "name": "确认弹窗",
+        "kind": "confirm",
+        "image": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "表单校验与提交",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "32-12",
+        "name": "空状态",
+        "kind": "empty",
+        "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "弹窗确认/取消",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "32-13",
+        "name": "加载状态",
+        "kind": "loading",
+        "image": "https://images.unsplash.com/photo-1523726491678-bf852e717f6a?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "收藏与撤销",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "32-14",
+        "name": "错误反馈",
+        "kind": "error",
+        "image": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "排序与分页",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "32-15",
+        "name": "成功反馈",
+        "kind": "success",
+        "image": "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "加载/空/错误状态",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "32-16",
+        "name": "通知中心",
+        "kind": "notifications",
+        "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "响应式菜单",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "32-17",
+        "name": "个人资料",
+        "kind": "profile",
+        "image": "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "点击导航切换页面",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "32-18",
+        "name": "团队成员",
+        "kind": "team",
+        "image": "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "搜索与即时筛选",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "32-19",
+        "name": "设置中心",
+        "kind": "settings",
+        "image": "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "表单校验与提交",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "32-20",
+        "name": "权限管理",
+        "kind": "permissions",
+        "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "弹窗确认/取消",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "32-21",
+        "name": "账单与套餐",
+        "kind": "billing",
+        "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "收藏与撤销",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "32-22",
+        "name": "帮助中心",
+        "kind": "help",
+        "image": "https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "排序与分页",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "32-23",
+        "name": "移动端布局",
+        "kind": "mobile",
+        "image": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "加载/空/错误状态",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "32-24",
+        "name": "无障碍状态",
+        "kind": "accessibility",
+        "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "响应式菜单",
+          "键盘可操作"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "tpl-033",
+    "name": "保险服务门户",
+    "category": "finance",
+    "description": "保单概览、理赔流程、文件上传和进度追踪",
+    "cover": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=85",
+    "tags": [
+      "响应式",
+      "可交互",
+      "商业模板",
+      "设计资产"
+    ],
+    "screenCount": 24,
+    "screens": [
+      {
+        "id": "33-1",
+        "name": "总览",
+        "kind": "dashboard",
+        "image": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "点击导航切换页面",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "33-2",
+        "name": "登录",
+        "kind": "login",
+        "image": "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "搜索与即时筛选",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "33-3",
+        "name": "注册",
+        "kind": "signup",
+        "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "表单校验与提交",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "33-4",
+        "name": "引导设置",
+        "kind": "onboarding",
+        "image": "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "弹窗确认/取消",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "33-5",
+        "name": "列表浏览",
+        "kind": "listing",
+        "image": "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "收藏与撤销",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "33-6",
+        "name": "详情页",
+        "kind": "detail",
+        "image": "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "排序与分页",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "33-7",
+        "name": "搜索结果",
+        "kind": "search",
+        "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "加载/空/错误状态",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "33-8",
+        "name": "筛选面板",
+        "kind": "filter",
+        "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "响应式菜单",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "33-9",
+        "name": "创建表单",
+        "kind": "create",
+        "image": "https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "点击导航切换页面",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "33-10",
+        "name": "编辑表单",
+        "kind": "edit",
+        "image": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "搜索与即时筛选",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "33-11",
+        "name": "确认弹窗",
+        "kind": "confirm",
+        "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "表单校验与提交",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "33-12",
+        "name": "空状态",
+        "kind": "empty",
+        "image": "https://images.unsplash.com/photo-1523726491678-bf852e717f6a?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "弹窗确认/取消",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "33-13",
+        "name": "加载状态",
+        "kind": "loading",
+        "image": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "收藏与撤销",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "33-14",
+        "name": "错误反馈",
+        "kind": "error",
+        "image": "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "排序与分页",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "33-15",
+        "name": "成功反馈",
+        "kind": "success",
+        "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "加载/空/错误状态",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "33-16",
+        "name": "通知中心",
+        "kind": "notifications",
+        "image": "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "响应式菜单",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "33-17",
+        "name": "个人资料",
+        "kind": "profile",
+        "image": "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "点击导航切换页面",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "33-18",
+        "name": "团队成员",
+        "kind": "team",
+        "image": "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "搜索与即时筛选",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "33-19",
+        "name": "设置中心",
+        "kind": "settings",
+        "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "表单校验与提交",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "33-20",
+        "name": "权限管理",
+        "kind": "permissions",
+        "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "弹窗确认/取消",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "33-21",
+        "name": "账单与套餐",
+        "kind": "billing",
+        "image": "https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "收藏与撤销",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "33-22",
+        "name": "帮助中心",
+        "kind": "help",
+        "image": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "排序与分页",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "33-23",
+        "name": "移动端布局",
+        "kind": "mobile",
+        "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "加载/空/错误状态",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "33-24",
+        "name": "无障碍状态",
+        "kind": "accessibility",
+        "image": "https://images.unsplash.com/photo-1523726491678-bf852e717f6a?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "响应式菜单",
+          "键盘可操作"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "tpl-034",
+    "name": "非营利组织官网",
+    "category": "marketing",
+    "description": "使命展示、项目影响、捐赠与志愿者报名",
+    "cover": "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1200&q=85",
+    "tags": [
+      "响应式",
+      "可交互",
+      "商业模板",
+      "设计资产"
+    ],
+    "screenCount": 24,
+    "screens": [
+      {
+        "id": "34-1",
+        "name": "总览",
+        "kind": "dashboard",
+        "image": "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "点击导航切换页面",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "34-2",
+        "name": "登录",
+        "kind": "login",
+        "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "搜索与即时筛选",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "34-3",
+        "name": "注册",
+        "kind": "signup",
+        "image": "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "表单校验与提交",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "34-4",
+        "name": "引导设置",
+        "kind": "onboarding",
+        "image": "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "弹窗确认/取消",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "34-5",
+        "name": "列表浏览",
+        "kind": "listing",
+        "image": "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "收藏与撤销",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "34-6",
+        "name": "详情页",
+        "kind": "detail",
+        "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "排序与分页",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "34-7",
+        "name": "搜索结果",
+        "kind": "search",
+        "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "加载/空/错误状态",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "34-8",
+        "name": "筛选面板",
+        "kind": "filter",
+        "image": "https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "响应式菜单",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "34-9",
+        "name": "创建表单",
+        "kind": "create",
+        "image": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "点击导航切换页面",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "34-10",
+        "name": "编辑表单",
+        "kind": "edit",
+        "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "搜索与即时筛选",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "34-11",
+        "name": "确认弹窗",
+        "kind": "confirm",
+        "image": "https://images.unsplash.com/photo-1523726491678-bf852e717f6a?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "表单校验与提交",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "34-12",
+        "name": "空状态",
+        "kind": "empty",
+        "image": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "弹窗确认/取消",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "34-13",
+        "name": "加载状态",
+        "kind": "loading",
+        "image": "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "收藏与撤销",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "34-14",
+        "name": "错误反馈",
+        "kind": "error",
+        "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "排序与分页",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "34-15",
+        "name": "成功反馈",
+        "kind": "success",
+        "image": "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "加载/空/错误状态",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "34-16",
+        "name": "通知中心",
+        "kind": "notifications",
+        "image": "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "响应式菜单",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "34-17",
+        "name": "个人资料",
+        "kind": "profile",
+        "image": "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "点击导航切换页面",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "34-18",
+        "name": "团队成员",
+        "kind": "team",
+        "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "搜索与即时筛选",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "34-19",
+        "name": "设置中心",
+        "kind": "settings",
+        "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "表单校验与提交",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "34-20",
+        "name": "权限管理",
+        "kind": "permissions",
+        "image": "https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "弹窗确认/取消",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "34-21",
+        "name": "账单与套餐",
+        "kind": "billing",
+        "image": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "收藏与撤销",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "34-22",
+        "name": "帮助中心",
+        "kind": "help",
+        "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "排序与分页",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "34-23",
+        "name": "移动端布局",
+        "kind": "mobile",
+        "image": "https://images.unsplash.com/photo-1523726491678-bf852e717f6a?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "加载/空/错误状态",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "34-24",
+        "name": "无障碍状态",
+        "kind": "accessibility",
+        "image": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "响应式菜单",
+          "键盘可操作"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "tpl-035",
+    "name": "活动运营后台",
+    "category": "dashboard",
+    "description": "报名数据、场次管理、参与者列表与通知",
+    "cover": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=85",
+    "tags": [
+      "响应式",
+      "可交互",
+      "商业模板",
+      "设计资产"
+    ],
+    "screenCount": 24,
+    "screens": [
+      {
+        "id": "35-1",
+        "name": "总览",
+        "kind": "dashboard",
+        "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "点击导航切换页面",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "35-2",
+        "name": "登录",
+        "kind": "login",
+        "image": "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "搜索与即时筛选",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "35-3",
+        "name": "注册",
+        "kind": "signup",
+        "image": "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "表单校验与提交",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "35-4",
+        "name": "引导设置",
+        "kind": "onboarding",
+        "image": "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "弹窗确认/取消",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "35-5",
+        "name": "列表浏览",
+        "kind": "listing",
+        "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "收藏与撤销",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "35-6",
+        "name": "详情页",
+        "kind": "detail",
+        "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "排序与分页",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "35-7",
+        "name": "搜索结果",
+        "kind": "search",
+        "image": "https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "加载/空/错误状态",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "35-8",
+        "name": "筛选面板",
+        "kind": "filter",
+        "image": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "响应式菜单",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "35-9",
+        "name": "创建表单",
+        "kind": "create",
+        "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "点击导航切换页面",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "35-10",
+        "name": "编辑表单",
+        "kind": "edit",
+        "image": "https://images.unsplash.com/photo-1523726491678-bf852e717f6a?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "搜索与即时筛选",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "35-11",
+        "name": "确认弹窗",
+        "kind": "confirm",
+        "image": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "表单校验与提交",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "35-12",
+        "name": "空状态",
+        "kind": "empty",
+        "image": "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "弹窗确认/取消",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "35-13",
+        "name": "加载状态",
+        "kind": "loading",
+        "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "收藏与撤销",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "35-14",
+        "name": "错误反馈",
+        "kind": "error",
+        "image": "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "排序与分页",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "35-15",
+        "name": "成功反馈",
+        "kind": "success",
+        "image": "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "加载/空/错误状态",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "35-16",
+        "name": "通知中心",
+        "kind": "notifications",
+        "image": "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "响应式菜单",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "35-17",
+        "name": "个人资料",
+        "kind": "profile",
+        "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "点击导航切换页面",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "35-18",
+        "name": "团队成员",
+        "kind": "team",
+        "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "搜索与即时筛选",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "35-19",
+        "name": "设置中心",
+        "kind": "settings",
+        "image": "https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "表单校验与提交",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "35-20",
+        "name": "权限管理",
+        "kind": "permissions",
+        "image": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "弹窗确认/取消",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "35-21",
+        "name": "账单与套餐",
+        "kind": "billing",
+        "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "收藏与撤销",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "35-22",
+        "name": "帮助中心",
+        "kind": "help",
+        "image": "https://images.unsplash.com/photo-1523726491678-bf852e717f6a?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "排序与分页",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "35-23",
+        "name": "移动端布局",
+        "kind": "mobile",
+        "image": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "加载/空/错误状态",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "35-24",
+        "name": "无障碍状态",
+        "kind": "accessibility",
+        "image": "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "响应式菜单",
+          "键盘可操作"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "tpl-036",
+    "name": "智能家居控制台",
+    "category": "dashboard",
+    "description": "房间设备、自动化规则、能耗与访问权限",
+    "cover": "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85",
+    "tags": [
+      "响应式",
+      "可交互",
+      "商业模板",
+      "设计资产"
+    ],
+    "screenCount": 24,
+    "screens": [
+      {
+        "id": "36-1",
+        "name": "总览",
+        "kind": "dashboard",
+        "image": "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "点击导航切换页面",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "36-2",
+        "name": "登录",
+        "kind": "login",
+        "image": "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "搜索与即时筛选",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "36-3",
+        "name": "注册",
+        "kind": "signup",
+        "image": "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "表单校验与提交",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "36-4",
+        "name": "引导设置",
+        "kind": "onboarding",
+        "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "弹窗确认/取消",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "36-5",
+        "name": "列表浏览",
+        "kind": "listing",
+        "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "收藏与撤销",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "36-6",
+        "name": "详情页",
+        "kind": "detail",
+        "image": "https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "排序与分页",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "36-7",
+        "name": "搜索结果",
+        "kind": "search",
+        "image": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "加载/空/错误状态",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "36-8",
+        "name": "筛选面板",
+        "kind": "filter",
+        "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "响应式菜单",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "36-9",
+        "name": "创建表单",
+        "kind": "create",
+        "image": "https://images.unsplash.com/photo-1523726491678-bf852e717f6a?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "点击导航切换页面",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "36-10",
+        "name": "编辑表单",
+        "kind": "edit",
+        "image": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "搜索与即时筛选",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "36-11",
+        "name": "确认弹窗",
+        "kind": "confirm",
+        "image": "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "表单校验与提交",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "36-12",
+        "name": "空状态",
+        "kind": "empty",
+        "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "弹窗确认/取消",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "36-13",
+        "name": "加载状态",
+        "kind": "loading",
+        "image": "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "收藏与撤销",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "36-14",
+        "name": "错误反馈",
+        "kind": "error",
+        "image": "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "排序与分页",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "36-15",
+        "name": "成功反馈",
+        "kind": "success",
+        "image": "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "加载/空/错误状态",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "36-16",
+        "name": "通知中心",
+        "kind": "notifications",
+        "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "响应式菜单",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "36-17",
+        "name": "个人资料",
+        "kind": "profile",
+        "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "点击导航切换页面",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "36-18",
+        "name": "团队成员",
+        "kind": "team",
+        "image": "https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "搜索与即时筛选",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "36-19",
+        "name": "设置中心",
+        "kind": "settings",
+        "image": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "表单校验与提交",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "36-20",
+        "name": "权限管理",
+        "kind": "permissions",
+        "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "弹窗确认/取消",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "36-21",
+        "name": "账单与套餐",
+        "kind": "billing",
+        "image": "https://images.unsplash.com/photo-1523726491678-bf852e717f6a?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "收藏与撤销",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "36-22",
+        "name": "帮助中心",
+        "kind": "help",
+        "image": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "排序与分页",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "36-23",
+        "name": "移动端布局",
+        "kind": "mobile",
+        "image": "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "加载/空/错误状态",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "36-24",
+        "name": "无障碍状态",
+        "kind": "accessibility",
+        "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "响应式菜单",
+          "键盘可操作"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "tpl-037",
+    "name": "车队管理平台",
+    "category": "dashboard",
+    "description": "车辆状态、路线、维护计划与异常告警",
+    "cover": "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1200&q=85",
+    "tags": [
+      "响应式",
+      "可交互",
+      "商业模板",
+      "设计资产"
+    ],
+    "screenCount": 24,
+    "screens": [
+      {
+        "id": "37-1",
+        "name": "总览",
+        "kind": "dashboard",
+        "image": "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "点击导航切换页面",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "37-2",
+        "name": "登录",
+        "kind": "login",
+        "image": "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "搜索与即时筛选",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "37-3",
+        "name": "注册",
+        "kind": "signup",
+        "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "表单校验与提交",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "37-4",
+        "name": "引导设置",
+        "kind": "onboarding",
+        "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "弹窗确认/取消",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "37-5",
+        "name": "列表浏览",
+        "kind": "listing",
+        "image": "https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "收藏与撤销",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "37-6",
+        "name": "详情页",
+        "kind": "detail",
+        "image": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "排序与分页",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "37-7",
+        "name": "搜索结果",
+        "kind": "search",
+        "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "加载/空/错误状态",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "37-8",
+        "name": "筛选面板",
+        "kind": "filter",
+        "image": "https://images.unsplash.com/photo-1523726491678-bf852e717f6a?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "响应式菜单",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "37-9",
+        "name": "创建表单",
+        "kind": "create",
+        "image": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "点击导航切换页面",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "37-10",
+        "name": "编辑表单",
+        "kind": "edit",
+        "image": "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "搜索与即时筛选",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "37-11",
+        "name": "确认弹窗",
+        "kind": "confirm",
+        "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "表单校验与提交",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "37-12",
+        "name": "空状态",
+        "kind": "empty",
+        "image": "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "弹窗确认/取消",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "37-13",
+        "name": "加载状态",
+        "kind": "loading",
+        "image": "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "收藏与撤销",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "37-14",
+        "name": "错误反馈",
+        "kind": "error",
+        "image": "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "排序与分页",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "37-15",
+        "name": "成功反馈",
+        "kind": "success",
+        "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "加载/空/错误状态",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "37-16",
+        "name": "通知中心",
+        "kind": "notifications",
+        "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "响应式菜单",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "37-17",
+        "name": "个人资料",
+        "kind": "profile",
+        "image": "https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "点击导航切换页面",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "37-18",
+        "name": "团队成员",
+        "kind": "team",
+        "image": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "搜索与即时筛选",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "37-19",
+        "name": "设置中心",
+        "kind": "settings",
+        "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "表单校验与提交",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "37-20",
+        "name": "权限管理",
+        "kind": "permissions",
+        "image": "https://images.unsplash.com/photo-1523726491678-bf852e717f6a?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "弹窗确认/取消",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "37-21",
+        "name": "账单与套餐",
+        "kind": "billing",
+        "image": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "收藏与撤销",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "37-22",
+        "name": "帮助中心",
+        "kind": "help",
+        "image": "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "排序与分页",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "37-23",
+        "name": "移动端布局",
+        "kind": "mobile",
+        "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "加载/空/错误状态",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "37-24",
+        "name": "无障碍状态",
+        "kind": "accessibility",
+        "image": "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "响应式菜单",
+          "键盘可操作"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "tpl-038",
+    "name": "库存与仓储",
+    "category": "dashboard",
+    "description": "库存表格、批次、补货阈值与盘点任务",
+    "cover": "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=1200&q=85",
+    "tags": [
+      "响应式",
+      "可交互",
+      "商业模板",
+      "设计资产"
+    ],
+    "screenCount": 24,
+    "screens": [
+      {
+        "id": "38-1",
+        "name": "总览",
+        "kind": "dashboard",
+        "image": "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "点击导航切换页面",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "38-2",
+        "name": "登录",
+        "kind": "login",
+        "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "搜索与即时筛选",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "38-3",
+        "name": "注册",
+        "kind": "signup",
+        "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "表单校验与提交",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "38-4",
+        "name": "引导设置",
+        "kind": "onboarding",
+        "image": "https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "弹窗确认/取消",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "38-5",
+        "name": "列表浏览",
+        "kind": "listing",
+        "image": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "收藏与撤销",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "38-6",
+        "name": "详情页",
+        "kind": "detail",
+        "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "排序与分页",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "38-7",
+        "name": "搜索结果",
+        "kind": "search",
+        "image": "https://images.unsplash.com/photo-1523726491678-bf852e717f6a?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "加载/空/错误状态",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "38-8",
+        "name": "筛选面板",
+        "kind": "filter",
+        "image": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "响应式菜单",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "38-9",
+        "name": "创建表单",
+        "kind": "create",
+        "image": "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "点击导航切换页面",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "38-10",
+        "name": "编辑表单",
+        "kind": "edit",
+        "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "搜索与即时筛选",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "38-11",
+        "name": "确认弹窗",
+        "kind": "confirm",
+        "image": "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "表单校验与提交",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "38-12",
+        "name": "空状态",
+        "kind": "empty",
+        "image": "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "弹窗确认/取消",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "38-13",
+        "name": "加载状态",
+        "kind": "loading",
+        "image": "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "收藏与撤销",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "38-14",
+        "name": "错误反馈",
+        "kind": "error",
+        "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "排序与分页",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "38-15",
+        "name": "成功反馈",
+        "kind": "success",
+        "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "加载/空/错误状态",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "38-16",
+        "name": "通知中心",
+        "kind": "notifications",
+        "image": "https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "响应式菜单",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "38-17",
+        "name": "个人资料",
+        "kind": "profile",
+        "image": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "点击导航切换页面",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "38-18",
+        "name": "团队成员",
+        "kind": "team",
+        "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "搜索与即时筛选",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "38-19",
+        "name": "设置中心",
+        "kind": "settings",
+        "image": "https://images.unsplash.com/photo-1523726491678-bf852e717f6a?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "表单校验与提交",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "38-20",
+        "name": "权限管理",
+        "kind": "permissions",
+        "image": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "弹窗确认/取消",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "38-21",
+        "name": "账单与套餐",
+        "kind": "billing",
+        "image": "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "收藏与撤销",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "38-22",
+        "name": "帮助中心",
+        "kind": "help",
+        "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "排序与分页",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "38-23",
+        "name": "移动端布局",
+        "kind": "mobile",
+        "image": "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "加载/空/错误状态",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "38-24",
+        "name": "无障碍状态",
+        "kind": "accessibility",
+        "image": "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "响应式菜单",
+          "键盘可操作"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "tpl-039",
+    "name": "法律服务门户",
+    "category": "service",
+    "description": "案件资料、预约、文件签署与进度更新",
+    "cover": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=85",
+    "tags": [
+      "响应式",
+      "可交互",
+      "商业模板",
+      "设计资产"
+    ],
+    "screenCount": 24,
+    "screens": [
+      {
+        "id": "39-1",
+        "name": "总览",
+        "kind": "dashboard",
+        "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "点击导航切换页面",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "39-2",
+        "name": "登录",
+        "kind": "login",
+        "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "搜索与即时筛选",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "39-3",
+        "name": "注册",
+        "kind": "signup",
+        "image": "https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "表单校验与提交",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "39-4",
+        "name": "引导设置",
+        "kind": "onboarding",
+        "image": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "弹窗确认/取消",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "39-5",
+        "name": "列表浏览",
+        "kind": "listing",
+        "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "收藏与撤销",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "39-6",
+        "name": "详情页",
+        "kind": "detail",
+        "image": "https://images.unsplash.com/photo-1523726491678-bf852e717f6a?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "排序与分页",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "39-7",
+        "name": "搜索结果",
+        "kind": "search",
+        "image": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "加载/空/错误状态",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "39-8",
+        "name": "筛选面板",
+        "kind": "filter",
+        "image": "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "响应式菜单",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "39-9",
+        "name": "创建表单",
+        "kind": "create",
+        "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "点击导航切换页面",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "39-10",
+        "name": "编辑表单",
+        "kind": "edit",
+        "image": "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "搜索与即时筛选",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "39-11",
+        "name": "确认弹窗",
+        "kind": "confirm",
+        "image": "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "表单校验与提交",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "39-12",
+        "name": "空状态",
+        "kind": "empty",
+        "image": "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "弹窗确认/取消",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "39-13",
+        "name": "加载状态",
+        "kind": "loading",
+        "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "收藏与撤销",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "39-14",
+        "name": "错误反馈",
+        "kind": "error",
+        "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "排序与分页",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "39-15",
+        "name": "成功反馈",
+        "kind": "success",
+        "image": "https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "加载/空/错误状态",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "39-16",
+        "name": "通知中心",
+        "kind": "notifications",
+        "image": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "响应式菜单",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "39-17",
+        "name": "个人资料",
+        "kind": "profile",
+        "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "点击导航切换页面",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "39-18",
+        "name": "团队成员",
+        "kind": "team",
+        "image": "https://images.unsplash.com/photo-1523726491678-bf852e717f6a?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "搜索与即时筛选",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "39-19",
+        "name": "设置中心",
+        "kind": "settings",
+        "image": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "表单校验与提交",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "39-20",
+        "name": "权限管理",
+        "kind": "permissions",
+        "image": "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "弹窗确认/取消",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "39-21",
+        "name": "账单与套餐",
+        "kind": "billing",
+        "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "收藏与撤销",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "39-22",
+        "name": "帮助中心",
+        "kind": "help",
+        "image": "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "排序与分页",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "39-23",
+        "name": "移动端布局",
+        "kind": "mobile",
+        "image": "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "加载/空/错误状态",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "39-24",
+        "name": "无障碍状态",
+        "kind": "accessibility",
+        "image": "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "响应式菜单",
+          "键盘可操作"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "tpl-040",
+    "name": "医疗预约平台",
+    "category": "health",
+    "description": "科室搜索、医生详情、预约与就诊提醒",
+    "cover": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=85",
+    "tags": [
+      "响应式",
+      "可交互",
+      "商业模板",
+      "设计资产"
+    ],
+    "screenCount": 24,
+    "screens": [
+      {
+        "id": "40-1",
+        "name": "总览",
+        "kind": "dashboard",
+        "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "点击导航切换页面",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "40-2",
+        "name": "登录",
+        "kind": "login",
+        "image": "https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "搜索与即时筛选",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "40-3",
+        "name": "注册",
+        "kind": "signup",
+        "image": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "表单校验与提交",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "40-4",
+        "name": "引导设置",
+        "kind": "onboarding",
+        "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "弹窗确认/取消",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "40-5",
+        "name": "列表浏览",
+        "kind": "listing",
+        "image": "https://images.unsplash.com/photo-1523726491678-bf852e717f6a?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "收藏与撤销",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "40-6",
+        "name": "详情页",
+        "kind": "detail",
+        "image": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "排序与分页",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "40-7",
+        "name": "搜索结果",
+        "kind": "search",
+        "image": "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "加载/空/错误状态",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "40-8",
+        "name": "筛选面板",
+        "kind": "filter",
+        "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "响应式菜单",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "40-9",
+        "name": "创建表单",
+        "kind": "create",
+        "image": "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "点击导航切换页面",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "40-10",
+        "name": "编辑表单",
+        "kind": "edit",
+        "image": "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "搜索与即时筛选",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "40-11",
+        "name": "确认弹窗",
+        "kind": "confirm",
+        "image": "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "表单校验与提交",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "40-12",
+        "name": "空状态",
+        "kind": "empty",
+        "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "弹窗确认/取消",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "40-13",
+        "name": "加载状态",
+        "kind": "loading",
+        "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "收藏与撤销",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "40-14",
+        "name": "错误反馈",
+        "kind": "error",
+        "image": "https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "排序与分页",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "40-15",
+        "name": "成功反馈",
+        "kind": "success",
+        "image": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "加载/空/错误状态",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "40-16",
+        "name": "通知中心",
+        "kind": "notifications",
+        "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "响应式菜单",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "40-17",
+        "name": "个人资料",
+        "kind": "profile",
+        "image": "https://images.unsplash.com/photo-1523726491678-bf852e717f6a?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "点击导航切换页面",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "40-18",
+        "name": "团队成员",
+        "kind": "team",
+        "image": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "搜索与即时筛选",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "40-19",
+        "name": "设置中心",
+        "kind": "settings",
+        "image": "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "表单校验与提交",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "40-20",
+        "name": "权限管理",
+        "kind": "permissions",
+        "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "弹窗确认/取消",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "40-21",
+        "name": "账单与套餐",
+        "kind": "billing",
+        "image": "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "收藏与撤销",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "40-22",
+        "name": "帮助中心",
+        "kind": "help",
+        "image": "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "排序与分页",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "40-23",
+        "name": "移动端布局",
+        "kind": "mobile",
+        "image": "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "加载/空/错误状态",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "40-24",
+        "name": "无障碍状态",
+        "kind": "accessibility",
+        "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "响应式菜单",
+          "键盘可操作"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "tpl-041",
+    "name": "宠物护理服务",
+    "category": "service",
+    "description": "服务目录、宠物档案、预约和健康记录",
+    "cover": "https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=1200&q=85",
+    "tags": [
+      "响应式",
+      "可交互",
+      "商业模板",
+      "设计资产"
+    ],
+    "screenCount": 24,
+    "screens": [
+      {
+        "id": "41-1",
+        "name": "总览",
+        "kind": "dashboard",
+        "image": "https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "点击导航切换页面",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "41-2",
+        "name": "登录",
+        "kind": "login",
+        "image": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "搜索与即时筛选",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "41-3",
+        "name": "注册",
+        "kind": "signup",
+        "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "表单校验与提交",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "41-4",
+        "name": "引导设置",
+        "kind": "onboarding",
+        "image": "https://images.unsplash.com/photo-1523726491678-bf852e717f6a?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "弹窗确认/取消",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "41-5",
+        "name": "列表浏览",
+        "kind": "listing",
+        "image": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "收藏与撤销",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "41-6",
+        "name": "详情页",
+        "kind": "detail",
+        "image": "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "排序与分页",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "41-7",
+        "name": "搜索结果",
+        "kind": "search",
+        "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "加载/空/错误状态",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "41-8",
+        "name": "筛选面板",
+        "kind": "filter",
+        "image": "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "响应式菜单",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "41-9",
+        "name": "创建表单",
+        "kind": "create",
+        "image": "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "点击导航切换页面",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "41-10",
+        "name": "编辑表单",
+        "kind": "edit",
+        "image": "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "搜索与即时筛选",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "41-11",
+        "name": "确认弹窗",
+        "kind": "confirm",
+        "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "表单校验与提交",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "41-12",
+        "name": "空状态",
+        "kind": "empty",
+        "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "弹窗确认/取消",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "41-13",
+        "name": "加载状态",
+        "kind": "loading",
+        "image": "https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "收藏与撤销",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "41-14",
+        "name": "错误反馈",
+        "kind": "error",
+        "image": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "排序与分页",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "41-15",
+        "name": "成功反馈",
+        "kind": "success",
+        "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "加载/空/错误状态",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "41-16",
+        "name": "通知中心",
+        "kind": "notifications",
+        "image": "https://images.unsplash.com/photo-1523726491678-bf852e717f6a?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "响应式菜单",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "41-17",
+        "name": "个人资料",
+        "kind": "profile",
+        "image": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "点击导航切换页面",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "41-18",
+        "name": "团队成员",
+        "kind": "team",
+        "image": "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "搜索与即时筛选",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "41-19",
+        "name": "设置中心",
+        "kind": "settings",
+        "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "表单校验与提交",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "41-20",
+        "name": "权限管理",
+        "kind": "permissions",
+        "image": "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "弹窗确认/取消",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "41-21",
+        "name": "账单与套餐",
+        "kind": "billing",
+        "image": "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "收藏与撤销",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "41-22",
+        "name": "帮助中心",
+        "kind": "help",
+        "image": "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "排序与分页",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "41-23",
+        "name": "移动端布局",
+        "kind": "mobile",
+        "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "加载/空/错误状态",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "41-24",
+        "name": "无障碍状态",
+        "kind": "accessibility",
+        "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "响应式菜单",
+          "键盘可操作"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "tpl-042",
+    "name": "健身训练应用",
+    "category": "health",
+    "description": "训练计划、动作库、记录和周趋势",
+    "cover": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=85",
+    "tags": [
+      "响应式",
+      "可交互",
+      "商业模板",
+      "设计资产"
+    ],
+    "screenCount": 24,
+    "screens": [
+      {
+        "id": "42-1",
+        "name": "总览",
+        "kind": "dashboard",
+        "image": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "点击导航切换页面",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "42-2",
+        "name": "登录",
+        "kind": "login",
+        "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "搜索与即时筛选",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "42-3",
+        "name": "注册",
+        "kind": "signup",
+        "image": "https://images.unsplash.com/photo-1523726491678-bf852e717f6a?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "表单校验与提交",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "42-4",
+        "name": "引导设置",
+        "kind": "onboarding",
+        "image": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "弹窗确认/取消",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "42-5",
+        "name": "列表浏览",
+        "kind": "listing",
+        "image": "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "收藏与撤销",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "42-6",
+        "name": "详情页",
+        "kind": "detail",
+        "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "排序与分页",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "42-7",
+        "name": "搜索结果",
+        "kind": "search",
+        "image": "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "加载/空/错误状态",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "42-8",
+        "name": "筛选面板",
+        "kind": "filter",
+        "image": "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "响应式菜单",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "42-9",
+        "name": "创建表单",
+        "kind": "create",
+        "image": "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "点击导航切换页面",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "42-10",
+        "name": "编辑表单",
+        "kind": "edit",
+        "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "搜索与即时筛选",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "42-11",
+        "name": "确认弹窗",
+        "kind": "confirm",
+        "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "表单校验与提交",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "42-12",
+        "name": "空状态",
+        "kind": "empty",
+        "image": "https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "弹窗确认/取消",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "42-13",
+        "name": "加载状态",
+        "kind": "loading",
+        "image": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "收藏与撤销",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "42-14",
+        "name": "错误反馈",
+        "kind": "error",
+        "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "排序与分页",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "42-15",
+        "name": "成功反馈",
+        "kind": "success",
+        "image": "https://images.unsplash.com/photo-1523726491678-bf852e717f6a?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "加载/空/错误状态",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "42-16",
+        "name": "通知中心",
+        "kind": "notifications",
+        "image": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "响应式菜单",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "42-17",
+        "name": "个人资料",
+        "kind": "profile",
+        "image": "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "点击导航切换页面",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "42-18",
+        "name": "团队成员",
+        "kind": "team",
+        "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "搜索与即时筛选",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "42-19",
+        "name": "设置中心",
+        "kind": "settings",
+        "image": "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "表单校验与提交",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "42-20",
+        "name": "权限管理",
+        "kind": "permissions",
+        "image": "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "弹窗确认/取消",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "42-21",
+        "name": "账单与套餐",
+        "kind": "billing",
+        "image": "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "收藏与撤销",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "42-22",
+        "name": "帮助中心",
+        "kind": "help",
+        "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "排序与分页",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "42-23",
+        "name": "移动端布局",
+        "kind": "mobile",
+        "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "加载/空/错误状态",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "42-24",
+        "name": "无障碍状态",
+        "kind": "accessibility",
+        "image": "https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "响应式菜单",
+          "键盘可操作"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "tpl-043",
+    "name": "食谱与餐单规划",
+    "category": "lifestyle",
+    "description": "食谱探索、营养信息、餐单和采购清单",
+    "cover": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=85",
+    "tags": [
+      "响应式",
+      "可交互",
+      "商业模板",
+      "设计资产"
+    ],
+    "screenCount": 24,
+    "screens": [
+      {
+        "id": "43-1",
+        "name": "总览",
+        "kind": "dashboard",
+        "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "点击导航切换页面",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "43-2",
+        "name": "登录",
+        "kind": "login",
+        "image": "https://images.unsplash.com/photo-1523726491678-bf852e717f6a?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "搜索与即时筛选",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "43-3",
+        "name": "注册",
+        "kind": "signup",
+        "image": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "表单校验与提交",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "43-4",
+        "name": "引导设置",
+        "kind": "onboarding",
+        "image": "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "弹窗确认/取消",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "43-5",
+        "name": "列表浏览",
+        "kind": "listing",
+        "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "收藏与撤销",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "43-6",
+        "name": "详情页",
+        "kind": "detail",
+        "image": "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "排序与分页",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "43-7",
+        "name": "搜索结果",
+        "kind": "search",
+        "image": "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "加载/空/错误状态",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "43-8",
+        "name": "筛选面板",
+        "kind": "filter",
+        "image": "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "响应式菜单",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "43-9",
+        "name": "创建表单",
+        "kind": "create",
+        "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "点击导航切换页面",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "43-10",
+        "name": "编辑表单",
+        "kind": "edit",
+        "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "搜索与即时筛选",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "43-11",
+        "name": "确认弹窗",
+        "kind": "confirm",
+        "image": "https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "表单校验与提交",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "43-12",
+        "name": "空状态",
+        "kind": "empty",
+        "image": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "弹窗确认/取消",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "43-13",
+        "name": "加载状态",
+        "kind": "loading",
+        "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "收藏与撤销",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "43-14",
+        "name": "错误反馈",
+        "kind": "error",
+        "image": "https://images.unsplash.com/photo-1523726491678-bf852e717f6a?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "排序与分页",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "43-15",
+        "name": "成功反馈",
+        "kind": "success",
+        "image": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "加载/空/错误状态",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "43-16",
+        "name": "通知中心",
+        "kind": "notifications",
+        "image": "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "响应式菜单",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "43-17",
+        "name": "个人资料",
+        "kind": "profile",
+        "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "点击导航切换页面",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "43-18",
+        "name": "团队成员",
+        "kind": "team",
+        "image": "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "搜索与即时筛选",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "43-19",
+        "name": "设置中心",
+        "kind": "settings",
+        "image": "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "表单校验与提交",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "43-20",
+        "name": "权限管理",
+        "kind": "permissions",
+        "image": "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "弹窗确认/取消",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "43-21",
+        "name": "账单与套餐",
+        "kind": "billing",
+        "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "收藏与撤销",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "43-22",
+        "name": "帮助中心",
+        "kind": "help",
+        "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "排序与分页",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "43-23",
+        "name": "移动端布局",
+        "kind": "mobile",
+        "image": "https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "加载/空/错误状态",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "43-24",
+        "name": "无障碍状态",
+        "kind": "accessibility",
+        "image": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "响应式菜单",
+          "键盘可操作"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "tpl-044",
+    "name": "可持续品牌商城",
+    "category": "commerce",
+    "description": "产品故事、环保指标、商品详情和结账",
+    "cover": "https://images.unsplash.com/photo-1523726491678-bf852e717f6a?auto=format&fit=crop&w=1200&q=85",
+    "tags": [
+      "响应式",
+      "可交互",
+      "商业模板",
+      "设计资产"
+    ],
+    "screenCount": 24,
+    "screens": [
+      {
+        "id": "44-1",
+        "name": "总览",
+        "kind": "dashboard",
+        "image": "https://images.unsplash.com/photo-1523726491678-bf852e717f6a?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "点击导航切换页面",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "44-2",
+        "name": "登录",
+        "kind": "login",
+        "image": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "搜索与即时筛选",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "44-3",
+        "name": "注册",
+        "kind": "signup",
+        "image": "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "表单校验与提交",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "44-4",
+        "name": "引导设置",
+        "kind": "onboarding",
+        "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "弹窗确认/取消",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "44-5",
+        "name": "列表浏览",
+        "kind": "listing",
+        "image": "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "收藏与撤销",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "44-6",
+        "name": "详情页",
+        "kind": "detail",
+        "image": "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "排序与分页",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "44-7",
+        "name": "搜索结果",
+        "kind": "search",
+        "image": "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "加载/空/错误状态",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "44-8",
+        "name": "筛选面板",
+        "kind": "filter",
+        "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "响应式菜单",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "44-9",
+        "name": "创建表单",
+        "kind": "create",
+        "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "点击导航切换页面",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "44-10",
+        "name": "编辑表单",
+        "kind": "edit",
+        "image": "https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "搜索与即时筛选",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "44-11",
+        "name": "确认弹窗",
+        "kind": "confirm",
+        "image": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "表单校验与提交",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "44-12",
+        "name": "空状态",
+        "kind": "empty",
+        "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "弹窗确认/取消",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "44-13",
+        "name": "加载状态",
+        "kind": "loading",
+        "image": "https://images.unsplash.com/photo-1523726491678-bf852e717f6a?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "收藏与撤销",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "44-14",
+        "name": "错误反馈",
+        "kind": "error",
+        "image": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "排序与分页",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "44-15",
+        "name": "成功反馈",
+        "kind": "success",
+        "image": "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "加载/空/错误状态",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "44-16",
+        "name": "通知中心",
+        "kind": "notifications",
+        "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "响应式菜单",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "44-17",
+        "name": "个人资料",
+        "kind": "profile",
+        "image": "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "点击导航切换页面",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "44-18",
+        "name": "团队成员",
+        "kind": "team",
+        "image": "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "搜索与即时筛选",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "44-19",
+        "name": "设置中心",
+        "kind": "settings",
+        "image": "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "表单校验与提交",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "44-20",
+        "name": "权限管理",
+        "kind": "permissions",
+        "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "弹窗确认/取消",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "44-21",
+        "name": "账单与套餐",
+        "kind": "billing",
+        "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "收藏与撤销",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "44-22",
+        "name": "帮助中心",
+        "kind": "help",
+        "image": "https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "排序与分页",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "44-23",
+        "name": "移动端布局",
+        "kind": "mobile",
+        "image": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "加载/空/错误状态",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "44-24",
+        "name": "无障碍状态",
+        "kind": "accessibility",
+        "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "响应式菜单",
+          "键盘可操作"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "tpl-045",
+    "name": "众筹项目页",
+    "category": "commerce",
+    "description": "项目介绍、支持档位、进度和更新日志",
+    "cover": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=85",
+    "tags": [
+      "响应式",
+      "可交互",
+      "商业模板",
+      "设计资产"
+    ],
+    "screenCount": 24,
+    "screens": [
+      {
+        "id": "45-1",
+        "name": "总览",
+        "kind": "dashboard",
+        "image": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "点击导航切换页面",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "45-2",
+        "name": "登录",
+        "kind": "login",
+        "image": "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "搜索与即时筛选",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "45-3",
+        "name": "注册",
+        "kind": "signup",
+        "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "表单校验与提交",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "45-4",
+        "name": "引导设置",
+        "kind": "onboarding",
+        "image": "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "弹窗确认/取消",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "45-5",
+        "name": "列表浏览",
+        "kind": "listing",
+        "image": "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "收藏与撤销",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "45-6",
+        "name": "详情页",
+        "kind": "detail",
+        "image": "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "排序与分页",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "45-7",
+        "name": "搜索结果",
+        "kind": "search",
+        "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "加载/空/错误状态",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "45-8",
+        "name": "筛选面板",
+        "kind": "filter",
+        "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "响应式菜单",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "45-9",
+        "name": "创建表单",
+        "kind": "create",
+        "image": "https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "点击导航切换页面",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "45-10",
+        "name": "编辑表单",
+        "kind": "edit",
+        "image": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "搜索与即时筛选",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "45-11",
+        "name": "确认弹窗",
+        "kind": "confirm",
+        "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "表单校验与提交",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "45-12",
+        "name": "空状态",
+        "kind": "empty",
+        "image": "https://images.unsplash.com/photo-1523726491678-bf852e717f6a?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "弹窗确认/取消",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "45-13",
+        "name": "加载状态",
+        "kind": "loading",
+        "image": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "收藏与撤销",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "45-14",
+        "name": "错误反馈",
+        "kind": "error",
+        "image": "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "排序与分页",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "45-15",
+        "name": "成功反馈",
+        "kind": "success",
+        "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "加载/空/错误状态",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "45-16",
+        "name": "通知中心",
+        "kind": "notifications",
+        "image": "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "响应式菜单",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "45-17",
+        "name": "个人资料",
+        "kind": "profile",
+        "image": "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "点击导航切换页面",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "45-18",
+        "name": "团队成员",
+        "kind": "team",
+        "image": "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "搜索与即时筛选",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "45-19",
+        "name": "设置中心",
+        "kind": "settings",
+        "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "表单校验与提交",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "45-20",
+        "name": "权限管理",
+        "kind": "permissions",
+        "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "弹窗确认/取消",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "45-21",
+        "name": "账单与套餐",
+        "kind": "billing",
+        "image": "https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "收藏与撤销",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "45-22",
+        "name": "帮助中心",
+        "kind": "help",
+        "image": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "排序与分页",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "45-23",
+        "name": "移动端布局",
+        "kind": "mobile",
+        "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "加载/空/错误状态",
+          "键盘可操作"
+        ]
+      },
+      {
+        "id": "45-24",
+        "name": "无障碍状态",
+        "kind": "accessibility",
+        "image": "https://images.unsplash.com/photo-1523726491678-bf852e717f6a?auto=format&fit=crop&w=1200&q=85",
+        "interactions": [
+          "响应式菜单",
+          "键盘可操作"
+        ]
+      }
+    ]
   }
 ]

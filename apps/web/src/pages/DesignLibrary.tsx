@@ -7,10 +7,10 @@ import skills from "../../../skills/catalog.json";
 type Tab = "systems" | "templates" | "plugins" | "skills" | "runtime";
 type Item = { id: string; name: string; category: string; description: string; image?: string; cover?: string; tags?: string[]; screenCount?: number; screens?: Array<{id:string;name:string;kind:string;image:string;interactions:string[]}>; primary?: string; philosophy?: string; permissions?: string[]; risk?: string; level?: string; outputs?: string[] };
 const tabs: Array<{id:Tab;label:string;eyebrow:string;title:string;description:string}> = [
- {id:"systems",label:"设计系统",eyebrow:"DESIGN SYSTEMS",title:"从设计规范，到一致的产品体验",description:"30 套可组合的设计语言，包含颜色、字体、间距、圆角、组件清单与无障碍基线。"},
- {id:"templates",label:"商业模板",eyebrow:"COMMERCIAL TEMPLATES",title:"从真实业务场景开始",description:"30 个商业模板系列，每个系列包含 24 个页面/状态场景，并提供图片预览与交互清单。"},
- {id:"plugins",label:"官方插件",eyebrow:"OFFICIAL PLUGINS",title:"把工具能力接入工作流",description:"48 个插件能力定义，按设计、开发、质量、数据、办公、多媒体和交付分类。"},
- {id:"skills",label:"技能库",eyebrow:"PROFESSIONAL SKILLS",title:"把专家方法沉淀为可复用技能",description:"72 项可组合技能，覆盖设计、工程、产品、研究、质量、办公与 AI Agent。"},
+ {id:"systems",label:"设计系统",eyebrow:"DESIGN SYSTEMS",title:"从设计规范，到一致的产品体验",description:"180 套可组合的设计语言，包含颜色、字体、间距、圆角、组件清单与无障碍基线。"},
+ {id:"templates",label:"商业模板",eyebrow:"COMMERCIAL TEMPLATES",title:"从真实业务场景开始",description:"130 个商业模板系列，每个系列包含 24 个页面/状态场景，并提供图片预览与交互清单。"},
+ {id:"plugins",label:"官方插件",eyebrow:"OFFICIAL PLUGINS",title:"把工具能力接入工作流",description:"480 个插件能力定义，按设计、开发、质量、数据、办公、多媒体和交付分类。"},
+ {id:"skills",label:"技能库",eyebrow:"PROFESSIONAL SKILLS",title:"把专家方法沉淀为可复用技能",description:"180 项可组合技能，覆盖设计、工程、产品、研究、质量、办公与 AI Agent。"},
  {id:"runtime",label:"插件运行时",eyebrow:"PLUGIN RUNTIME",title:"可治理、可追踪、可扩展的插件底座",description:"统一 manifest、权限确认、运行事件、超时控制和插件注册表，危险能力默认要求用户确认。"}
 ];
 const runtimeCapabilities = [
@@ -45,7 +45,7 @@ export default function DesignLibrary() {
     <div><div className="db-library-eyebrow">{active.eyebrow}</div><h1>{active.title}</h1><p>{active.description}</p>
      <div className="db-library-metrics">
       <span><b>{tab==="systems"?designSystems.length:tab==="templates"?templates.length:tab==="plugins"?plugins.length:tab==="skills"?skills.length:"6"}</b><small>{tab==="systems"?"套设计系统":tab==="templates"?"商业模板系列":tab==="plugins"?"插件能力":tab==="skills"?"专业技能":"运行时能力"}</small></span>
-      {tab==="templates"&&<span><b>720</b><small>页面与状态场景</small></span>}
+      {tab==="templates"&&<span><b>3,120</b><small>页面与状态场景</small></span>}
       {tab==="systems"&&<span><b>16</b><small>组件基线</small></span>}
       {tab==="plugins"&&<span><b>Approval</b><small>高风险人工确认</small></span>}
      </div>
