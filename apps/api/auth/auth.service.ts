@@ -30,7 +30,6 @@ export class AuthService {
     if (!email || !input.password) throw new Error('Email and password are required');
 
     const user = this.users.findByEmail(email);
-    // Do not reveal whether an account exists.
     if (!user?.passwordHash || !(await this.verifyPassword(input.password, user.passwordHash))) {
       throw new Error('Invalid email or password');
     }
@@ -52,8 +51,12 @@ export class AuthService {
     };
   }
 
-  async logout(userId: string): Promise<void> {
-    // Token revocation is token-specific; callers should revoke the session's refresh token.
-    if (!userId.trim()) throw new Error('User id is required');
+  async logout(userId: string, refreshToken: string): Promise<void> {
+    if (!userId.trim() || !refreshToken.trim()) throw new Error('User id and refresh token are required');
+    const record = this.refreshTokens.get(refreshToken);
+    if (!record || record.userId !== userId || record.revoked) {
+      throw new Error('Invalid refresh token');
+    }
+    this.refreshTokens.revoke(refreshToken);
   }
 }
