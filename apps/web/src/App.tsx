@@ -1,4 +1,6 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import WorkspaceHub from "./pages/WorkspaceHub";
+import { navigateTo } from "./router/workspaceRoutes";
 import "./styles.css";
 
 type IconProps = { name: string; size?: number };
@@ -68,6 +70,13 @@ const quickActions = [
 
 export default function App() {
   const [activeNav, setActiveNav] = useState("新建任务");
+  const [currentPath, setCurrentPath] = useState(window.location.pathname);
+  useEffect(() => {
+    const syncPath = () => setCurrentPath(window.location.pathname);
+    window.addEventListener("popstate", syncPath);
+    return () => window.removeEventListener("popstate", syncPath);
+  }, []);
+  if (currentPath !== "/") return <WorkspaceHub />;
   const [activeMode, setActiveMode] = useState("日常办公");
   const [prompt, setPrompt] = useState("");
   const [model, setModel] = useState("Step-5-Preview");
@@ -119,6 +128,11 @@ export default function App() {
               className={`sidebar-nav-item ${activeNav === item.label ? "is-active" : ""} ${item.prominent ? "is-prominent" : ""}`}
               onClick={() => {
                 setActiveNav(item.label);
+                if (item.label === "专家·技能·连接器") {
+                  navigateTo("/experts");
+                  setCurrentPath("/experts");
+                  return;
+                }
                 setNotice(item.label === "新建任务" ? "" : `已切换到「${item.label}」入口。当前展示的是首页模板。`);
               }}
             >
