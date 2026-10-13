@@ -698,6 +698,21 @@ button:disabled { cursor: not-allowed; }
 .db-code-hint { margin: 8px 2px 0; color: #989eaa; font-size: 9px; }
 .db-editor-notice { margin: 0; padding: 8px 14px; border-top: 1px solid #e8e9f0; background: #fbfbff; color: #6e62d5; font-size: 10px; }
 .db-assistant-sidebar { display: flex; flex-direction: column; min-width: 0; border-left: 1px solid var(--db-border); background: #fff; }
+.db-design-tools { display: flex; align-items: center; gap: 5px; }
+.db-design-tools select, .db-design-tools button { height: 29px; padding: 0 8px; border: 1px solid #e6e7ed; border-radius: 7px; background: #fff; color: #626878; font-size: 10px; }
+.db-design-tools button:hover { border-color: #bdb4fa; color: #6654d8; }
+.db-element-inspector { position: absolute; z-index: 2; top: 12px; right: 12px; display: grid; gap: 9px; width: 205px; padding: 13px; border: 1px solid #e4e1f5; border-radius: 10px; background: #fff; box-shadow: 0 10px 35px #27213d22; color: #30313a; font-size: 10px; }
+.db-element-inspector > span { overflow: hidden; color: #858997; text-overflow: ellipsis; white-space: nowrap; }
+.db-element-inspector label { display: flex; align-items: center; justify-content: space-between; gap: 10px; color: #666b78; }
+.db-element-inspector input[type="color"] { width: 35px; height: 23px; padding: 1px; border: 1px solid #e5e6eb; border-radius: 5px; background: white; }
+.db-element-inspector input[type="range"] { width: 90px; accent-color: #7458ed; }
+.db-element-inspector > button { padding: 6px; border: 0; border-radius: 5px; background: #f3f1ff; color: #6553d3; font-size: 10px; }
+.db-review-panel { margin: auto 12px 14px; padding: 12px; border: 1px solid #ececf1; border-radius: 9px; }
+.db-review-panel h3 { margin: 0 0 8px; font-size: 11px; }
+.db-review-panel form { display: grid; gap: 6px; }
+.db-review-panel textarea { width: 100%; resize: vertical; padding: 7px; border: 1px solid #e7e8ed; border-radius: 6px; font-size: 10px; }
+.db-review-panel form button { justify-self: end; padding: 6px 9px; border: 0; border-radius: 6px; background: #f0efff; color: #6655d8; font-size: 10px; }
+.db-review-panel ul { display: grid; gap: 5px; max-height: 110px; overflow: auto; margin: 8px 0 0; padding-left: 16px; color: #737987; font-size: 10px; }
 .db-beta { padding: 4px 6px; border-radius: 5px; background: #f0efff; color: #6e60dc !important; font-size: 8px !important; }
 .db-assistant-intro { padding: 24px 16px 15px; text-align: center; }
 .db-assistant-avatar { display: grid; place-items: center; width: 39px; height: 39px; margin: 0 auto 12px; border-radius: 13px; background: #efedff; color: #7666e5; font-size: 23px; }

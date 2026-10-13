@@ -15,8 +15,17 @@ function buildPreviewDocument(files: ProjectFile[]): string {
   const safeJs = js.replace(/<\/script/gi, "<\\/script");
   html = html.replace(/<link[^>]+href=["']\.\/src\/styles\.css["'][^>]*>/i, `<style>${safeCss}</style>`);
   html = html.replace(/<script[^>]+src=["']\.\/src\/main\.js["'][^>]*><\/script>/i, `<script>${safeJs}<\/script>`);
+  const editorBridge = `<style>[data-db-selected]{outline:2px solid #7458ed!important;outline-offset:2px!important;cursor:crosshair!important}</style><script>(function(){let selected='';function path(el){const parts=[];while(el&&el!==document.body){let part=el.tagName.toLowerCase();if(el.id){part+='#'+CSS.escape(el.id);parts.unshift(part);break}const siblings=el.parentElement?[...el.parentElement.children].filter(x=>x.tagName===el.tagName):[];if(siblings.length>1)part+=':nth-of-type('+(siblings.indexOf(el)+1)+')';parts.unshift(part);el=el.parentElement}return parts.join(' > ')}document.addEventListener('click',function(e){const a=e.target.closest('a');if(a&&a.getAttribute('href')?.startsWith('#'))e.preventDefault();const el=e.target.closest('body *');if(!el)return;e.preventDefault();e.stopPropagation();selected=path(el);document.querySelectorAll('[data-db-selected]').forEach(x=>x.removeAttribute('data-db-selected'));el.setAttribute('data-db-selected','');parent.postMessage({type:'db-select',selector:selected,tag:el.tagName.toLowerCase(),text:(el.innerText||'').slice(0,100)},'*')},true);addEventListener('message',function(e){if(e.data?.type==='db-style'&&selected){const el=document.querySelector(selected);if(el)el.style.setProperty(e.data.property,e.data.value)}});})();<\/script>`;
+  html = html.replace(/<\/body>/i, `${editorBridge}</body>`);
   return html;
 }
+
+const designSystems = [
+  { name: "原始", colors: ["#26372e", "#758b6f", "#f6f5f1"] },
+  { name: "海盐蓝", colors: ["#174a75", "#3a82a8", "#f1f7fb"] },
+  { name: "莓果紫", colors: ["#573c83", "#9a73c7", "#faf6ff"] },
+  { name: "暖阳橙", colors: ["#8b461d", "#dc8750", "#fff8f0"] },
+];
 
 export default function ProjectEditorPage({ projectId }: { projectId: string }) {
   const [project, setProject] = useState<DesignProject | null>(() => getProject(projectId) ?? null);
@@ -29,15 +38,30 @@ export default function ProjectEditorPage({ projectId }: { projectId: string }) 
   const [generating, setGenerating] = useState(false);
   const [cloudBusy, setCloudBusy] = useState(false);
   const [cloudSaved, setCloudSaved] = useState(false);
+  const [selectedElement, setSelectedElement] = useState<{ selector: string; tag: string; text: string } | null>(null);
+  const [reviewNote, setReviewNote] = useState("");
+  const [reviewNotes, setReviewNotes] = useState<string[]>(() => {
+    try { return JSON.parse(localStorage.getItem(`designbuddy.review.${projectId}`) || "[]") as string[]; } catch { return []; }
+  });
 
   useEffect(() => {
     setProject(getProject(projectId) ?? null);
     setActivePath("index.html");
     setNotice("");
+    try { setReviewNotes(JSON.parse(localStorage.getItem(`designbuddy.review.${projectId}`) || "[]") as string[]); } catch { setReviewNotes([]); }
   }, [projectId]);
 
   const activeFile = project?.files.find((file) => file.path === activePath) ?? project?.files[0];
   const previewDocument = useMemo(() => buildPreviewDocument(project?.files ?? []), [project?.files]);
+
+  useEffect(() => {
+    const onMessage = (event: MessageEvent) => {
+      if (event.source !== document.querySelector<HTMLIFrameElement>(".db-live-preview-stage iframe")?.contentWindow || event.data?.type !== "db-select") return;
+      setSelectedElement({ selector: String(event.data.selector), tag: String(event.data.tag), text: String(event.data.text) });
+    };
+    window.addEventListener("message", onMessage);
+    return () => window.removeEventListener("message", onMessage);
+  }, []);
 
   if (!project) {
     return (
@@ -69,10 +93,12 @@ export default function ProjectEditorPage({ projectId }: { projectId: string }) 
   }
 
   function renameProject() {
-    const nextName = window.prompt("项目名称", project.name);
+    const current = project;
+    if (!current) return;
+    const nextName = window.prompt("项目名称", current.name);
     if (!nextName?.trim()) return;
     try {
-      setProject(updateProject({ ...project, name: nextName.trim().slice(0, 80) }));
+      setProject(updateProject({ ...current, name: nextName.trim().slice(0, 80) }));
       setSaveFailed(false);
       setNotice("项目名称已更新。");
     } catch (cause) {
@@ -82,8 +108,10 @@ export default function ProjectEditorPage({ projectId }: { projectId: string }) 
   }
 
   async function copySource() {
+    const current = project;
+    if (!current) return;
     try {
-      await navigator.clipboard.writeText(project.files.map((file) => `/* ${file.path} */\n${file.content}`).join("\n\n"));
+      await navigator.clipboard.writeText(current.files.map((file) => `/* ${file.path} */\n${file.content}`).join("\n\n"));
       setNotice("项目源码已复制到剪贴板。");
     } catch {
       setNotice("浏览器未授予剪贴板权限，请在代码模式中手动复制。");
@@ -93,14 +121,15 @@ export default function ProjectEditorPage({ projectId }: { projectId: string }) 
   async function submitAssistant(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const prompt = assistantDraft.trim();
-    if (!prompt || generating) return;
+    const current = project;
+    if (!prompt || generating || !current) return;
     setGenerating(true);
     setNotice("");
     try {
       const result = await generateProjectWithAI({
         prompt,
-        projectName: project.name,
-        currentFiles: project.files.map(({ path, content, language }) => ({ path, content, language: language === "html" || language === "css" || language === "javascript" ? language : undefined })),
+        projectName: current.name,
+        currentFiles: current.files.map(({ path, content, language }) => ({ path, content, language: language === "html" || language === "css" || language === "javascript" ? language : undefined })),
       });
       const generatedFiles: ProjectFile[] = result.files.map((file) => ({
         path: file.path,
@@ -108,8 +137,8 @@ export default function ProjectEditorPage({ projectId }: { projectId: string }) 
         language: file.language ?? (file.path.endsWith(".html") ? "html" : file.path.endsWith(".css") ? "css" : file.path.endsWith(".js") ? "javascript" : "text"),
       }));
       const next: DesignProject = {
-        ...project,
-        name: result.name?.trim() || project.name,
+        ...current,
+        name: result.name?.trim() || current.name,
         prompt: prompt,
         files: generatedFiles,
         updatedAt: new Date().toISOString(),
@@ -129,11 +158,12 @@ export default function ProjectEditorPage({ projectId }: { projectId: string }) 
   }
 
   async function syncToCloud() {
-    if (cloudBusy) return;
+    const current = project;
+    if (cloudBusy || !current) return;
     setCloudBusy(true);
     setNotice("");
     try {
-      await saveProjectToCloud(project);
+      await saveProjectToCloud(current);
       setCloudSaved(true);
       setNotice("云端服务已确认保存该项目。");
     } catch (cause) {
@@ -145,12 +175,66 @@ export default function ProjectEditorPage({ projectId }: { projectId: string }) 
   }
 
   function downloadZip() {
+    const current = project;
+    if (!current) return;
     try {
-      downloadProjectZip(project.name, project.files.map(({ path, content }) => ({ path, content })));
+      downloadProjectZip(current.name, current.files.map(({ path, content }) => ({ path, content })));
       setNotice("项目 ZIP 已开始下载。");
     } catch (cause) {
       setNotice(cause instanceof Error ? cause.message : "ZIP 导出失败。");
     }
+  }
+
+  function applyDesignSystem(system: typeof designSystems[number]) {
+    const current = project;
+    if (!current) return;
+    const cssFile = current.files.find((file) => file.path === "src/styles.css");
+    if (!cssFile) { setNotice("这个项目没有 src/styles.css，无法应用主题。"); return; }
+    const nextCss = cssFile.content.replace(/\/\* DesignBuddy theme start \*\/[\s\S]*?\/\* DesignBuddy theme end \*\//g, "").trimEnd() +
+      `\n\n/* DesignBuddy theme start */\n:root { --db-primary: ${system.colors[0]}; --db-accent: ${system.colors[1]}; --db-canvas: ${system.colors[2]}; }\nbody { background-color: var(--db-canvas); }\nh1 span, .eyebrow { color: var(--db-accent) !important; }\n.primary-link, .nav-cta, .shop-cta, .hero-actions .primary, .saas-bottom a { background-color: var(--db-primary) !important; }\n/* DesignBuddy theme end */\n`;
+    const saved = updateProject({ ...current, files: current.files.map((file) => file.path === cssFile.path ? { ...file, content: nextCss } : file), updatedAt: new Date().toISOString() });
+    setProject(saved); setNotice(`已应用“${system.name}”设计系统。`);
+  }
+
+  function applyElementStyle(property: "color" | "background-color" | "font-size" | "padding", value: string) {
+    const current = project;
+    if (!selectedElement || !current) return;
+    const frame = document.querySelector<HTMLIFrameElement>(".db-live-preview-stage iframe");
+    frame?.contentWindow?.postMessage({ type: "db-style", property, value }, "*");
+    const cssFile = current.files.find((file) => file.path === "src/styles.css");
+    if (!cssFile) return;
+    const marker = `/* Visual edit: ${selectedElement.selector} */`;
+    const escapeRegex = (value: string) => value.replace(/[.*+?^${}()|[\[\]\\]/g, "\\$&");
+    const existing = new RegExp(`${escapeRegex(marker)}\\s*\\{[^}]*\\}`, "g");
+    const rule = `${marker}\n${selectedElement.selector} { ${property}: ${value} !important; }`;
+    const content = existing.test(cssFile.content) ? cssFile.content.replace(existing, rule) : `${cssFile.content}\n\n${rule}\n`;
+    const saved = updateProject({ ...current, files: current.files.map((file) => file.path === cssFile.path ? { ...file, content } : file), updatedAt: new Date().toISOString() });
+    setProject(saved);
+  }
+
+  function exportStandaloneHtml() {
+    const current = project;
+    if (!current) return;
+    const html = buildPreviewDocument(current.files);
+    const url = URL.createObjectURL(new Blob([html], { type: "text/html;charset=utf-8" }));
+    const link = document.createElement("a"); link.href = url; link.download = `${current.name}.html`; link.click(); URL.revokeObjectURL(url);
+    setNotice("独立 HTML 已导出。");
+  }
+
+  function exportPdf() {
+    const current = project;
+    if (!current) return;
+    const preview = window.open("", "_blank");
+    if (!preview) { setNotice("浏览器阻止了弹出窗口，请允许此站点打开窗口后重试。"); return; }
+    preview.document.open(); preview.document.write(buildPreviewDocument(current.files)); preview.document.close();
+    preview.onload = () => preview.print();
+  }
+
+  function addReviewNote(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault(); const value = reviewNote.trim(); if (!value) return;
+    const current = project; if (!current) return;
+    const next = [...reviewNotes, value]; setReviewNotes(next); setReviewNote("");
+    localStorage.setItem(`designbuddy.review.${current.id}`, JSON.stringify(next));
   }
 
   return (
@@ -201,6 +285,7 @@ export default function ProjectEditorPage({ projectId }: { projectId: string }) 
                 <button title="手机" aria-label="手机预览" className={device === "mobile" ? "is-active" : ""} onClick={() => setDevice("mobile")}>▏</button>
               </div>
             )}
+            <div className="db-design-tools"><select aria-label="设计系统" defaultValue="" onChange={(event) => { const system = designSystems[Number(event.target.value)]; if (system) applyDesignSystem(system); event.currentTarget.value = ""; }}><option value="" disabled>设计系统</option>{designSystems.map((system, index) => <option value={index} key={system.name}>{system.name}</option>)}</select><button onClick={exportStandaloneHtml}>导出 HTML</button><button onClick={exportPdf}>导出 PDF</button></div>
           </div>
           {view === "preview" ? (
             <div className="db-live-preview-stage">
@@ -208,6 +293,7 @@ export default function ProjectEditorPage({ projectId }: { projectId: string }) 
                 <iframe title={`${project.name} 实时预览`} sandbox="allow-scripts" srcDoc={previewDocument} />
               </div>
               <p className="db-preview-caption">沙盒预览 · 不会访问项目之外的本机文件</p>
+              {selectedElement && <div className="db-element-inspector"><strong>元素样式 · &lt;{selectedElement.tag}&gt;</strong><span title={selectedElement.text}>{selectedElement.text || selectedElement.selector}</span><label>文字颜色<input type="color" onChange={(e) => applyElementStyle("color", e.target.value)} /></label><label>背景颜色<input type="color" onChange={(e) => applyElementStyle("background-color", e.target.value)} /></label><label>字号<input type="range" min="10" max="72" defaultValue="16" onChange={(e) => applyElementStyle("font-size", `${e.target.value}px`)} /></label><label>内边距<input type="range" min="0" max="64" defaultValue="0" onChange={(e) => applyElementStyle("padding", `${e.target.value}px`)} /></label><button onClick={() => setSelectedElement(null)}>关闭</button></div>}
             </div>
           ) : (
             <div className="db-code-editor">
@@ -240,6 +326,7 @@ export default function ProjectEditorPage({ projectId }: { projectId: string }) 
             <button type="submit" disabled={!assistantDraft.trim() || generating}>{generating ? "正在生成…" : "生成并应用源码"} <span>↗</span></button>
           </form>
           <div className="db-assistant-footnote">AI 生成需要配置服务端 API 密钥；云端同步需要已登录的 API 服务。失败时会显示具体原因，不会覆盖当前项目。</div>
+          <section className="db-review-panel"><h3>评审备注（本机）</h3><form onSubmit={addReviewNote}><textarea value={reviewNote} onChange={(event) => setReviewNote(event.target.value)} rows={2} placeholder="记录修改意见或待办…"/><button disabled={!reviewNote.trim()}>添加备注</button></form><ul>{reviewNotes.map((note, index) => <li key={`${index}-${note}`}>{note}</li>)}</ul></section>
         </aside>
       </div>
     </main>

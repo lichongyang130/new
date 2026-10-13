@@ -119,7 +119,8 @@ export function createZipBlob(entries: ZipEntry[]): Blob {
   write32(endView, 16, centralOffset);
   write16(endView, 20, 0);
 
-  return new Blob([concat([...localChunks, centralDirectory, endRecord])], { type: "application/zip" });
+  const archive = concat([...localChunks, centralDirectory, endRecord]);
+  return new Blob([archive.buffer.slice(archive.byteOffset, archive.byteOffset + archive.byteLength) as ArrayBuffer], { type: "application/zip" });
 }
 
 export function downloadProjectZip(projectName: string, entries: ZipEntry[]): void {
