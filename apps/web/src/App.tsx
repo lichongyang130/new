@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import WorkspaceHub from "./pages/WorkspaceHub";
+import DesignLibrary from "./pages/DesignLibrary";
 import ProjectsPage from "./pages/ProjectsPage";
 import ProjectEditorPage from "./pages/ProjectEditorPage";
 import type { DesignProject } from "./models/project";
@@ -7,15 +8,36 @@ import { createProject, listProjects } from "./store/projectStore";
 import { navigateTo, normalizeAppPath } from "./router/workspaceRoutes";
 import "./styles.css";
 
-const templates = [
-  { id: "saas", title: "SaaS 产品首页", description: "产品介绍、功能特性、价格方案", prompt: "设计一个现代简约的 SaaS 产品首页，包含导航、主视觉、功能特性和价格方案。" },
-  { id: "dashboard", title: "数据管理后台", description: "指标卡片、数据表格、筛选工具", prompt: "设计一个清晰专业的数据管理后台，包含侧边栏、统计卡片、筛选区和数据表格。" },
-  { id: "store", title: "电商产品页面", description: "产品展示、详情信息、购买入口", prompt: "设计一个简洁精致的电商产品展示页，包含产品介绍、视觉图片区域、功能卖点和购买入口。" },
-  { id: "portfolio", title: "个人作品集", description: "个人介绍、作品展示、联系信息", prompt: "设计一个有编辑感的个人作品集网站，包含个人介绍、项目精选和联系信息。" },
+type WorkMode = "office" | "code" | "design";
+
+const quickActions = [
+  { title: "网页设计", icon: "▤", mode: "design" as WorkMode, prompt: "帮我设计一个现代、简洁、具有高品质视觉风格的网站首页。" },
+  { title: "交互原型", icon: "▣", mode: "design" as WorkMode, prompt: "帮我制作一个可点击、流程清晰的产品交互原型。" },
+  { title: "视觉设计", icon: "◉", mode: "design" as WorkMode, prompt: "为我的产品设计统一的视觉风格、配色、字体和组件规范。" },
+  { title: "数据看板", icon: "◷", mode: "code" as WorkMode, prompt: "设计一个信息层级清楚、易于阅读的数据可视化看板。" },
+  { title: "产品需求", icon: "▦", mode: "office" as WorkMode, prompt: "帮我把一个产品想法梳理成清晰的功能需求和页面结构。" },
+  { title: "设计系统", icon: "◇", mode: "design" as WorkMode, prompt: "为一个 SaaS 产品建立可复用的设计系统和 UI 组件规范。" },
 ];
 
-function BrandMark() {
-  return <span className="db-brand-mark" aria-hidden="true">D</span>;
+const modes: { id: WorkMode; label: string; icon: string }[] = [
+  { id: "office", label: "日常办公", icon: "♧" },
+  { id: "code", label: "代码开发", icon: "‹›" },
+  { id: "design", label: "设计创意", icon: "◈" },
+];
+
+function RobotMascot() {
+  return (
+    <div className="buddy-mascot" aria-hidden="true">
+      <span className="mascot-status">✦</span>
+      <span className="mascot-antenna" />
+      <span className="mascot-head">
+        <i className="mascot-ear mascot-ear--left" />
+        <i className="mascot-ear mascot-ear--right" />
+        <span className="mascot-face"><i /><i /><b /></span>
+      </span>
+      <span className="mascot-body" />
+    </div>
+  );
 }
 
 function isWorkspaceHubPath(path: string) {
@@ -25,10 +47,15 @@ function isWorkspaceHubPath(path: string) {
 export default function App() {
   const [currentPath, setCurrentPath] = useState(normalizeAppPath(window.location.pathname));
   const [prompt, setPrompt] = useState("");
-  const [mode, setMode] = useState<"website" | "dashboard" | "prototype">("website");
+  const [mode, setMode] = useState<WorkMode>("design");
   const [notice, setNotice] = useState("");
   const [projects, setProjects] = useState<DesignProject[]>(() => listProjects());
   const [busy, setBusy] = useState(false);
+  const [model, setModel] = useState("DesignBuddy Auto");
+  const [workspace, setWorkspace] = useState("默认工作空间");
+  const [permission, setPermission] = useState("默认权限");
+  const [attachments, setAttachments] = useState<string[]>([]);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     const syncPath = () => {
@@ -39,24 +66,30 @@ export default function App() {
     return () => window.removeEventListener("popstate", syncPath);
   }, []);
 
+  function go(path: string) {
+    navigateTo(path);
+    setCurrentPath(normalizeAppPath(window.location.pathname));
+    setProjects(listProjects());
+    setNotice("");
+  }
+
   function startProject(initialPrompt = prompt.trim(), projectName?: string) {
     if (!initialPrompt.trim() && !projectName) {
-      setNotice("先描述你想创建的网页或选择一个模板。");
+      setNotice("先描述你的想法，或点击上方的快捷场景开始。");
       return;
     }
     try {
       setBusy(true);
-      const request = mode === "dashboard"
-        ? `数据后台设计需求：${initialPrompt}`
-        : mode === "prototype"
-          ? `可交互原型设计需求：${initialPrompt}`
-          : initialPrompt;
+      const prefix = mode === "office" ? "日常办公需求：" : mode === "code" ? "代码开发需求：" : "设计创意需求：";
+      const request = initialPrompt.startsWith("日常办公需求：") || initialPrompt.startsWith("代码开发需求：") || initialPrompt.startsWith("设计创意需求：")
+        ? initialPrompt
+        : `${prefix}${initialPrompt}`;
       const project = createProject(request, projectName);
       setProjects(listProjects());
       setNotice("");
       setPrompt("");
-      navigateTo(`/editor/${encodeURIComponent(project.id)}`);
-      setCurrentPath(normalizeAppPath(window.location.pathname));
+      setAttachments([]);
+      go(`/editor/${encodeURIComponent(project.id)}`);
     } catch (cause) {
       setNotice(cause instanceof Error ? cause.message : "项目创建失败，请检查浏览器存储设置。");
     } finally {
@@ -64,6 +97,7 @@ export default function App() {
     }
   }
 
+  if (currentPath.startsWith("/library")) return <DesignLibrary />;
   if (isWorkspaceHubPath(currentPath)) return <WorkspaceHub />;
   const editorMatch = currentPath.match(/^\/editor\/([^/]+)$/);
   if (editorMatch) {
@@ -74,121 +108,197 @@ export default function App() {
   if (currentPath === "/projects") return <ProjectsPage />;
 
   return (
-    <div className="db-app-shell">
-      <aside className="db-app-sidebar">
-        <button className="db-brand-lockup" onClick={() => navigateTo("/")} aria-label="返回 DesignBuddy 首页">
-          <BrandMark />
-          <span><strong>DesignBuddy</strong><small>AI DESIGN WORKSPACE</small></span>
-        </button>
-        <button className="db-new-project-button" onClick={() => { setPrompt(""); navigateTo("/"); setCurrentPath("/"); }}>
-          <span>＋</span> 新建项目
-        </button>
-        <nav className="db-primary-nav" aria-label="主导航">
-          <button className={currentPath === "/" ? "is-active" : ""} onClick={() => { navigateTo("/"); setCurrentPath("/"); }}>
-            <span className="db-nav-icon">⌂</span> 创建设计
+    <div className="workbuddy-app">
+      <aside className="app-sidebar">
+        <div className="sidebar-windowbar">
+          <div className="window-dots" aria-label="窗口控制">
+            <span className="window-dot window-dot--red" />
+            <span className="window-dot window-dot--yellow" />
+            <span className="window-dot window-dot--green" />
+          </div>
+          <div className="sidebar-utilities">
+            <button title="打开任务列表" aria-label="打开任务列表" onClick={() => go("/projects")}>▱</button>
+            <button title="搜索项目" aria-label="搜索项目" onClick={() => go("/projects")}>⌕</button>
+            <button title="筛选项目" aria-label="筛选项目" onClick={() => go("/projects")}>▽</button>
+          </div>
+        </div>
+
+        <div className="brand-row">
+          <button className="brand-lockup" onClick={() => go("/")} aria-label="返回 DesignBuddy 首页">
+            <strong>DesignBuddy</strong>
+            <span>AI 设计工作台</span>
           </button>
-          <button className={currentPath === "/projects" ? "is-active" : ""} onClick={() => { navigateTo("/projects"); setCurrentPath("/projects"); }}>
-            <span className="db-nav-icon">▦</span> 我的项目 <span className="db-nav-count">{projects.length}</span>
+          <button className="discover-button" onClick={() => { setNotice("从快捷场景选择网页、原型或设计系统任务，快速开始。"); }}>
+            ◉ 探索灵感 <span>⌄</span>
           </button>
-          <button onClick={() => { navigateTo("/experts"); setCurrentPath("/experts"); }}>
-            <span className="db-nav-icon">✳</span> Agent 与技能
+        </div>
+
+        <button className="sidebar-nav-item is-prominent" onClick={() => { setPrompt(""); go("/"); }}>
+          <span>⊕</span><span className="sidebar-nav-label">新建任务</span>
+        </button>
+
+        <nav className="sidebar-navigation" aria-label="主导航">
+          <button className="sidebar-nav-item" onClick={() => go("/experts")}>
+            <span>♙</span><span className="sidebar-nav-label">助理</span><span className="beta-label">BETA</span>
+            <span className="nav-trailing-actions"><span title="工作空间">▱</span><span title="设置">⚙</span></span>
+          </button>
+          <button className="sidebar-nav-item" onClick={() => go("/experts")}>
+            <span>♧</span><span className="sidebar-nav-label">专家 · 技能 · 连接器</span>
+          </button>
+          <button className="sidebar-nav-item" onClick={() => go("/library")}>
+            <span>◈</span><span className="sidebar-nav-label">设计资产中心</span>
+          </button>
+          <button className="sidebar-nav-item" onClick={() => setNotice("定时任务入口正在规划中；当前可直接在输入框创建设计任务。")}>
+            <span>◴</span><span className="sidebar-nav-label">定时任务</span>
+          </button>
+          <button className="sidebar-nav-item" onClick={() => go("/projects")}>
+            <span>▤</span><span className="sidebar-nav-label">资料库</span>
+          </button>
+          <button className="sidebar-nav-item" onClick={() => setNotice("更多工作区工具将逐步开放。")}>
+            <span>⊞</span><span className="sidebar-nav-label">更多</span><span className="nav-hint">工具</span>
           </button>
         </nav>
-        <div className="db-sidebar-section-label">最近项目</div>
-        <div className="db-sidebar-recent">
-          {projects.slice(0, 5).map((project) => (
-            <button key={project.id} title={project.name} onClick={() => navigateTo(`/editor/${encodeURIComponent(project.id)}`)}>
-              <span className="db-mini-project-icon">◇</span><span>{project.name}</span>
-            </button>
-          ))}
-          {projects.length === 0 && <p>你的项目会显示在这里。</p>}
+
+        <div className="sidebar-lists">
+          <button onClick={() => go("/projects")}>任务（{projects.length}）</button>
+          <button onClick={() => setNotice("当前工作空间：默认工作空间。可在输入框下方切换工作空间。")}>空间（2）</button>
         </div>
-        <div className="db-sidebar-footer">
-          <div className="db-avatar">D</div>
-          <div><strong>本机工作区</strong><span>项目草稿保存在此浏览器</span></div>
+
+        <div className="sidebar-bottom">
+          <div className="profile-avatar" aria-hidden="true">D</div>
+          <strong title="DesignBuddy Workspace">DesignBuddy Workspace</strong>
+          <button title="通知" aria-label="通知" onClick={() => setNotice("目前没有新通知。")}>♧</button>
+          <button title="工作区状态" aria-label="工作区状态" onClick={() => setNotice("当前为本地工作区，项目草稿保存在此浏览器。")}>▣</button>
         </div>
       </aside>
 
-      <main className="db-home-main">
-        <header className="db-home-topbar">
-          <span className="db-breadcrumb">工作台 <span>/</span> 创建设计</span>
-          <button className="db-topbar-link" onClick={() => navigateTo("/projects")}>查看所有项目 <span>→</span></button>
-        </header>
-        <div className="db-home-content">
-          <section className="db-home-hero">
-            <div className="db-hero-orb" aria-hidden="true"><span>✳</span></div>
-            <p className="db-eyebrow">IDEAS INTO INTERFACES</p>
-            <h1>把你的想法，<br /><span>变成真正的作品。</span></h1>
-            <p className="db-home-subtitle">描述你想要的网站或产品界面，建立项目草稿，接着编辑代码并实时预览。</p>
-          </section>
+      <main className="main-workspace">
+        <button className="top-promo" onClick={() => { setMode("design"); setPrompt("帮我梳理一个产品创意，并设计对应的网页首页与交互原型。"); }}>
+          <span className="promo-mark">✦</span> 发现更多设计灵感 <span>›</span>
+        </button>
 
-          <section className="db-prompt-panel" aria-label="创建项目">
-            <div className="db-prompt-label"><span className="db-prompt-dot" />描述你的设计需求</div>
-            <textarea
-              value={prompt}
-              onChange={(event) => { setPrompt(event.target.value); setNotice(""); }}
-              onKeyDown={(event) => {
-                if (event.key === "Enter" && !event.shiftKey) {
-                  event.preventDefault();
-                  startProject();
-                }
-              }}
-              placeholder="例如：设计一个精致的 SaaS 产品首页，使用浅色背景、醒目的主标题、功能介绍和价格卡片……"
-              rows={4}
-              aria-label="设计需求描述"
-            />
-            <div className="db-prompt-bottom">
-              <div className="db-mode-tabs" aria-label="项目类型">
-                <button className={mode === "website" ? "is-active" : ""} onClick={() => setMode("website")}>◇ 网页设计</button>
-                <button className={mode === "dashboard" ? "is-active" : ""} onClick={() => setMode("dashboard")}>▦ 数据后台</button>
-                <button className={mode === "prototype" ? "is-active" : ""} onClick={() => setMode("prototype")}>⌘ 交互原型</button>
-              </div>
-              <button className="db-button db-button-primary" disabled={busy} onClick={() => startProject()}>
-                {busy ? "正在创建…" : "创建项目"} <span>↗</span>
-              </button>
-            </div>
-          </section>
-          {notice && <p className="db-alert" role="alert">{notice}</p>}
-          <p className="db-local-disclaimer">当前版本会创建可编辑的项目起始模板；AI 自动生成服务尚未接通，不会把模板冒充成 AI 生成结果。</p>
-
-          <section className="db-template-section">
-            <div className="db-section-heading">
-              <div><p className="db-eyebrow">START WITH A TEMPLATE</p><h2>从一个起点开始</h2></div>
-              <button onClick={() => navigateTo("/projects")}>管理项目 <span>→</span></button>
-            </div>
-            <div className="db-template-grid">
-              {templates.map((template, index) => (
-                <button className="db-template-card" key={template.id} onClick={() => startProject(template.prompt, template.title)}>
-                  <span className={`db-template-art db-template-art-${index + 1}`}>
-                    <i className="db-art-nav" /><i className="db-art-heading" /><i className="db-art-heading-short" />
-                    <i className="db-art-visual" /><i className="db-art-card-one" /><i className="db-art-card-two" />
-                  </span>
-                  <span className="db-template-card-title">{template.title}<span>↗</span></span>
-                  <span className="db-template-description">{template.description}</span>
+        <div className="home-content">
+          <header className="welcome-header">
+            <h1>DesignBuddy，我帮你</h1>
+            <div className="mode-switch" role="tablist" aria-label="任务模式">
+              {modes.map((item) => (
+                <button
+                  key={item.id}
+                  role="tab"
+                  aria-selected={mode === item.id}
+                  className={`mode-tab ${mode === item.id ? "is-selected" : ""}`}
+                  onClick={() => setMode(item.id)}
+                >
+                  <span>{item.icon}</span>{item.label}
                 </button>
               ))}
             </div>
+          </header>
+
+          <section className="quick-actions-row" aria-label="快捷任务场景">
+            <div className="quick-actions-list">
+              {quickActions.map((action) => (
+                <button
+                  key={action.title}
+                  className="quick-action-chip"
+                  onClick={() => { setMode(action.mode); setPrompt(action.prompt); setNotice(""); }}
+                >
+                  <span>{action.icon}</span>{action.title}
+                </button>
+              ))}
+            </div>
+            <button className="quick-scroll-button" title="查看全部快捷场景" aria-label="查看全部快捷场景" onClick={() => setNotice("已展示常用设计场景：网页、原型、视觉、数据看板、产品需求与设计系统。")}>›</button>
+            <RobotMascot />
           </section>
 
-          <section className="db-recent-section">
-            <div className="db-section-heading">
-              <div><p className="db-eyebrow">PICK UP WHERE YOU LEFT OFF</p><h2>最近项目</h2></div>
-              <button onClick={() => navigateTo("/projects")}>全部项目 <span>→</span></button>
-            </div>
-            {projects.length > 0 ? (
-              <div className="db-recent-list">
-                {projects.slice(0, 3).map((project) => (
-                  <button key={project.id} className="db-recent-project" onClick={() => navigateTo(`/editor/${encodeURIComponent(project.id)}`)}>
-                    <span className="db-recent-icon">◇</span>
-                    <span className="db-recent-project-name">{project.name}<small>{project.prompt || "空白设计项目"}</small></span>
-                    <span className="db-recent-status">草稿</span><span className="db-recent-arrow">→</span>
+          <section className="composer-shell" aria-label="创建任务">
+            <div className="composer-main">
+              {attachments.length > 0 && (
+                <div className="attachment-list">
+                  {attachments.map((file, index) => (
+                    <span className="attachment-chip" key={`${file}-${index}`}>
+                      ▧ {file}
+                      <button aria-label={`移除附件 ${file}`} onClick={() => setAttachments((items) => items.filter((_, itemIndex) => itemIndex !== index))}>×</button>
+                    </span>
+                  ))}
+                </div>
+              )}
+              <textarea
+                value={prompt}
+                onChange={(event) => { setPrompt(event.target.value); setNotice(""); }}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter" && !event.shiftKey) {
+                    event.preventDefault();
+                    startProject();
+                  }
+                }}
+                placeholder="今天要帮你做些什么？描述需求，或点击上方场景快速开始……"
+                rows={3}
+                aria-label="任务描述"
+              />
+              <div className="composer-controls">
+                <button className="attach-button" title="添加附件" aria-label="添加附件" onClick={() => fileInputRef.current?.click()}>＋</button>
+                <input
+                  ref={fileInputRef}
+                  className="visually-hidden-input"
+                  type="file"
+                  multiple
+                  onChange={(event) => {
+                    const files = Array.from(event.currentTarget.files ?? []).map((file) => file.name);
+                    if (files.length) {
+                      setAttachments((current) => [...current, ...files].slice(-4));
+                      setNotice("已选择附件名称。当前版本尚未接通文件解析，请在任务描述中补充附件内容。");
+                    }
+                    event.currentTarget.value = "";
+                  }}
+                />
+                <div className="composer-actions-right">
+                  <label className="model-picker">
+                    <span className="model-spark">◈</span>
+                    <select value={model} aria-label="模型选择" onChange={(event) => setModel(event.target.value)}>
+                      <option>DesignBuddy Auto</option>
+                      <option>GPT 系列</option>
+                      <option>Claude 系列</option>
+                      <option>本地模型</option>
+                    </select>
+                    <span>⌄</span>
+                  </label>
+                  <button className="microphone-button" title="语音输入" aria-label="语音输入" onClick={() => setNotice("语音输入暂未接入，请直接在输入框中描述任务。")}>♩</button>
+                  <button className="send-button" disabled={busy || !prompt.trim()} title="开始任务" aria-label="开始任务" onClick={() => startProject()}>
+                    {busy ? "…" : "➤"}
                   </button>
-                ))}
+                </div>
               </div>
-            ) : (
-              <div className="db-recent-empty"><span>◈</span><p>还没有项目。描述一个想法，或选择上面的模板开始。</p></div>
-            )}
+            </div>
+            <div className="composer-footer">
+              <label className="footer-select">
+                ▱
+                <select value={workspace} onChange={(event) => setWorkspace(event.target.value)} aria-label="工作空间">
+                  <option>默认工作空间</option>
+                  <option>个人空间</option>
+                  <option>产品设计空间</option>
+                </select>
+                <span>⌄</span>
+              </label>
+              <label className="footer-select">
+                ◉
+                <select value={permission} onChange={(event) => setPermission(event.target.value)} aria-label="任务权限">
+                  <option>默认权限</option>
+                  <option>仅本地</option>
+                  <option>需要确认后执行</option>
+                </select>
+                <span>⌄</span>
+              </label>
+            </div>
           </section>
+
+          {notice && (
+            <div className="home-notice" role="status">
+              <span aria-hidden="true">ⓘ</span>
+              <span>{notice}</span>
+              <button aria-label="关闭提示" onClick={() => setNotice("")}>×</button>
+            </div>
+          )}
         </div>
       </main>
     </div>
