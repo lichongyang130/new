@@ -1,8 +1,5 @@
 import { app, BrowserWindow } from 'electron';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
-
-const currentDir = path.dirname(fileURLToPath(import.meta.url));
+import path from 'path';
 
 function createWindow(): BrowserWindow {
   const win = new BrowserWindow({
@@ -12,7 +9,7 @@ function createWindow(): BrowserWindow {
     minHeight: 600,
     show: false,
     webPreferences: {
-      preload: path.join(currentDir, 'preload.js'),
+      preload: path.join(__dirname, 'preload.js'),
       contextIsolation: true,
       nodeIntegration: false,
       sandbox: true,
@@ -25,8 +22,8 @@ function createWindow(): BrowserWindow {
   if (!app.isPackaged && devServerUrl) {
     void win.loadURL(devServerUrl);
   } else {
-    // Production builds should copy the web app output to ../web/dist relative to this entry.
-    const rendererIndex = path.resolve(currentDir, '../web/dist/index.html');
+    // The packaging configuration must copy the built renderer to this location.
+    const rendererIndex = path.resolve(__dirname, '../../web/dist/index.html');
     void win.loadFile(rendererIndex);
   }
 
