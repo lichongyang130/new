@@ -22,19 +22,19 @@ export class SourceValidator {
         continue;
       }
       if (path.startsWith('/') || /^[a-zA-Z]:\//.test(path) || path.split('/').includes('..')) {
-        errors.push(\`Unsafe generated file path: \${rawPath}\`);
+        errors.push('Unsafe generated file path: ' + rawPath);
       }
-      if (seen.has(path)) errors.push(\`Duplicate generated file path: \${path}\`);
+      if (seen.has(path)) errors.push('Duplicate generated file path: ' + path);
       seen.add(path);
 
       if (source !== undefined) {
-        if (!source.trim()) errors.push(\`Generated file is empty: \${path}\`);
+        if (!source.trim()) errors.push('Generated file is empty: ' + path);
         if (/\b(TODO|FIXME|IMPLEMENT_ME|PLACEHOLDER)\b/.test(source)) {
-          errors.push(\`Unresolved implementation marker in: \${path}\`);
+          errors.push('Unresolved implementation marker in: ' + path);
         }
         const opens = (source.match(/[({[]/g) ?? []).length;
         const closes = (source.match(/[)}\]]/g) ?? []).length;
-        if (opens !== closes) errors.push(\`Possible unbalanced delimiters in: \${path}\`);
+        if (opens !== closes) errors.push('Possible unbalanced delimiters in: ' + path);
       }
     }
     return { valid: errors.length === 0, errors };
