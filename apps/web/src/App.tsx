@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import WorkspaceHub from "./pages/WorkspaceHub";
 import DesignLibrary from "./pages/DesignLibrary";
+import StudioPage from "./pages/StudioPage";
 import ProjectsPage from "./pages/ProjectsPage";
 import ProjectEditorPage from "./pages/ProjectEditorPage";
 import type { DesignProject } from "./models/project";
@@ -98,6 +99,7 @@ export default function App() {
   }
 
   if (currentPath.startsWith("/library")) return <DesignLibrary />;
+  if (currentPath === "/studio" || currentPath.startsWith("/studio/")) return <StudioPage />;
   if (isWorkspaceHubPath(currentPath)) return <WorkspaceHub />;
   const editorMatch = currentPath.match(/^\/editor\/([^/]+)$/);
   if (editorMatch) {
@@ -147,6 +149,9 @@ export default function App() {
           </button>
           <button className="sidebar-nav-item" onClick={() => go("/library")}>
             <span>◈</span><span className="sidebar-nav-label">设计资产中心</span>
+          </button>
+          <button className="sidebar-nav-item" onClick={() => go("/studio")}>
+            <span>▣</span><span className="sidebar-nav-label">多类型创作工作室</span>
           </button>
           <button className="sidebar-nav-item" onClick={() => setNotice("定时任务入口正在规划中；当前可直接在输入框创建设计任务。")}>
             <span>◴</span><span className="sidebar-nav-label">定时任务</span>
