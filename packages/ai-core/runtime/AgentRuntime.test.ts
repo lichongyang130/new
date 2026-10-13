@@ -14,7 +14,7 @@ function mockProvider(id: string, result: string | Error): ModelProvider {
     },
     async listModels() {
       return [{ id: `${id}:mock-model`, provider: id, model: 'mock-model',
-        capabilities: ['chat', 'coding'], priority: id === 'claude' ? 20 : 10, enabled: true }];
+        capabilities: ['chat', 'coding'], priority: 10, enabled: true }];
     },
   };
 }
