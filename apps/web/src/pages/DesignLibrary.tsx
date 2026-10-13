@@ -1,8 +1,8 @@
 import { useMemo, useState } from "react";
-import designSystems from "../../../design-systems/catalog.json";
-import templates from "../../../design-templates/catalog.json";
-import plugins from "../../../plugins/_official/catalog.json";
-import skills from "../../../skills/catalog.json";
+import designSystems from "../../../../design-systems/catalog.json";
+import templates from "../../../../design-templates/catalog.json";
+import plugins from "../../../../plugins/_official/catalog.json";
+import skills from "../../../../skills/catalog.json";
 
 type Tab = "systems" | "templates" | "plugins" | "skills" | "runtime";
 type Item = { id: string; name: string; category: string; description: string; image?: string; cover?: string; tags?: string[]; screenCount?: number; screens?: Array<{id:string;name:string;kind:string;image:string;interactions:string[]}>; primary?: string; philosophy?: string; permissions?: string[]; risk?: string; level?: string; outputs?: string[] };
@@ -59,7 +59,7 @@ export default function DesignLibrary() {
      {visible.map(item=><article key={item.id} className="db-library-card">
       {(item.cover||item.image)?<img className="db-library-card-image" src={item.cover||item.image} alt={item.name+" 视觉预览"} loading="lazy"/>:<div className="db-library-card-color" style={{background:item.primary||"#6558D3"}}/>}
       <div className="db-library-card-body"><div className="db-library-card-kicker">{item.category}</div><h2>{item.name}</h2><p>{item.description}</p>
-       {tab==="systems"&&<div className="db-color-row">{[item.primary,"#171923","#E6E8EF","#F7F7F8","#14866D"].map((c,i)=><i key={i} style={{background:c}}/)}<span>Token + 组件规范</span></div>}
+       {tab==="systems"&&<div className="db-color-row">{[item.primary,"#171923","#E6E8EF","#F7F7F8","#14866D"].map((c,i)=><i key={i} style={{background:c}} />)}<span>Token + 组件规范</span></div>}
        {tab==="templates"&&<div className="db-template-meta"><span>▦ {item.screenCount} 个界面/状态</span><span>◉ 含图像预览</span></div>}
        {tab==="plugins"&&<div className="db-template-meta"><span>v1.0.0</span><span>{item.risk}</span></div>}
        {tab==="skills"&&<div className="db-template-meta"><span>{item.level}</span><span>{item.outputs?.length||2} 类交付</span></div>}
