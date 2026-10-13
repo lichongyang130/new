@@ -2,6 +2,9 @@ import { useEffect, useMemo, useState, type FormEvent } from "react";
 import type { DesignProject, ProjectFile } from "../models/project";
 import { getProject, updateProject } from "../store/projectStore";
 import { navigateTo } from "../router/workspaceRoutes";
+import { generateProjectWithAI } from "../api/generation";
+import { saveProjectToCloud } from "../api/projects";
+import { downloadProjectZip } from "../utils/zip";
 
 function buildPreviewDocument(files: ProjectFile[]): string {
   const htmlFile = files.find((file) => file.path === "index.html");
@@ -23,6 +26,9 @@ export default function ProjectEditorPage({ projectId }: { projectId: string }) 
   const [notice, setNotice] = useState("");
   const [saveFailed, setSaveFailed] = useState(false);
   const [assistantDraft, setAssistantDraft] = useState("");
+  const [generating, setGenerating] = useState(false);
+  const [cloudBusy, setCloudBusy] = useState(false);
+  const [cloudSaved, setCloudSaved] = useState(false);
 
   useEffect(() => {
     setProject(getProject(projectId) ?? null);
@@ -54,6 +60,7 @@ export default function ProjectEditorPage({ projectId }: { projectId: string }) 
       const saved = updateProject(updated);
       setProject(saved);
       setSaveFailed(false);
+      setCloudSaved(false);
       setNotice("");
     } catch (cause) {
       setSaveFailed(true);
@@ -83,10 +90,67 @@ export default function ProjectEditorPage({ projectId }: { projectId: string }) 
     }
   }
 
-  function submitAssistant(event: FormEvent<HTMLFormElement>) {
+  async function submitAssistant(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (!assistantDraft.trim()) return;
-    setNotice("AI 生成接口尚未连接，需求没有发送或保存。接入 Agent API 后才能自动修改项目；当前可在代码模式编辑并实时预览。");
+    const prompt = assistantDraft.trim();
+    if (!prompt || generating) return;
+    setGenerating(true);
+    setNotice("");
+    try {
+      const result = await generateProjectWithAI({
+        prompt,
+        projectName: project.name,
+        currentFiles: project.files.map(({ path, content, language }) => ({ path, content, language: language === "html" || language === "css" || language === "javascript" ? language : undefined })),
+      });
+      const generatedFiles: ProjectFile[] = result.files.map((file) => ({
+        path: file.path,
+        content: file.content,
+        language: file.language ?? (file.path.endsWith(".html") ? "html" : file.path.endsWith(".css") ? "css" : file.path.endsWith(".js") ? "javascript" : "text"),
+      }));
+      const next: DesignProject = {
+        ...project,
+        name: result.name?.trim() || project.name,
+        prompt: prompt,
+        files: generatedFiles,
+        updatedAt: new Date().toISOString(),
+      };
+      const saved = updateProject(next);
+      setProject(saved);
+      setSaveFailed(false);
+      setCloudSaved(false);
+      setAssistantDraft("");
+      setNotice("AI 已返回源码并更新本机项目。请检查预览，确认后再同步云端。");
+      setView("preview");
+    } catch (cause) {
+      setNotice(cause instanceof Error ? cause.message : "AI 生成失败；现有项目未更改。");
+    } finally {
+      setGenerating(false);
+    }
+  }
+
+  async function syncToCloud() {
+    if (cloudBusy) return;
+    setCloudBusy(true);
+    setNotice("");
+    try {
+      await saveProjectToCloud(project);
+      setCloudSaved(true);
+      setNotice("云端服务已确认保存该项目。");
+    } catch (cause) {
+      setCloudSaved(false);
+      setNotice(cause instanceof Error ? cause.message : "云端同步失败。");
+    } finally {
+      setCloudBusy(false);
+    }
+  }
+
+  function downloadZip() {
+    try {
+      downloadProjectZip(project.name, project.files.map(({ path, content }) => ({ path, content })));
+      setNotice("项目 ZIP 已开始下载。");
+    } catch (cause) {
+      setNotice(cause instanceof Error ? cause.message : "ZIP 导出失败。");
+    }
   }
 
   return (
@@ -96,12 +160,14 @@ export default function ProjectEditorPage({ projectId }: { projectId: string }) 
         <div className="db-editor-project-name">
           <strong>{project.name}</strong>
           <button onClick={renameProject} aria-label="重命名项目">✎</button>
-          <span className={saveFailed ? "db-save-state is-error" : "db-save-state"}><i />{saveFailed ? "保存失败" : "已保存在本机"}</span>
+          <span className={saveFailed ? "db-save-state is-error" : "db-save-state"}><i />{saveFailed ? "保存失败" : cloudSaved ? "云端已同步" : "已保存在本机"}</span>
         </div>
         <div className="db-editor-header-actions">
           <button className={view === "code" ? "db-button db-button-secondary is-selected" : "db-button db-button-secondary"} onClick={() => setView("code")}>{"</>"} 代码</button>
           <button className={view === "preview" ? "db-button db-button-secondary is-selected" : "db-button db-button-secondary"} onClick={() => setView("preview")}>◫ 预览</button>
-          <button className="db-button db-button-primary" onClick={() => void copySource()}>复制全部源码 <span>↗</span></button>
+          <button className="db-button db-button-secondary" onClick={downloadZip}>下载 ZIP</button>
+          <button className="db-button db-button-secondary" onClick={() => void syncToCloud()} disabled={cloudBusy}>{cloudBusy ? "同步中…" : "同步云端"}</button>
+          <button className="db-button db-button-primary" onClick={() => void copySource()}>复制源码 <span>↗</span></button>
         </div>
       </header>
 
@@ -166,14 +232,14 @@ export default function ProjectEditorPage({ projectId }: { projectId: string }) 
           <div className="db-assistant-intro">
             <div className="db-assistant-avatar">✳</div>
             <h2>继续打磨你的想法</h2>
-            <p>描述要调整的布局、配色或内容。接入 AI 服务后，这里将生成可审阅的代码变更。</p>
+            <p>描述要调整的布局、配色或内容。AI 返回的源码会先保存在本机，确认预览后再同步到云端。</p>
           </div>
           <div className="db-assistant-status"><i /> 当前项目为本机草稿模式</div>
           <form className="db-assistant-composer" onSubmit={submitAssistant}>
             <textarea value={assistantDraft} onChange={(event) => setAssistantDraft(event.target.value)} placeholder="例如：把页面改成深色风格，并加入价格方案…" rows={5} />
-            <button type="submit" disabled={!assistantDraft.trim()}>记录修改需求 <span>↗</span></button>
+            <button type="submit" disabled={!assistantDraft.trim() || generating}>{generating ? "正在生成…" : "生成并应用源码"} <span>↗</span></button>
           </form>
-          <div className="db-assistant-footnote">不会伪造 AI 生成结果。当前可在代码模式编辑，并即时查看预览。</div>
+          <div className="db-assistant-footnote">AI 生成需要配置服务端 API 密钥；云端同步需要已登录的 API 服务。失败时会显示具体原因，不会覆盖当前项目。</div>
         </aside>
       </div>
     </main>
