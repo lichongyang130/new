@@ -16,7 +16,7 @@ export async function transcodeWebMToMp4(input: Uint8Array): Promise<Uint8Array>
       let errorOutput = "";
       const timer = setTimeout(() => { child.kill("SIGKILL"); reject(new Error("Video transcode timed out after 90 seconds.")); }, 90_000);
       child.stderr.on("data", (chunk: Buffer) => { errorOutput = (errorOutput + chunk.toString()).slice(-3000); });
-      child.once("error", (error) => { clearTimeout(timer); reject(new Error(error.code === "ENOENT" ? "FFmpeg is not installed or FFMPEG_PATH is invalid." : error.message)); });
+      child.once("error", (error) => { clearTimeout(timer); reject(new Error(("code" in error && error.code === "ENOENT") ? "FFmpeg is not installed or FFMPEG_PATH is invalid." : error.message)); });
       child.once("close", (code) => {
         clearTimeout(timer);
         if (code === 0) resolve();

@@ -29,6 +29,9 @@ export interface Connector {
   status: ConnectorStatus;
   scopes: string[];
   connectedAt?: string;
+  /** Public configuration only; never store keys or authorization tokens here. */
+  endpoint?: string;
+  transport?: "streamable-http" | "sse";
 }
 
 export interface ApiError {

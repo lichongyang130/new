@@ -26,7 +26,7 @@ export const AI_PROVIDER_ENDPOINTS: Record<string, string> = {
   mistral: "https://api.mistral.ai/v1",
   google: "https://generativelanguage.googleapis.com/v1beta/openai",
 };
-const providerModels: Record<string, string> = {
+export const AI_PROVIDER_MODELS: Record<string, string> = {
   openai: "gpt-4o-mini", openrouter: "openai/gpt-4o-mini", deepseek: "deepseek-chat",
   groq: "llama-3.3-70b-versatile", mistral: "mistral-small-latest", google: "gemini-2.5-flash",
 };
@@ -45,7 +45,7 @@ export async function requestAI(input: AIRequest): Promise<AIResponse> {
   if (!apiKey) throw new Error("AI provider is not configured. Set AI_API_KEY or OPENAI_API_KEY on the server.");
 
   const baseUrl = (input.apiKey ? AI_PROVIDER_ENDPOINTS[input.provider!] : process.env.AI_BASE_URL || "https://api.openai.com/v1").replace(/\/+$/, "");
-  const model = input.model || (input.apiKey ? providerModels[input.provider!] : process.env.AI_MODEL || process.env.OPENAI_MODEL || "gpt-4o-mini");
+  const model = input.model || (input.apiKey ? AI_PROVIDER_MODELS[input.provider!] : process.env.AI_MODEL || process.env.OPENAI_MODEL || "gpt-4o-mini");
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 60_000);
 

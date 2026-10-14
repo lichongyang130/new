@@ -7,5 +7,5 @@ export default function PluginMarketplace(){
   {name:'Office Assistant',category:'办公插件'},
   {name:'MCP Enterprise Connector',category:'企业连接器'},
  ];
- return <section><h1>Plugin Marketplace</h1>{plugins.map(p=><PluginCard key={p.name} plugin={p}/>)}</section>;
+ return <section><h1>Plugin Marketplace</h1>{plugins.map(p=><PluginCard key={p.name} plugin={{ name: p.name, description: p.category, version: '' }}/>)}</section>;
 }

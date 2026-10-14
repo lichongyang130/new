@@ -5,6 +5,13 @@ import { createProject, listProjects, updateProject } from "../../../frontend/wo
 import { useWorkspaceStore } from "../../../frontend/workspace/store";
 import { PromptInput } from "../../../frontend/workspace";
 import { navigateTo, normalizeAppPath } from "../../../frontend/workspace/workspaceRoutes";
+import { HomeIcon, type HomeIconName } from "./components/HomeIcon";
+import { WorkBuddySidebar } from "./components/WorkBuddySidebar";
+import PluginsPage from "../../../frontend/workspace/pages/PluginsPage";
+import InspirationPage from "./inspiration/InspirationPage";
+import TaskConversationPage from "../../../frontend/workspace/pages/TaskConversationPage";
+import { saveTaskConversation, pendingTaskKey, type TaskConversation } from "../../../frontend/workspace/taskConversation";
+import { modelOptions } from "../../../frontend/workspace/taskModels";
 import "./styles.css";
 import "./home-workspace.css";
 
@@ -12,30 +19,22 @@ type WorkMode = "office" | "code" | "design";
 type TaskAttachment = { name: string; text?: string };
 const textAttachmentExtensions = /\.(txt|md|markdown|json|html|htm|css|js|csv|xml|yaml|yml)$/i;
 
-const quickActions = [
-  { title: "文档处理", icon: "▤", mode: "office" as WorkMode, prompt: "帮我整理和处理这份文档，提炼关键信息并输出清晰的结果。" },
-  { title: "金融服务", icon: "▣", mode: "office" as WorkMode, prompt: "帮我整理金融服务需求并生成一份结构清晰的分析方案。" },
-  { title: "数据分析及可视化", icon: "◷", mode: "code" as WorkMode, prompt: "分析这些数据，并设计清晰易读的数据可视化看板。" },
-  { title: "个人工作台", icon: "▦", mode: "office" as WorkMode, prompt: "为我规划一个高效、清晰的个人工作台。" },
-  { title: "幻灯片", icon: "▧", mode: "office" as WorkMode, prompt: "根据我的主题制作一份结构清晰、视觉精美的演示文稿。" },
-  { title: "网页设计", icon: "◇", mode: "design" as WorkMode, prompt: "帮我设计一个现代、简洁、具有高品质视觉风格的网站首页。" },
+const quickActions: { title: string; icon: HomeIconName; mode: WorkMode; prompt: string }[] = [
+  { title: "文档处理", icon: "document", mode: "office", prompt: "帮我整理和处理这份文档，提炼关键信息并输出清晰的结果。" },
+  { title: "金融服务", icon: "wallet", mode: "office", prompt: "帮我整理金融服务需求并生成一份结构清晰的分析方案。" },
+  { title: "数据分析及可视化", icon: "chart", mode: "code", prompt: "分析这些数据，并设计清晰易读的数据可视化看板。" },
+  { title: "个人工作台", icon: "grid", mode: "office", prompt: "为我规划一个高效、清晰的个人工作台。" },
+  { title: "幻灯片", icon: "slides", mode: "office", prompt: "根据我的主题制作一份结构清晰、视觉精美的演示文稿。" },
+  { title: "网页设计", icon: "palette", mode: "design", prompt: "帮我设计一个现代、简洁、具有高品质视觉风格的网站首页。" },
 ];
 
-const modes: { id: WorkMode; label: string; icon: string }[] = [
-  { id: "office", label: "日常办公", icon: "♧" },
-  { id: "code", label: "代码开发", icon: "‹›" },
-  { id: "design", label: "设计创意", icon: "◈" },
+const modes: { id: WorkMode; label: string; icon: HomeIconName }[] = [
+  { id: "office", label: "日常办公", icon: "coffee" },
+  { id: "code", label: "代码开发", icon: "code" },
+  { id: "design", label: "设计创意", icon: "palette" },
 ];
 
-const modelOptions = [
-  { id: "hy4-preview", name: "Hy4 preview", icon: "◉", badge: "夜间免费", badgeTone: "mint", cost: "0.29x" },
-  { id: "hy3", name: "Hy3", icon: "◉", badge: "限时免费", badgeTone: "mint", cost: "0.00x" },
-  { id: "", name: "Step-5-Preview", icon: "♫", badge: "独家限免", badgeTone: "mint", cost: "0.00x" },
-  { id: "space-bunny", name: "Space-Bunny", icon: "◉", badge: "", badgeTone: "", cost: "0.08x" },
-  { id: "deepseek-v4.1-flash", name: "Deepseek-V4.1-Flash", icon: "◈", badge: "夜间折扣", badgeTone: "mint", cost: "0.11x" },
-  { id: "glm-5.3", name: "GLM-5.3", icon: "Z", badge: "订阅优先", badgeTone: "warm", cost: "0.79x" },
-  { id: "glm-5.3-flash", name: "GLM-5.3-Flash", icon: "Z", badge: "订阅优先", badgeTone: "warm", cost: "0.06x" },
-];
+
 
 const expertCatalog = [
   { id: "dev", name: "高级开发工程师", description: "全栈开发、系统架构与工程效率", terms: ["开发", "代码", "编程", "前端", "后端", "react", "网页", "网站", "调试", "bug", "架构", "接口", "程序"] },
@@ -59,7 +58,7 @@ function isWorkspaceHubPath(path: string) {
 export default function App() {
   const [currentPath, setCurrentPath] = useState(normalizeAppPath(window.location.pathname));
   const [prompt, setPrompt] = useState("");
-  const [mode, setMode] = useState<WorkMode>("design");
+  const [mode, setMode] = useState<WorkMode>("office");
   const [notice, setNotice] = useState("");
   const [projects, setProjects] = useState<DesignProject[]>(() => listProjects());
   const [busy, setBusy] = useState(false);
@@ -75,6 +74,7 @@ export default function App() {
   const customExperts = useWorkspaceStore((state) => state.experts);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const modelMenuRef = useRef<HTMLDivElement>(null);
+  const quickActionsRef = useRef<HTMLDivElement>(null);
   const recommendedExperts = useMemo(() => {
     const request = prompt.trim();
     if (request.length < 2) return [];
@@ -156,10 +156,15 @@ export default function App() {
       const fullRequest = request + attachmentContext;
       const draft = createProject(fullRequest, projectName || initialPrompt.trim().slice(0, 36));
       const project = updateProject({ ...draft, workspaceName: workspace, executionPolicy: permission });
-      try {
-        window.sessionStorage.setItem(`designbuddy.generate-on-open.${project.id}`, JSON.stringify({ prompt: fullRequest, model, localOnly: permission === "仅本地" }));
-      } catch {
-        setNotice("本机草稿已创建，但浏览器不允许自动启动 AI 生成。可在项目编辑器右侧手动提交需求。");
+      const conversation: TaskConversation = {
+        projectId: project.id, mode, model, permission,
+        messages: [{ id: crypto.randomUUID(), role: "user", content: initialPrompt.trim(), requestContent: fullRequest, createdAt: new Date().toISOString(), status: "complete" }],
+      };
+      saveTaskConversation(conversation);
+      try { sessionStorage.setItem(pendingTaskKey(project.id), "1"); }
+      catch {
+        conversation.messages.push({ id: crypto.randomUUID(), role: "assistant", content: "", createdAt: new Date().toISOString(), status: "error", error: "浏览器不允许自动提交，请点击重新生成。" });
+        saveTaskConversation(conversation);
       }
       setProjects(listProjects());
       setNotice("");
@@ -167,7 +172,7 @@ export default function App() {
       setSelectedExpert("");
       setSelectedSkill("");
       setAttachments([]);
-      go(`/editor/${encodeURIComponent(project.id)}`);
+      go(`/tasks/${encodeURIComponent(project.id)}`);
     } catch (cause) {
       setNotice(cause instanceof Error ? cause.message : "项目创建失败，请检查浏览器存储设置。");
     } finally {
@@ -175,10 +180,18 @@ export default function App() {
     }
   }
 
+  if (currentPath === "/plugins") return <PluginsPage />;
+  if (currentPath === "/inspiration" || currentPath.startsWith("/inspiration/")) return <InspirationPage pathname={currentPath} />;
   if (currentPath.startsWith("/library")) return <DesignLibrary />;
   if (currentPath === "/studio" || currentPath.startsWith("/studio/")) return <StudioPage />;
   if (currentPath === "/share") return <ShareProjectPage />;
   if (isWorkspaceHubPath(currentPath)) return <WorkspaceHub />;
+  const taskMatch = currentPath.match(/^\/tasks\/([^/]+)$/);
+  if (taskMatch) {
+    let id = taskMatch[1];
+    try { id = decodeURIComponent(id); } catch { /* Show the not-found view. */ }
+    return <TaskConversationPage key={id} projectId={id} />;
+  }
   const editorMatch = currentPath.match(/^\/editor\/([^/]+)$/);
   if (editorMatch) {
     let projectId = editorMatch[1];
@@ -189,68 +202,9 @@ export default function App() {
 
   return (
     <div className="workbuddy-app">
-      <aside className="app-sidebar">
-        <div className="sidebar-windowbar">
-          <div className="window-dots" aria-label="窗口控制">
-            <span className="window-dot window-dot--red" />
-            <span className="window-dot window-dot--yellow" />
-            <span className="window-dot window-dot--green" />
-          </div>
-          <div className="sidebar-utilities">
-            <button title="打开任务列表" aria-label="打开任务列表" onClick={() => go("/projects")}>▱</button>
-            <button title="搜索项目" aria-label="搜索项目" onClick={() => go("/projects")}>⌕</button>
-            <button title="筛选项目" aria-label="筛选项目" onClick={() => go("/projects")}>▽</button>
-          </div>
-        </div>
-
-        <div className="brand-row">
-          <button className="brand-lockup" onClick={() => go("/")} aria-label="返回 WorkBuddy 首页">
-            <strong>WorkBuddy</strong>
-            <span>5.7.7</span>
-          </button>
-          <button className="discover-button" onClick={() => { setNotice("从快捷场景选择文档、金融、数据或个人工作台任务，快速开始。"); }}>
-            ◉ 发现应用 <span>⌄</span>
-          </button>
-        </div>
-
-        <button className="sidebar-nav-item is-prominent" onClick={() => { setPrompt(""); go("/"); }}>
-          <span>⊕</span><span className="sidebar-nav-label">新建任务</span>
-        </button>
-
-        <nav className="sidebar-navigation" aria-label="主导航">
-          <button className="sidebar-nav-item" onClick={() => go("/experts")}>
-            <span>♙</span><span className="sidebar-nav-label">助理</span><span className="beta-label">BETA</span>
-            <span className="nav-trailing-actions"><span title="工作空间">▱</span><span title="设置">⚙</span></span>
-          </button>
-          <button className="sidebar-nav-item" onClick={() => go("/experts")}>
-            <span>♧</span><span className="sidebar-nav-label">专家·技能·连接器</span>
-          </button>
-          <button className="sidebar-nav-item" onClick={() => setNotice("定时任务入口正在规划中；当前可直接在输入框创建设计任务。")}>
-            <span>◴</span><span className="sidebar-nav-label">定时任务</span>
-          </button>
-          <button className="sidebar-nav-item" onClick={() => go("/projects")}>
-            <span>▤</span><span className="sidebar-nav-label">资料库</span>
-          </button>
-          <button className="sidebar-nav-item" onClick={() => setNotice("更多工作区工具将逐步开放。")}>
-            <span>⊞</span><span className="sidebar-nav-label">更多</span><span className="nav-hint">灵感</span>
-          </button>
-        </nav>
-
-        <div className="sidebar-lists">
-          <button onClick={() => go("/projects")}>任务（{projects.length || 3}）</button>
-          <button onClick={() => setNotice("当前工作空间：默认工作空间。可在输入框下方切换工作空间。")}>空间（2）</button>
-        </div>
-
-        <div className="sidebar-bottom">
-          <div className="profile-avatar" aria-hidden="true">D</div>
-          <strong title="19932101651">19932101651</strong>
-          <button title="通知" aria-label="通知" onClick={() => setNotice("目前没有新通知。")}>♧</button>
-          <button title="工作区状态" aria-label="工作区状态" onClick={() => setNotice("当前为本地工作区，项目草稿保存在此浏览器。")}>▣</button>
-        </div>
-      </aside>
+      <WorkBuddySidebar active="home" projectCount={projects.length} go={go} setNotice={setNotice} />
 
       <main className="main-workspace home-workspace-v2">
-        <button className="top-promo" onClick={() => { setMode("design"); setPrompt("帮我梳理一个产品创意，并设计对应的网页首页与交互原型。"); }}><span className="promo-mark">♧</span> 做任务赢积分好礼 <span>›</span></button>
         <div className="home-content home-content-v2">
           <header className="welcome-header">
             <h1>WorkBuddy，我帮你</h1>
@@ -260,18 +214,34 @@ export default function App() {
                   key={item.id}
                   role="tab"
                   aria-selected={mode === item.id}
+                  tabIndex={mode === item.id ? 0 : -1}
+                  onKeyDown={(event) => {
+                    const index = modes.findIndex((entry) => entry.id === item.id);
+                    const next = event.key === "ArrowRight" ? (index + 1) % modes.length
+                      : event.key === "ArrowLeft" ? (index + modes.length - 1) % modes.length
+                      : event.key === "Home" ? 0 : event.key === "End" ? modes.length - 1 : -1;
+                    if (next < 0) return;
+                    event.preventDefault();
+                    setMode(modes[next].id);
+                    event.currentTarget.parentElement?.querySelectorAll<HTMLButtonElement>("button")[next]?.focus();
+                  }}
                   className={`mode-tab ${mode === item.id ? "is-selected" : ""}`}
                   onClick={() => setMode(item.id)}
                 >
-                  <span>{item.icon}</span>{item.label}
+                  <HomeIcon name={item.icon} />{item.label}
                 </button>
               ))}
             </div>
           </header>
 
           <section className="quick-actions-row" aria-label="快捷任务场景">
-            <div className="quick-actions-list">{quickActions.map((action) => <button key={action.title} className="quick-action-chip" onClick={() => { setMode(action.mode); setPrompt(action.prompt); setSelectedExpert(""); setSelectedSkill(""); setNotice(""); }}><span>{action.icon}</span>{action.title}</button>)}</div>
-            <button className="quick-scroll-button" title="查看任务场景" aria-label="查看任务场景" onClick={() => setNotice("已展示常用任务场景。")}>›</button>
+            <div className="quick-actions-list" ref={quickActionsRef}>{quickActions.map((action) => <button key={action.title} className="quick-action-chip" onClick={() => { setMode(action.mode); setPrompt(action.prompt); setSelectedExpert(""); setSelectedSkill(""); setNotice(""); }}><HomeIcon name={action.icon} />{action.title}</button>)}</div>
+            <button className="quick-scroll-button" title="查看任务场景" aria-label="查看任务场景" onClick={() => {
+              const list = quickActionsRef.current;
+              if (!list) return;
+              const atEnd = list.scrollLeft + list.clientWidth >= list.scrollWidth - 2;
+              list.scrollTo({ left: atEnd ? 0 : list.scrollLeft + list.clientWidth * 0.75, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth" });
+            }}><HomeIcon name="chevron" size={12} /></button>
           </section>
 
           <section className="composer-shell" aria-label="创建任务">
@@ -292,7 +262,7 @@ export default function App() {
                 onSubmit={startProject}
                 placeholder="今天要帮你做些什么？ @ 添加上下文，/ 调用技能与指令"
                 rows={3}
-                aria-label="任务描述"
+                ariaLabel="任务描述"
               />
               {(selectedExpert || selectedSkill) && <div className="home-selected-capabilities"><span>本次任务将使用：{[selectedExpert, selectedSkill].filter(Boolean).join(" · ")}</span><button type="button" onClick={() => { setSelectedExpert(""); setSelectedSkill(""); }}>清除</button></div>}
               {recommendedExperts.length > 0 && <div className="home-expert-recommendations" aria-live="polite">
@@ -304,7 +274,7 @@ export default function App() {
                 </article>)}</div>
               </div>}
               <div className="composer-controls">
-                <button className="attach-button" title="添加附件" aria-label="添加附件" onClick={() => fileInputRef.current?.click()}>＋</button>
+                <button className="attach-button" title="添加附件" aria-label="添加附件" onClick={() => fileInputRef.current?.click()}><HomeIcon name="plus" size={20} /></button>
                 <input
                   ref={fileInputRef}
                   className="visually-hidden-input"
@@ -328,8 +298,8 @@ export default function App() {
                 />
                 <div className="composer-actions-right">
                   <div className="model-picker-host" ref={modelMenuRef}>
-                    <button className="model-picker" type="button" aria-haspopup="listbox" aria-expanded={modelMenuOpen} onClick={() => setModelMenuOpen((open) => !open)}>
-                      <span className="model-spark">♫</span><span>{modelOptions.find((option) => option.id === model)?.name ?? model}</span><span className={modelMenuOpen ? "model-chevron is-open" : "model-chevron"}>⌄</span>
+                    <button className="model-picker" type="button" aria-label="选择大模型" aria-haspopup="dialog" aria-expanded={modelMenuOpen} onClick={() => setModelMenuOpen((open) => !open)}>
+                      <span className="model-spark"><HomeIcon name="step" size={13} /></span><span>{modelOptions.find((option) => option.id === model)?.name ?? model}</span><span className={modelMenuOpen ? "model-chevron is-open" : "model-chevron"}><HomeIcon name="chevron" size={10} /></span>
                     </button>
                     {modelMenuOpen && <div className="model-menu-popover" role="dialog" aria-label="选择大模型">
                       <div className="model-menu-max-row"><span className="model-menu-max-icon">♧</span><b>Max 模式</b><button className={maxMode ? "model-toggle is-on" : "model-toggle"} type="button" role="switch" aria-checked={maxMode} aria-label="Max 模式" onClick={() => setMaxMode((enabled) => !enabled)}><i /></button></div>
@@ -343,31 +313,31 @@ export default function App() {
                       <button className="model-custom-config" type="button" onClick={() => { setModelMenuOpen(false); setNotice("自定义模型配置需要后端模型服务支持。"); }}><span>♧</span>配置自定义模型</button>
                     </div>}
                   </div>
-                  <button className="microphone-button" title="语音输入" aria-label="语音输入" onClick={() => setNotice("语音输入暂未接入，请直接在输入框中描述任务。")}>♩</button>
+                  <button className="microphone-button" title="语音输入" aria-label="语音输入" onClick={() => setNotice("语音输入暂未接入，请直接在输入框中描述任务。")}><HomeIcon name="microphone" size={15} /></button>
                   <button className="send-button" disabled={busy || !prompt.trim()} title="开始任务" aria-label="开始任务" onClick={() => startProject()}>
-                    {busy ? "…" : "➤"}
+                    {busy ? "…" : <HomeIcon name="send" size={19} />}
                   </button>
                 </div>
               </div>
             </div>
             <div className="composer-footer">
               <label className="footer-select">
-                ▱
+                <HomeIcon name="folder" />
                 <select value={workspace} onChange={(event) => setWorkspace(event.target.value)} aria-label="工作空间">
-                  <option>默认工作空间</option>
+                  <option value="默认工作空间">选择工作空间</option>
                   <option>个人空间</option>
                   <option>产品设计空间</option>
                 </select>
-                <span>⌄</span>
+                <HomeIcon name="chevron" size={10} />
               </label>
               <label className="footer-select">
-                ◉
-                <select value={permission} onChange={(event) => setPermission(event.target.value)} aria-label="任务权限">
+                <HomeIcon name="shield" />
+                <select style={{ width: `calc(${permission.length}em + 4px)` }} value={permission} onChange={(event) => setPermission(event.target.value)} aria-label="任务权限">
                   <option>默认权限</option>
                   <option>仅本地</option>
                   <option>需要确认后执行</option>
                 </select>
-                <span>⌄</span>
+                <HomeIcon name="chevron" size={10} />
               </label>
             </div>
           </section>

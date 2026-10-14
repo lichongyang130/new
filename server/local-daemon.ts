@@ -63,8 +63,13 @@ createServer(async (incoming, outgoing) => {
       const response = await api(request);
       const responseHeaders = Object.fromEntries(response.headers.entries());
       outgoing.writeHead(response.status, responseHeaders);
-      if (response.body) Readable.fromWeb(response.body as import("node:stream/web").ReadableStream).pipe(outgoing);
-      else outgoing.end();
+      if (response.body) {
+        const stream = Readable.fromWeb(response.body as import("node:stream/web").ReadableStream);
+        // A cancelled/failed SSE body must not become an unhandled Node stream error.
+        stream.on("error", () => outgoing.destroy());
+        outgoing.once("close", () => stream.destroy());
+        stream.pipe(outgoing);
+      } else outgoing.end();
       return;
     }
 

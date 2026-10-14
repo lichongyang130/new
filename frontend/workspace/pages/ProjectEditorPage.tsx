@@ -15,7 +15,7 @@ import { publishProjectEvent, subscribeToProject, type CollaborationEvent } from
 import { addProjectMember, listProjectMembers, removeProjectMember, type ProjectMember } from "../api/memberships";
 import { AIProviderSettings, getAIProviderCredentials } from "../AIProviderSettings";
 
-function buildPreviewDocument(files: ProjectFile[]): string {
+function buildPreviewDocument(files: ProjectFile[], inspect = true): string {
   const htmlFile = files.find((file) => file.path === "index.html");
   const css = files.find((file) => file.path === "src/styles.css")?.content ?? "";
   const js = files.find((file) => file.path === "src/main.js")?.content ?? "";
@@ -25,13 +25,14 @@ function buildPreviewDocument(files: ProjectFile[]): string {
   html = html.replace(/<link[^>]+href=["']\.\/src\/styles\.css["'][^>]*>/i, `<style>${safeCss}</style>`);
   html = html.replace(/<script[^>]+src=["']\.\/src\/main\.js["'][^>]*><\/script>/i, `<script>${safeJs}<\/script>`);
   const editorBridge = `<style>[data-db-selected]{outline:2px solid #7458ed!important;outline-offset:2px!important;cursor:crosshair!important}</style><script>(function(){let selected='';function path(el){const parts=[];while(el&&el!==document.body){let part=el.tagName.toLowerCase();if(el.id){part+='#'+CSS.escape(el.id);parts.unshift(part);break}const siblings=el.parentElement?[...el.parentElement.children].filter(x=>x.tagName===el.tagName):[];if(siblings.length>1)part+=':nth-of-type('+(siblings.indexOf(el)+1)+')';parts.unshift(part);el=el.parentElement}return parts.join(' > ')}document.addEventListener('click',function(e){const a=e.target.closest('a');if(a&&a.getAttribute('href')?.startsWith('#'))e.preventDefault();const el=e.target.closest('body *');if(!el)return;e.preventDefault();e.stopPropagation();selected=path(el);document.querySelectorAll('[data-db-selected]').forEach(x=>x.removeAttribute('data-db-selected'));el.setAttribute('data-db-selected','');parent.postMessage({type:'db-select',selector:selected,tag:el.tagName.toLowerCase(),text:(el.innerText||'').slice(0,100)},'*')},true);addEventListener('message',function(e){if(e.data?.type==='db-style'&&selected){const el=document.querySelector(selected);if(el)el.style.setProperty(e.data.property,e.data.value)}});})();<\/script>`;
-  html = html.replace(/<\/body>/i, `${editorBridge}</body>`);
+  if (inspect) html = html.replace(/<\/body>/i, `${editorBridge}</body>`);
   return html;
 }
 
 export default function ProjectEditorPage({ projectId }: { projectId: string }) {
   const [project, setProject] = useState<DesignProject | null>(() => getProject(projectId) ?? null);
   const [activePath, setActivePath] = useState("index.html");
+  const [interactivePreview, setInteractivePreview] = useState(false);
   const [view, setView] = useState<"preview" | "code">("preview");
   const [device, setDevice] = useState<"desktop" | "tablet" | "mobile">("desktop");
   const [notice, setNotice] = useState("");
@@ -110,7 +111,7 @@ export default function ProjectEditorPage({ projectId }: { projectId: string }) 
   }, [projectId]);
 
   const activeFile = project?.files.find((file) => file.path === activePath) ?? project?.files[0];
-  const previewDocument = useMemo(() => buildPreviewDocument(project?.files ?? []), [project?.files]);
+  const previewDocument = useMemo(() => buildPreviewDocument(project?.files ?? [], !interactivePreview), [project?.files, interactivePreview]);
   const generationSteps: GenerationStep[] = generationStatus === "idle" ? [] : [
     { id: "request", name: "提交需求", status: "complete" },
     { id: "generate", name: "生成页面源码", status: generationStatus === "active" ? "active" : generationStatus === "error" ? "error" : "complete" },
@@ -417,6 +418,7 @@ export default function ProjectEditorPage({ projectId }: { projectId: string }) 
             </div>
             {view === "preview" && (
               <div className="db-device-picker" aria-label="预览设备">
+                <button style={{ width: "auto", padding: "0 9px" }} aria-label="交互模式" aria-pressed={interactivePreview} title="切换页面交互与元素选择；切换会重新加载预览" className={interactivePreview ? "is-active" : ""} onClick={() => { setInteractivePreview(value => !value); setSelectedElement(null); }}>交互模式</button>
                 <button title="桌面" aria-label="桌面预览" className={device === "desktop" ? "is-active" : ""} onClick={() => setDevice("desktop")}>▰</button>
                 <button title="平板" aria-label="平板预览" className={device === "tablet" ? "is-active" : ""} onClick={() => setDevice("tablet")}>▯</button>
                 <button title="手机" aria-label="手机预览" className={device === "mobile" ? "is-active" : ""} onClick={() => setDevice("mobile")}>▏</button>

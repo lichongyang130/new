@@ -8,3 +8,10 @@ dist/
 data/
 *.log
 .DS_Store
+
+# Browser regression test artifacts
+**/test-results/
+**/playwright-report/
+
+# Local asset acquisition and visual-review scratch files
+/.cache/

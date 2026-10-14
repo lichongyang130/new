@@ -7,8 +7,8 @@
     "skipLibCheck": true,
     "moduleResolution": "Bundler",
     "paths": {
-      "react": ["./node_modules/react"],
-      "react/*": ["./node_modules/react/*"],
+      "react": ["./node_modules/@types/react/index.d.ts"],
+      "react/*": ["./node_modules/@types/react/*"],
       "zustand": ["./node_modules/zustand"],
       "zustand/*": ["./node_modules/zustand/*"]
     },
