@@ -8,6 +8,7 @@ import type { CodingAgentId } from "../agent/cli-runtime";
 import { resolve } from "node:path";
 import type { ProjectMembershipStore, ProjectMemberRole } from "./project-memberships";
 import { proxyAIStream } from "./ai-proxy";
+import { streamTaskChat, TaskChatValidationError, type TaskChatRequest } from "./chat";
 
 export interface ApiPrincipal {
   id: string;
@@ -164,6 +165,22 @@ export function createApiHandler(options: ApiHandlerOptions): (request: Request)
     if (!principal?.id) return json({ error: "Authentication required." }, 401, options.corsOrigin);
 
     try {
+      if (url.pathname === "/api/chat" && request.method === "POST") {
+        const body = await readJson(request);
+        const response = await streamTaskChat({
+          messages: body.messages as TaskChatRequest["messages"],
+          model: typeof body.model === "string" ? body.model : undefined,
+          provider: typeof body.provider === "string" ? body.provider : undefined,
+          apiKey: typeof body.apiKey === "string" ? body.apiKey : undefined,
+        }, request.signal);
+        if (options.corsOrigin) {
+          response.headers.set("Access-Control-Allow-Origin", options.corsOrigin);
+          response.headers.set("Access-Control-Allow-Credentials", "true");
+          response.headers.set("Vary", "Origin");
+        }
+        return response;
+      }
+
       if (url.pathname === "/api/generation" && request.method === "POST") {
         const body = await readJson(request);
         if (typeof body.prompt !== "string" || typeof body.projectName !== "string") {
@@ -244,7 +261,7 @@ export function createApiHandler(options: ApiHandlerOptions): (request: Request)
         if (!(request.headers.get("content-type") || "").toLowerCase().startsWith("video/webm")) return json({ error: "Content-Type must be video/webm." }, 400, options.corsOrigin);
         const bytes = await readBytesLimited(request, 100 * 1024 * 1024);
         const mp4 = await transcodeWebMToMp4(bytes);
-        return new Response(mp4, { status: 200, headers: { "Content-Type": "video/mp4", "Content-Disposition": "attachment; filename=designbuddy.mp4", "Cache-Control": "no-store", ...(options.corsOrigin ? { "Access-Control-Allow-Origin": options.corsOrigin, "Access-Control-Allow-Credentials": "true" } : {}) } });
+        return new Response(new Uint8Array(mp4).buffer, { status: 200, headers: { "Content-Type": "video/mp4", "Content-Disposition": "attachment; filename=designbuddy.mp4", "Cache-Control": "no-store", ...(options.corsOrigin ? { "Access-Control-Allow-Origin": options.corsOrigin, "Access-Control-Allow-Credentials": "true" } : {}) } });
       }
 
       const agentPath = url.pathname.match(/^\/api\/projects\/([^/]+)\/agent$/);
@@ -386,7 +403,7 @@ export function createApiHandler(options: ApiHandlerOptions): (request: Request)
       return json({ error: "Not found." }, 404, options.corsOrigin);
     } catch (error) {
       const message = error instanceof Error ? error.message : "Request failed.";
-      const status = /required|must be|invalid|too (long|many|large)|unsafe|exceeds/i.test(message) ? 400 : 502;
+      const status = error instanceof TaskChatValidationError || /required|must be|invalid|too (long|many|large)|unsafe|exceeds/i.test(message) ? 400 : 502;
       return json({ error: message }, status, options.corsOrigin);
     }
   };

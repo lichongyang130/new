@@ -3,7 +3,8 @@ import templates from "../../../design-templates/catalog.json";
 import plugins from "../../../plugins/_official/catalog.json";
 import skills from "../../../skills/catalog.json";
 import { useWorkspaceStore, workspaceStore } from "../store";
-import { createProject, updateProject } from "../projectStore";
+import { WorkBuddySidebar } from "../../../apps/web/src/components/WorkBuddySidebar";
+import { createProject, updateProject, listProjects } from "../projectStore";
 import { navigateTo } from "../workspaceRoutes";
 import { applyDesignSystemTokens, designSystems } from "../utils/designSystem";
 
@@ -11,7 +12,7 @@ type Tab = "systems" | "templates" | "plugins" | "skills" | "runtime" | "saved";
 type Item = { id: string; name: string; category: string; description?: string; image?: string; cover?: string; tags?: string[]; screenCount?: number; screens?: Array<{id:string;name:string;kind:string;image:string;interactions:string[]}>; primary?: string; philosophy?: string; permissions?: string[]; risk?: string; level?: string; outputs?: string[]; savedType?: "systems" | "templates" | "plugins" | "skills" };
 const tabs: Array<{id:Tab;label:string;eyebrow:string;title:string;description:string}> = [
  {id:"systems",label:"设计系统",eyebrow:"DESIGN SYSTEMS",title:"从设计规范，到一致的产品体验",description:"180 套可组合的设计语言，包含颜色、字体、间距、圆角、组件清单与无障碍基线。"},
- {id:"templates",label:"商业模板",eyebrow:"COMMERCIAL TEMPLATES",title:"从真实业务场景开始",description:"1130 个商业模板系列，每个系列包含 24 个页面/状态场景，并提供图片预览与交互清单。"},
+ {id:"templates",label:"商业模板",eyebrow:"COMMERCIAL TEMPLATES",title:"从真实业务场景开始",description:`${templates.length} 个商业模板系列，每个系列包含 24 个页面/状态场景，并提供图片预览与交互清单。`},
  {id:"plugins",label:"官方插件",eyebrow:"OFFICIAL PLUGINS",title:"把工具能力接入工作流",description:"480 个插件能力定义，按设计、开发、质量、数据、办公、多媒体和交付分类。"},
  {id:"skills",label:"技能库",eyebrow:"PROFESSIONAL SKILLS",title:"把专家方法沉淀为可复用技能",description:"180 项可组合技能，覆盖设计、工程、产品、研究、质量、办公与 AI Agent。"},
  {id:"runtime",label:"插件运行时",eyebrow:"PLUGIN RUNTIME",title:"可治理、可追踪、可扩展的插件底座",description:"统一 manifest、权限确认、运行事件、超时控制和插件注册表，危险能力默认要求用户确认。"},
@@ -25,8 +26,8 @@ const runtimeCapabilities = [
  ["超时保护","为执行设置默认超时并提供可配置上限。"],
  ["可替换注册表","按 ID 注册、查询与枚举插件定义，方便接入 UI 和服务端。"]
 ];
-export default function DesignLibrary() {
- const [tab,setTab]=useState<Tab>("systems");
+export default function DesignLibrary({ section }: { section?: "plugins" | "inspiration" } = {}) {
+ const [tab,setTab]=useState<Tab>(section === "inspiration" ? "templates" : section === "plugins" ? "plugins" : "systems");
  const [query,setQuery]=useState("");
  const [category,setCategory]=useState("全部");
  const [selected,setSelected]=useState<Item|null>(null);
@@ -56,17 +57,17 @@ export default function DesignLibrary() {
   try{const draft=createProject(`基于「${system.name}」设计系统制作一个可编辑的网页原型。`,`${system.name} 设计项目`);const saved=updateProject(applyDesignSystemTokens(draft,system));navigateTo(`/editor/${encodeURIComponent(saved.id)}`);}
   catch(error){setNotice(error instanceof Error?error.message:"无法创建主题项目。");}
  }
- return <div className="db-library">
-  <aside className="db-library-side">
-   <button className="db-library-brand" onClick={()=>{window.location.href="/";}}>✦ <span><b>DesignBuddy</b><small>设计资产中心</small></span></button>
+ return <div className={section ? "db-library workbuddy-app library-workspace" : "db-library"}>
+  {section ? <WorkBuddySidebar active={section === "inspiration" ? "templates" : "plugins"} projectCount={listProjects().length} go={navigateTo} setNotice={setNotice} /> : <aside className="db-library-side">
+   <button className="db-library-brand" onClick={()=>{navigateTo("/");}}>✦ <span><b>DesignBuddy</b><small>设计资产中心</small></span></button>
    <div className="db-library-side-label">资产工作台</div>
    {tabs.map(t=><button key={t.id} className={tab===t.id?"is-active":""} onClick={()=>changeTab(t.id)}><span>{({"systems":"◈","templates":"▦","plugins":"⌘","skills":"✧","runtime":"⚙","saved":"▣"} as Record<Tab,string>)[t.id]}</span>{t.label}{t.id==="saved"&&assets.length>0?` (${assets.length})`:""}{tab===t.id&&<i/>}</button>)}
    <div className="db-library-side-foot"><span>DESIGNBUDDY STUDIO</span><p>为每一个产品决策提供一致、可复用的基础。</p></div>
-  </aside>
+  </aside>}
   <main className="db-library-main">
-   <header className="db-library-top"><div><span>DesignBuddy</span><b>/</b><strong>{active.label}</strong></div><button onClick={()=>{window.location.href="/";}}>返回工作台 ↗</button></header>
+   <header className="db-library-top"><div><span>DesignBuddy</span><b>/</b><strong>{section === "inspiration" ? "灵感" : active.label}</strong></div><button onClick={()=>{navigateTo("/");}}>返回工作台 ↗</button></header>
    <section className={"db-library-hero hero-"+tab}>
-    <div><div className="db-library-eyebrow">{active.eyebrow}</div><h1>{active.title}</h1><p>{active.description}</p>
+    <div><div className="db-library-eyebrow">{active.eyebrow}</div><h1>{section === "inspiration" ? "灵感" : section === "plugins" ? "插件" : active.title}</h1><p>{active.description}</p>
      <div className="db-library-metrics">
       <span><b>{tab==="systems"?designSystems.length:tab==="templates"?templates.length:tab==="plugins"?plugins.length:tab==="skills"?skills.length:tab==="saved"?assets.length:"6"}</b><small>{tab==="systems"?"套设计系统":tab==="templates"?"商业模板系列":tab==="plugins"?"插件能力":tab==="skills"?"专业技能":tab==="saved"?"已保存资产":"运行时能力"}</small></span>
       {tab==="templates"&&<span><b>3,120</b><small>页面与状态场景</small></span>}

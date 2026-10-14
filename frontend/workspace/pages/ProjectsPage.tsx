@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import type { DesignProject } from "../models/project";
 import { createProject, listProjects, removeProject, updateProject } from "../projectStore";
 import { listCloudProjects } from "../api/projects";
+import { projectTaskPath, loadTaskConversation } from "../taskConversation";
 import { navigateTo } from "../workspaceRoutes";
 
 function formatDate(value: string): string {
@@ -27,7 +28,7 @@ export default function ProjectsPage() {
     try {
       const project = createProject("", "未命名设计项目");
       setProjects(listProjects());
-      navigateTo(`/editor/${encodeURIComponent(project.id)}`);
+      navigateTo(projectTaskPath(project.id));
     } catch (cause) {
       setNotice(cause instanceof Error ? cause.message : "创建项目失败。");
     }
@@ -74,7 +75,7 @@ export default function ProjectsPage() {
         <section className="db-project-grid" aria-label="项目列表">
           {visibleProjects.map((project) => (
             <article className="db-project-card" key={project.id}>
-              <button className="db-project-thumbnail" onClick={() => navigateTo(`/editor/${encodeURIComponent(project.id)}`)} aria-label={`打开项目 ${project.name}`}>
+              <button className="db-project-thumbnail" onClick={() => navigateTo(projectTaskPath(project.id))} aria-label={`打开项目 ${project.name}`}>
                 <div className="db-thumb-nav" />
                 <div className="db-thumb-title" />
                 <div className="db-thumb-title db-thumb-title-short" />
@@ -90,7 +91,7 @@ export default function ProjectsPage() {
                   <span><i className="db-status-dot" />草稿</span>
                   <span>更新于 {formatDate(project.updatedAt)}</span>
                 </div>
-                <button className="db-button db-button-secondary db-open-project" onClick={() => navigateTo(`/editor/${encodeURIComponent(project.id)}`)}>继续编辑 <span>→</span></button>
+                <button className="db-button db-button-secondary db-open-project" onClick={() => navigateTo(projectTaskPath(project.id))}>{loadTaskConversation(project.id) ? "继续对话" : "继续编辑"} <span>→</span></button>
               </div>
             </article>
           ))}

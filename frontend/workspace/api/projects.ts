@@ -32,7 +32,7 @@ export async function listCloudProjects(): Promise<DesignProject[]> {
   const response = await apiFetch("/projects", { headers: { Accept: "application/json" } });
   const body = await response.json().catch(() => ({} as { error?: string; message?: string }));
   if (!response.ok) throw new Error(body.message || body.error || `加载共享项目失败（HTTP ${response.status}）。`);
-  return (Array.isArray(body) ? body : []).filter((project): project is DesignProject => Boolean(project && typeof project === "object" && typeof project.id === "string" && typeof project.name === "string" && Array.isArray(project.files))
+  return (Array.isArray(body) ? body : []).filter((project): project is DesignProject => Boolean(project && typeof project === "object" && typeof project.id === "string" && typeof project.name === "string" && Array.isArray(project.files)))
     .map((project) => ({ ...project, files: project.files.map((file) => ({ ...file, language: file.language ?? (file.path.endsWith(".html") ? "html" : file.path.endsWith(".css") ? "css" : file.path.endsWith(".js") ? "javascript" : "text") })) }));
 }
 

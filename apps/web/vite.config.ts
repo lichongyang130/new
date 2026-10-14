@@ -13,6 +13,7 @@ export default defineConfig({
   },
   server: {
     host: "0.0.0.0",
+    allowedHosts: [".e2b.app"],
     fs: {
       allow: [fileURLToPath(new URL("../../", import.meta.url))]
     }

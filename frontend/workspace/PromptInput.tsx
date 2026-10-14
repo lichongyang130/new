@@ -11,7 +11,7 @@ export interface PromptInputProps {
 
 export function PromptInput({ value, onChange, onSubmit, placeholder, rows = 3, ariaLabel }: PromptInputProps) {
   const handleKeyDown = (event: KeyboardEvent<HTMLTextAreaElement>) => {
-    if (event.key === "Enter" && !event.shiftKey && onSubmit) {
+    if (event.key === "Enter" && !event.shiftKey && !event.nativeEvent.isComposing && event.keyCode !== 229 && onSubmit) {
       event.preventDefault();
       onSubmit();
     }

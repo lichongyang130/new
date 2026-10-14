@@ -22,7 +22,7 @@ export interface GenerateProjectResponse {
   model?: string;
 }
 
-export async function generateProjectWithAI(input: GenerateProjectRequest): Promise<GenerateProjectResponse> {
+export async function generateProjectWithAI(input: GenerateProjectRequest, signal?: AbortSignal): Promise<GenerateProjectResponse> {
   const prompt = input.prompt.trim();
   if (!prompt) throw new Error("请先描述要生成或修改的内容。");
 
@@ -30,6 +30,7 @@ export async function generateProjectWithAI(input: GenerateProjectRequest): Prom
     method: "POST",
     headers: { Accept: "application/json", "Content-Type": "application/json" },
     body: JSON.stringify({ ...input, prompt }),
+    signal,
   });
 
   const body = await response.json().catch(() => ({} as { error?: string; message?: string }));

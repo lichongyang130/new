@@ -274,4 +274,6 @@ export function updateProject(project: DesignProject): DesignProject {
 
 export function removeProject(id: string): void {
   writeProjects(readProjects().filter((project) => project.id !== id));
+  localStorage.removeItem(`designbuddy.conversation.v1.${id}`);
+  sessionStorage.removeItem(`designbuddy.conversation.pending.${id}`);
 }
