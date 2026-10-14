@@ -11,6 +11,9 @@ export interface GenerationRequest {
   prompt: string;
   projectName: string;
   model?: string;
+  designContract?: string;
+  apiKey?: string;
+  provider?: string;
   currentFiles?: GenerationFile[];
 }
 
@@ -72,6 +75,7 @@ export async function generateDesignProject(input: GenerationRequest): Promise<G
   if (!prompt) throw new Error("A design prompt is required.");
   if (prompt.length > 12_000) throw new Error("The design prompt is too long.");
   if (input.model && !/^[a-zA-Z0-9._:-]{1,120}$/.test(input.model)) throw new Error("The requested model identifier is invalid.");
+  if (input.designContract && input.designContract.length > 24_000) throw new Error("The design contract is too long.");
 
   const existingFiles = (input.currentFiles ?? []).filter((file) => allowedPaths.has(file.path));
   const existingSource = existingFiles.length
@@ -80,6 +84,7 @@ export async function generateDesignProject(input: GenerationRequest): Promise<G
   const systemPrompt = [
     "You are DesignBuddy, an expert frontend designer and developer.",
     "If the user request names a selected expert or skill, adopt that role and apply its methods while completing the task.",
+    "When a DESIGN.md brand contract is supplied, follow its colors, typography, spacing, component, and accessibility rules consistently.",
     "Return ONLY a JSON object with keys name and files.",
     "files must contain source files using only these exact paths: index.html, src/styles.css, src/main.js.",
     "index.html must be complete HTML and link to ./src/styles.css and ./src/main.js.",
@@ -89,10 +94,13 @@ export async function generateDesignProject(input: GenerationRequest): Promise<G
   ].join(" ");
   const response = await requestAI({
     userId: input.userId,
+    apiKey: input.apiKey,
+    provider: input.provider,
     model: input.model || process.env.AI_MODEL || process.env.OPENAI_MODEL || "gpt-4o-mini",
     systemPrompt,
     prompt: [
       "Project name: " + (input.projectName.trim() || "DesignBuddy project"),
+      input.designContract ? "Selected DESIGN.md brand contract:\n" + input.designContract : "No brand contract was selected.",
       "User request: " + prompt,
       "Current source files:", existingSource,
       "Create updated working files that fulfill the user request. Return JSON only."

@@ -1,14 +1,10 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import WorkspaceHub from "./pages/WorkspaceHub";
-import DesignLibrary from "./pages/DesignLibrary";
-import StudioPage from "./pages/StudioPage";
-import ShareProjectPage from "./pages/ShareProjectPage";
-import ProjectsPage from "./pages/ProjectsPage";
-import ProjectEditorPage from "./pages/ProjectEditorPage";
-import type { DesignProject } from "./models/project";
-import { createProject, listProjects, updateProject } from "./store/projectStore";
-import { useWorkspaceStore } from "./store/workspaceStore";
-import { navigateTo, normalizeAppPath } from "./router/workspaceRoutes";
+import { DesignLibrary, ProjectEditorPage, ProjectsPage, ShareProjectPage, StudioPage, WorkspaceHub } from "../../../frontend/workspace";
+import type { DesignProject } from "../../../frontend/workspace/models/project";
+import { createProject, listProjects, updateProject } from "../../../frontend/workspace/projectStore";
+import { useWorkspaceStore } from "../../../frontend/workspace/store";
+import { PromptInput } from "../../../frontend/workspace";
+import { navigateTo, normalizeAppPath } from "../../../frontend/workspace/workspaceRoutes";
 import "./styles.css";
 import "./home-workspace.css";
 
@@ -290,15 +286,10 @@ export default function App() {
                   ))}
                 </div>
               )}
-              <textarea
+              <PromptInput
                 value={prompt}
-                onChange={(event) => { setPrompt(event.target.value); setNotice(""); }}
-                onKeyDown={(event) => {
-                  if (event.key === "Enter" && !event.shiftKey) {
-                    event.preventDefault();
-                    startProject();
-                  }
-                }}
+                onChange={(value) => { setPrompt(value); setNotice(""); }}
+                onSubmit={startProject}
                 placeholder="今天要帮你做些什么？ @ 添加上下文，/ 调用技能与指令"
                 rows={3}
                 aria-label="任务描述"

@@ -1,4 +1,5 @@
 import { env } from "node:process";
+import { fileURLToPath } from "node:url";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
@@ -7,7 +8,13 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   base: env.GITHUB_ACTIONS === "true" ? "/new/" : "/",
   plugins: [react()],
+  resolve: {
+    dedupe: ["react", "react-dom", "zustand"]
+  },
   server: {
-    host: "0.0.0.0"
+    host: "0.0.0.0",
+    fs: {
+      allow: [fileURLToPath(new URL("../../", import.meta.url))]
+    }
   }
 });

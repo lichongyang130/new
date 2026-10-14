@@ -1,2 +1,0 @@
-import React from 'react';
-export default function ExpertDetail(){return <div className="detail"><h1>高级开发工程师</h1><p>10年以上全栈经验，帮助完成架构设计和代码开发</p><button>立即使用</button><section><h2>能力</h2><p>代码生成 · 架构设计 · 项目咨询 · 技术方案</p></section></div>}

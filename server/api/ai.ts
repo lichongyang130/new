@@ -3,6 +3,8 @@ export interface AIRequest {
   prompt: string;
   systemPrompt?: string;
   userId: string;
+  apiKey?: string;
+  provider?: string;
 }
 
 export interface AIResponse {
@@ -16,6 +18,19 @@ interface OpenAIChatResponse {
   error?: { message?: string };
 }
 
+export const AI_PROVIDER_ENDPOINTS: Record<string, string> = {
+  openai: "https://api.openai.com/v1",
+  openrouter: "https://openrouter.ai/api/v1",
+  deepseek: "https://api.deepseek.com/v1",
+  groq: "https://api.groq.com/openai/v1",
+  mistral: "https://api.mistral.ai/v1",
+  google: "https://generativelanguage.googleapis.com/v1beta/openai",
+};
+const providerModels: Record<string, string> = {
+  openai: "gpt-4o-mini", openrouter: "openai/gpt-4o-mini", deepseek: "deepseek-chat",
+  groq: "llama-3.3-70b-versatile", mistral: "mistral-small-latest", google: "gemini-2.5-flash",
+};
+
 /**
  * OpenAI-compatible provider adapter.
  * Configure AI_API_KEY (or OPENAI_API_KEY), AI_BASE_URL and AI_MODEL on the server.
@@ -25,11 +40,12 @@ export async function requestAI(input: AIRequest): Promise<AIResponse> {
   if (!input.userId.trim()) throw new Error("An authenticated user is required.");
   if (!input.prompt.trim()) throw new Error("Prompt is required.");
 
-  const apiKey = process.env.AI_API_KEY || process.env.OPENAI_API_KEY || "";
+  if (input.apiKey && (input.apiKey.length > 512 || !input.provider || !AI_PROVIDER_ENDPOINTS[input.provider])) throw new Error("Choose a supported provider and provide a valid API key.");
+  const apiKey = input.apiKey || process.env.AI_API_KEY || process.env.OPENAI_API_KEY || "";
   if (!apiKey) throw new Error("AI provider is not configured. Set AI_API_KEY or OPENAI_API_KEY on the server.");
 
-  const baseUrl = (process.env.AI_BASE_URL || "https://api.openai.com/v1").replace(/\/+$/, "");
-  const model = input.model || process.env.AI_MODEL || process.env.OPENAI_MODEL || "gpt-4o-mini";
+  const baseUrl = (input.apiKey ? AI_PROVIDER_ENDPOINTS[input.provider!] : process.env.AI_BASE_URL || "https://api.openai.com/v1").replace(/\/+$/, "");
+  const model = input.model || (input.apiKey ? providerModels[input.provider!] : process.env.AI_MODEL || process.env.OPENAI_MODEL || "gpt-4o-mini");
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 60_000);
 

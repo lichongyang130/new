@@ -4,8 +4,11 @@
   "private": true,
   "description": "Open design AI workspace clone",
   "scripts": {
-    "dev": "pnpm --filter desktop dev",
-    "build": "pnpm -r build"
+    "dev": "pnpm --filter designbuddy-desktop dev",
+    "build": "pnpm -r build",
+    "mcp:stdio": "node scripts/mcp-stdio.mjs",
+    "mcp:install": "node scripts/mcp-install.mjs",
+    "local:daemon": "pnpm exec tsc -p server/tsconfig.local.json && node dist/local/server/local-daemon.js"
   },
   "packageManager": "pnpm@9.0.0",
   "workspaces": [
