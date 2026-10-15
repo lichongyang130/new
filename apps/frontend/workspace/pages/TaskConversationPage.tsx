@@ -4,6 +4,7 @@ import { HomeIcon } from "../../../apps/web/src/components/HomeIcon";
 import { WorkBuddySidebar } from "../../../apps/web/src/components/WorkBuddySidebar";
 import { AIProviderSettings, getAIProviderCredentials } from "../AIProviderSettings";
 import { PromptInput } from "../PromptInput";
+import TaskPreviewPanel from "../TaskPreviewPanel";
 import { generateProjectWithAI } from "../api/generation";
 import { streamTaskReply } from "../api/taskChat";
 import { getProject, listProjects, updateProject } from "../projectStore";
@@ -30,6 +31,9 @@ export default function TaskConversationPage({ projectId }: { projectId: string 
   const [searchOpen, setSearchOpen] = useState(false);
   const [search, setSearch] = useState("");
   const [speaking, setSpeaking] = useState("");
+  const [previewOpen, setPreviewOpen] = useState(() => {
+    try { return window.localStorage.getItem("designbuddy.task.preview.v1") !== "closed"; } catch { return true; }
+  });
   const taskRef = useRef(task);
   const mounted = useRef(true);
   const controller = useRef<AbortController | null>(null);
@@ -187,6 +191,14 @@ export default function TaskConversationPage({ projectId }: { projectId: string 
     speech.onend = () => setSpeaking(""); speech.onerror = () => { setSpeaking(""); setNotice("朗读不可用，请检查浏览器语音支持。"); };
     setSpeaking(message.id); window.speechSynthesis.speak(speech);
   }
+  function togglePreview() {
+    setPreviewOpen((value) => {
+      const next = !value;
+      try { window.localStorage.setItem("designbuddy.task.preview.v1", next ? "open" : "closed"); } catch { /* 存储不可用时保持本次会话的选择 */ }
+      return next;
+    });
+  }
+
   function changeSettings(changes: Partial<Pick<TaskConversation, "model" | "permission">>) {
     if (!taskRef.current || busy) return;
     commit({ ...taskRef.current, ...changes });
@@ -206,6 +218,7 @@ export default function TaskConversationPage({ projectId }: { projectId: string 
     <WorkBuddySidebar active="task" projectCount={listProjects().length} go={navigateTo} setNotice={setNotice} />
     <main className="task-main" aria-label="任务对话">
       <header className="task-topbar"><h1 title={project.name}>{project.name}</h1><div className="task-top-actions">
+        <button aria-label={previewOpen ? "收起右侧预览" : "展开右侧预览"} aria-pressed={previewOpen} className={previewOpen ? "is-active" : ""} onClick={togglePreview}><HomeIcon name="panel" /></button>
         <button aria-label="搜索对话" aria-expanded={searchOpen} onClick={() => setSearchOpen((value) => !value)}><HomeIcon name="search" /></button>
         <button aria-label="复制分享文本" onClick={() => void copy(task.messages.map((item) => `${item.role === "user" ? "你" : "WorkBuddy"}：${item.content}`).join("\n\n"))}><HomeIcon name="share" /></button>
         <button aria-label="任务历史" aria-expanded={historyOpen} onClick={() => setHistoryOpen((value) => !value)}><HomeIcon name="history" /></button>
@@ -256,5 +269,6 @@ export default function TaskConversationPage({ projectId }: { projectId: string 
         <p className="task-disclaimer">内容由 AI 生成，请核实重要信息</p>
       </div>
     </main>
+    <TaskPreviewPanel project={project} open={previewOpen} onToggle={togglePreview} />
   </div>;
 }

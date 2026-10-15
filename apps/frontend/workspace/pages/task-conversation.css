@@ -98,3 +98,35 @@
   .task-workspace .task-main { height:calc(100dvh - 154px); min-height:480px; }
 }
 @media(prefers-reduced-motion:reduce) { .task-workspace .task-pulse,.task-workspace .task-stream-cursor { animation:none; } }
+
+/* Right-hand live preview (chat on the left, generated page on the right). */
+.task-workspace .task-preview-panel { display:flex; flex-direction:column; flex:0 0 clamp(340px,32vw,480px); width:clamp(340px,32vw,480px); height:100dvh; min-height:0; border-left:1px solid #e8e8ea; background:#fafafa; }
+.task-workspace .task-preview-rail { display:flex; flex:0 0 44px; width:44px; height:100dvh; align-items:flex-start; justify-content:center; padding-top:12px; border-left:1px solid #e8e8ea; background:#fafafa; }
+.task-workspace .task-preview-rail > button { display:flex; flex-direction:column; align-items:center; gap:7px; width:30px; padding:9px 0; border:0; border-radius:9px; background:transparent; color:#7a7a7a; font-size:11px; line-height:14px; cursor:pointer; }
+.task-workspace .task-preview-rail > button:hover { background:#f0f0f1; color:#333; }
+.task-workspace .task-preview-rail > button svg { transform:rotate(180deg); }
+.task-workspace .task-preview-header { display:flex; align-items:center; gap:10px; flex-shrink:0; padding:0 12px 0 16px; height:48px; border-bottom:1px solid #ececed; }
+.task-workspace .task-preview-title { display:flex; flex-direction:column; min-width:0; flex:1; }
+.task-workspace .task-preview-title strong { font-size:13px; font-weight:600; color:#2f2f31; }
+.task-workspace .task-preview-title span { overflow:hidden; color:#9a9a9c; font-size:11px; line-height:16px; white-space:nowrap; text-overflow:ellipsis; }
+.task-workspace .task-preview-actions { display:flex; align-items:center; gap:2px; flex-shrink:0; }
+.task-workspace .task-preview-actions > button { display:grid; place-items:center; width:26px; height:26px; padding:0; border:0; border-radius:6px; background:transparent; color:#828286; cursor:pointer; }
+.task-workspace .task-preview-actions > button:hover { background:#efefef; color:#333; }
+.task-workspace .task-preview-devices { display:flex; align-items:center; gap:1px; margin-right:6px; padding:2px; border-radius:7px; background:#f0f0f1; }
+.task-workspace .task-preview-devices button { display:grid; place-items:center; width:24px; height:22px; border:0; border-radius:5px; background:transparent; color:#838388; font-size:12px; line-height:1; cursor:pointer; }
+.task-workspace .task-preview-devices button.is-active { background:#fff; color:#222; box-shadow:0 1px 2px #00000014; }
+.task-workspace .task-preview-stage { display:flex; flex:1; min-height:0; align-items:stretch; justify-content:center; padding:16px; overflow:auto; }
+.task-workspace .task-preview-frame { display:flex; width:100%; height:100%; min-height:0; overflow:hidden; border:1px solid #e4e4e6; border-radius:12px; background:#fff; box-shadow:0 6px 18px #00000008; transition:max-width .18s ease; }
+.task-workspace .task-preview-frame--tablet { max-width:768px; }
+.task-workspace .task-preview-frame--mobile { max-width:390px; }
+.task-workspace .task-preview-iframe { flex:1; width:100%; height:100%; min-height:0; border:0; background:#fff; }
+.task-workspace .task-preview-empty { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; margin:auto; padding:24px; color:#9b9b9e; text-align:center; }
+.task-workspace .task-preview-empty span { font-size:34px; line-height:1; color:#d2d2d5; }
+.task-workspace .task-preview-empty strong { color:#5f5f63; font-size:14px; }
+.task-workspace .task-preview-empty p { max-width:260px; margin:0; font-size:12px; line-height:1.8; }
+.task-workspace .task-preview-footer { display:flex; align-items:center; justify-content:space-between; gap:10px; flex-shrink:0; padding:9px 14px; border-top:1px solid #ececed; color:#a3a3a6; font-size:11px; line-height:16px; }
+.task-workspace .task-preview-footer button { display:flex; align-items:center; gap:4px; flex-shrink:0; padding:0; border:0; background:none; color:#6a6a6e; font:inherit; cursor:pointer; }
+.task-workspace .task-preview-footer button:hover { color:#333; }
+.task-workspace .task-top-actions button.is-active { background:#eef0ef; color:#048e7c; }
+@media(max-width:1180px) { .task-workspace .task-preview-panel,.task-workspace .task-preview-rail { display:none; } }
+@media(prefers-reduced-motion:reduce) { .task-workspace .task-preview-frame { transition:none; } }
